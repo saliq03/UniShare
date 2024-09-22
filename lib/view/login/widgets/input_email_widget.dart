@@ -1,11 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_common/get_reset.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:unishare/utils/utils.dart';
+import 'package:unishare/viewmodels/controller/login_controller.dart';
 
 class InputEmailWidget extends StatelessWidget {
-  const InputEmailWidget({super.key});
+   InputEmailWidget({super.key});
 
+  final loginController=Get.put(LoginController());
   @override
   Widget build(BuildContext context) {
+
     return TextFormField(
+      controller: loginController.emailController.value,
+      focusNode: loginController.emailFocusNode.value,
       style: TextStyle(color: Colors.white),
       decoration: InputDecoration(
         hintStyle: TextStyle(color: Colors.white),
@@ -24,7 +33,9 @@ class InputEmailWidget extends StatelessWidget {
         }
       },
       onFieldSubmitted: (value){
-
+        Utils.fieldFocusChange(context,
+            loginController.emailFocusNode.value,
+            loginController.passwordFocusNode.value);
       },
     );
   }
