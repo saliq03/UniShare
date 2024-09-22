@@ -8,15 +8,17 @@ class MyTextButton extends StatelessWidget {
   const MyTextButton({super.key,
     required this.title,
     required this.onPress,
-    this.titleColor=AppColors.white});
+    this.titleColor=AppColors.white,
+  this.fontSize=17});
  final String title;
  final VoidCallback onPress;
+ final double fontSize;
  final Color titleColor;
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onPress,
-      child: Text(title,style: TextStyle(color: titleColor),),
+      child: Text(title,style: TextStyle(color: titleColor,fontSize: fontSize),),
     );
   }
 }

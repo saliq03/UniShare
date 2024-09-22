@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:unishare/res/assets/icons_assets.dart';
 import 'package:unishare/res/components/round_button.dart';
 import 'package:unishare/res/components/my_text_button.dart';
 
@@ -82,7 +83,43 @@ class _LoginViewState extends State<LoginView> {
               width:double.infinity,
               height: 55,),
               SizedBox(height: 10),
-              MyTextButton(title: "Forgot Password?", onPress: (){})
+              MyTextButton(title: "Forgot Password?", onPress: (){}),
+              SizedBox(height: 70),
+              Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Text("Don't have an account?",style: TextStyle(color: Colors.white,fontSize: 18),),
+              MyTextButton(title: "Sign Up", onPress: (){},fontSize: 19,)
+             ],
+             ),
+              SizedBox(height: 20),
+              Row(
+                children: [
+                  Expanded(child: Divider(color: Colors.white,)),
+                  Text("  OR  ",style: TextStyle(color: Colors.white,fontSize: 20),),
+                  Expanded(child: Divider(color: Colors.white,)),
+                ]),
+              SizedBox(height: 10),
+              Text("Continue with",style: TextStyle(color: Colors.white,fontSize: 19),),
+              SizedBox(height: 20),
+              InkWell(
+                child: Card(
+                  elevation: 8,
+                  color: Colors.white,
+                  shadowColor: Colors.black26,
+                  margin: EdgeInsets.symmetric(horizontal: 20),
+                  child: Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+                        child: Image.asset(IconsAssets.google,width: 30,height: 30,),
+                      ),
+                      Text("Continue with Google",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),)
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(height: 20,)
             ],
           ),
         ),
