@@ -1,20 +1,21 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import 'package:get/get_core/src/get_main.dart';
 import 'package:unishare/utils/utils.dart';
-import 'package:unishare/viewmodels/controller/login_controller.dart';
+import 'package:unishare/viewmodels/controller/signup_controller.dart';
 
-class InputEmailWidget extends StatelessWidget {
-   InputEmailWidget({super.key});
+class SignupInputEmailWidget extends StatelessWidget {
+   SignupInputEmailWidget({super.key});
 
-  final loginController=Get.put(LoginController());
+
+  final signupController=Get.put(SignupController());
   @override
   Widget build(BuildContext context) {
 
     return TextFormField(
-      controller: loginController.emailController.value,
-      focusNode: loginController.emailFocusNode.value,
+      controller: signupController.emailController.value,
+      focusNode: signupController.emailFocusNode.value,
       style: TextStyle(color: Colors.white),
       decoration: InputDecoration(
         hintStyle: TextStyle(color: Colors.white),
@@ -34,8 +35,8 @@ class InputEmailWidget extends StatelessWidget {
       },
       onFieldSubmitted: (value){
         Utils.fieldFocusChange(context,
-            loginController.emailFocusNode.value,
-            loginController.passwordFocusNode.value);
+            signupController.emailFocusNode.value,
+            signupController.passwordFocusNode.value);
       },
     );
   }

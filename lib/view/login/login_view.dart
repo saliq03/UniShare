@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:unishare/res/assets/icons_assets.dart';
+
+import 'package:unishare/res/colors/app_colors.dart';
 import 'package:unishare/res/components/round_button.dart';
 import 'package:unishare/res/components/my_text_button.dart';
 import 'package:unishare/view/login/widgets/continuewithgoogle_widget.dart';
@@ -25,9 +26,9 @@ class _LoginViewState extends State<LoginView> {
         padding: EdgeInsets.symmetric(horizontal: 30),
         decoration: BoxDecoration(
           gradient:LinearGradient(colors: [
-            Color(0xFF78398F),
-          Color(0xff5f3489),
-          Color(0xFF473085),
+            AppColors.loginGradient1,
+            AppColors.loginGradient2,
+            AppColors.loginGradient3,
           ],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight)
@@ -39,15 +40,15 @@ class _LoginViewState extends State<LoginView> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
              InputEmailWidget(),
-
-              SizedBox(height: 20,),
+              const SizedBox(height: 20,),
               InputPasswordWidget(),
               SizedBox(height: 20),
 
               RoundButton(title: "LOGIN", onPress: (){},
               width:double.infinity,
-              height: 55,),
-              SizedBox(height: 10),
+              height: 55,
+              titleColor: AppColors.loginGradient1,),
+              const SizedBox(height: 10),
 
               MyTextButton(title: "Forgot Password?", onPress: (){}),
               SizedBox(height: 70),
