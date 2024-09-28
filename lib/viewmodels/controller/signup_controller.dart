@@ -5,10 +5,12 @@ class SignupController extends GetxController{
   final emailController=TextEditingController().obs;
   final passwordController=TextEditingController().obs;
   final nameController=TextEditingController().obs;
+  final confirmPasswordController=TextEditingController().obs;
 
   final emailFocusNode= FocusNode().obs;
   final passwordFocusNode=FocusNode().obs;
   final nameFocusNode=FocusNode().obs;
+  final confirmPasswordFocusNode=FocusNode().obs;
   final loading=false.obs;
   final showPassword=true.obs;
 

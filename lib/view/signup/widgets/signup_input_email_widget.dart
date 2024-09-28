@@ -27,6 +27,13 @@ class SignupInputEmailWidget extends StatelessWidget {
               color: Colors.white,
             )
         ),
+        errorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(30),
+            borderSide: const BorderSide(
+                color: Colors.red,
+                width: 2
+            )
+        ),
       ),
       validator: (value){
         if(value!.isEmpty){

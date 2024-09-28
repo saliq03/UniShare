@@ -15,7 +15,7 @@ class AppRoutes{
     GetPage(
         name: RoutesName.loginview,
         page: ()=>  LoginView(),
-        transitionDuration: const Duration(milliseconds: 250),
+        transitionDuration: const Duration(milliseconds:  250),
         transition: Transition.fadeIn
     ),
     GetPage(

@@ -44,7 +44,11 @@ class _LoginViewState extends State<LoginView> {
               InputPasswordWidget(),
               SizedBox(height: 20),
 
-              RoundButton(title: "LOGIN", onPress: (){},
+              RoundButton(title: "LOGIN", onPress: (){
+                if(_formKey.currentState!.validate()){
+
+                }
+              },
               width:double.infinity,
               height: 55,
               titleColor: AppColors.loginGradient1,),
