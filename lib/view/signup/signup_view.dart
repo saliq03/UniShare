@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:unishare/res/colors/app_colors.dart';
 import 'package:unishare/res/components/round_button.dart';
 import 'package:unishare/view/signup/widgets/login_row.dart';
@@ -6,6 +8,7 @@ import 'package:unishare/view/signup/widgets/signup_confirmpassword_widget.dart'
 import 'package:unishare/view/signup/widgets/signup_input_email_widget.dart';
 import 'package:unishare/view/signup/widgets/signup_name_widget.dart';
 import 'package:unishare/view/signup/widgets/signup_password_widget.dart';
+import 'package:unishare/viewmodels/controller/signup_controller.dart';
 
 class SignupView extends StatefulWidget {
   const SignupView({super.key});
@@ -16,6 +19,7 @@ class SignupView extends StatefulWidget {
 
 class _SignupViewState extends State<SignupView> {
   final GlobalKey<FormState> _formKey=GlobalKey<FormState>();
+  final signupController=Get.put(SignupController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,14 +50,19 @@ class _SignupViewState extends State<SignupView> {
               SizedBox(height: 20),
               SignupConfirmpasswordWidget(),
               SizedBox(height: 20),
-              RoundButton(title: "Sign Up", onPress: (){
-                if(_formKey.currentState!.validate()){
+              Obx((){
+                return RoundButton(title:"Sign Up" , onPress: (){
+                    if(_formKey.currentState!.validate()){
+                     signupController.Signup();
+                       }
+                },
+                  width:double.infinity,
+                  height: 55,
+                  titleColor: AppColors.loginGradient1,
+                  loading: signupController.loading.value,);
+              }),
 
-                }
-              },
-                width:double.infinity,
-                height: 55,
-                titleColor: AppColors.loginGradient1,),
+
               Spacer(),
               LoginRow(),
               SizedBox(height: 50,)

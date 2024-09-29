@@ -23,4 +23,8 @@ class SignupController extends GetxController{
       showPassword.value=false;
     }
   }
+
+  void Signup(){
+    changeLoading(true);
+  }
 }

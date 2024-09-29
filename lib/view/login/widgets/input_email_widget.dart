@@ -9,6 +9,7 @@ class InputEmailWidget extends StatelessWidget {
    InputEmailWidget({super.key});
 
   final loginController=Get.put(LoginController());
+   final emailRegex = RegExp(r'^[^@]+@[^@]+\.[^@]+');
   @override
   Widget build(BuildContext context) {
 
@@ -37,6 +38,9 @@ class InputEmailWidget extends StatelessWidget {
       validator: (value){
         if(value!.isEmpty){
           return 'Enter Email';
+        }
+        else if(!emailRegex.hasMatch(value)) {
+          return "Enter valid Email";
         }
       },
       onFieldSubmitted: (value){
