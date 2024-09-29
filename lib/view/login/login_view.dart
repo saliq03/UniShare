@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
-
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:unishare/res/colors/app_colors.dart';
 import 'package:unishare/res/components/round_button.dart';
 import 'package:unishare/res/components/my_text_button.dart';
+import 'package:unishare/utils/utils.dart';
 import 'package:unishare/view/login/widgets/continuewithgoogle_widget.dart';
 import 'package:unishare/view/login/widgets/input_email_widget.dart';
 import 'package:unishare/view/login/widgets/input_password_widget.dart';
@@ -21,12 +21,7 @@ class LoginView extends StatefulWidget {
 class _LoginViewState extends State<LoginView> {
  final GlobalKey<FormState> _formKey=GlobalKey<FormState>();
  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    print("\nHello\n");
-    print(dotenv.env['APIKEY']);
-  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

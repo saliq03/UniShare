@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:unishare/utils/utils.dart';
 
 class SignupController extends GetxController{
   final emailController=TextEditingController().obs;
@@ -24,7 +27,26 @@ class SignupController extends GetxController{
     }
   }
 
-  void Signup(){
+   Signup() async {
     changeLoading(true);
+    try{
+      UserCredential userCredential = await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(
+          email: emailController.value.text,
+          password: passwordController.value.text);
+      changeLoading(false);
+    }
+    on FirebaseAuthException catch (ex) {
+      changeLoading(false);
+      if (ex.code == "weak-password") {
+
+        Utils.toastMessage("Weak Password");
+      }
+      if(ex.code=="email-already-in-use"){
+
+       Utils.toastMessage("User already exist");
+      }
+    }
+
   }
 }

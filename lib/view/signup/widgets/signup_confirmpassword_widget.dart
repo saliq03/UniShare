@@ -48,6 +48,9 @@ class SignupConfirmpasswordWidget extends StatelessWidget {
           if(value!.isEmpty){
             return 'Enter Password';
           }
+          else if(value!=signupController.passwordController.value.text){
+            return "Password must be same";
+          }
         },
       );
     });

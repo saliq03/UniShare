@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:unishare/res/colors/app_colors.dart';
 import 'package:unishare/res/components/round_button.dart';
+import 'package:unishare/utils/utils.dart';
 import 'package:unishare/view/signup/widgets/login_row.dart';
 import 'package:unishare/view/signup/widgets/signup_confirmpassword_widget.dart';
 import 'package:unishare/view/signup/widgets/signup_input_email_widget.dart';
@@ -20,6 +21,9 @@ class SignupView extends StatefulWidget {
 class _SignupViewState extends State<SignupView> {
   final GlobalKey<FormState> _formKey=GlobalKey<FormState>();
   final signupController=Get.put(SignupController());
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,6 +56,7 @@ class _SignupViewState extends State<SignupView> {
               SizedBox(height: 20),
               Obx((){
                 return RoundButton(title:"Sign Up" , onPress: (){
+
                     if(_formKey.currentState!.validate()){
                      signupController.Signup();
                        }
