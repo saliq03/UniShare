@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "930045691163",
+    "project_id": "unishare-b55c6",
+    "storage_bucket": "unishare-b55c6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:930045691163:android:a22ee280f9b7813dd57fbe",
+        "android_client_info": {
+          "package_name": "com.example.unishare"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrYiK56d8TzoJCdXHVi0l-30gZ-8Z1TmE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
