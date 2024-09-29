@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_common/get_reset.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:unishare/res/assets/icons_assets.dart';
+import 'package:unishare/res/components/round_button.dart';
+import 'package:unishare/view/email_verification/widgets/writing_widget.dart';
 
 class EmailVerificationScreen extends StatefulWidget {
   const EmailVerificationScreen({super.key});
@@ -9,6 +14,13 @@ class EmailVerificationScreen extends StatefulWidget {
 }
 
 class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
+ late String email;
+ @override
+  void initState() {
+    super.initState();
+    email=Get.arguments as String;
+
+ }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,13 +30,12 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(IconsAssets.email,height: 100,),
-            SizedBox(height: 10,width: double.infinity,),
-            Text("Please verify your email",style: TextStyle(fontSize: 28,fontWeight: FontWeight.bold),),
-            SizedBox(height: 10,),
-            Text("you're almost there!We sent an email to",style: TextStyle(fontSize: 16),),
-            Text("javidsaliq@gmail.com",style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),),
-            SizedBox(height: 30,),
-            Text("just click on the link in that email to complete your signup.",style: TextStyle(fontSize: 16),),
+           WritingWidget(email: email),
+            RoundButton(title: "Resend Email", onPress: (){
+
+            },width: 200,
+            buttonColor: Colors.green,titleColor: Colors.white,)
+
 
           ],
         ),

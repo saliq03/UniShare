@@ -4,6 +4,8 @@ import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:unishare/utils/utils.dart';
 
+import '../../res/routes/routes_name.dart';
+
 class SignupController extends GetxController{
   final emailController=TextEditingController().obs;
   final passwordController=TextEditingController().obs;
@@ -34,6 +36,8 @@ class SignupController extends GetxController{
           .createUserWithEmailAndPassword(
           email: emailController.value.text,
           password: passwordController.value.text);
+      Get.toNamed(RoutesName.emailverification,
+          arguments:emailController.value.text);
       changeLoading(false);
     }
     on FirebaseAuthException catch (ex) {

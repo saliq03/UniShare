@@ -58,7 +58,8 @@ class _SignupViewState extends State<SignupView> {
               SizedBox(height: 20),
               Obx((){
                 return RoundButton(title:"Sign Up" , onPress: (){
-                  Get.toNamed(RoutesName.emailverification);
+
+
                     if(_formKey.currentState!.validate()){
 
                      signupController.Signup();
