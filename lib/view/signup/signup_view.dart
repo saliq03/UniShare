@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:unishare/res/colors/app_colors.dart';
 import 'package:unishare/res/components/round_button.dart';
+import 'package:unishare/res/routes/routes.dart';
+import 'package:unishare/res/routes/routes_name.dart';
 import 'package:unishare/utils/utils.dart';
 import 'package:unishare/view/signup/widgets/login_row.dart';
 import 'package:unishare/view/signup/widgets/signup_confirmpassword_widget.dart';
@@ -56,8 +58,9 @@ class _SignupViewState extends State<SignupView> {
               SizedBox(height: 20),
               Obx((){
                 return RoundButton(title:"Sign Up" , onPress: (){
-
+                  Get.toNamed(RoutesName.emailverification);
                     if(_formKey.currentState!.validate()){
+
                      signupController.Signup();
                        }
                 },

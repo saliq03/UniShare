@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:unishare/res/routes/routes_name.dart';
+import 'package:unishare/view/email_verification/email_verification_screen.dart';
 import 'package:unishare/view/login/login_view.dart';
 import 'package:unishare/view/signup/signup_view.dart';
 import 'package:unishare/view/splash_Screen.dart';
@@ -21,6 +22,12 @@ class AppRoutes{
     GetPage(
         name: RoutesName.signupview,
         page: ()=>  SignupView(),
+        transitionDuration: const Duration(milliseconds: 250),
+        transition: Transition.fadeIn
+    ),
+    GetPage(
+        name: RoutesName.emailverification,
+        page: ()=>  EmailVerificationScreen(),
         transitionDuration: const Duration(milliseconds: 250),
         transition: Transition.fadeIn
     ),
