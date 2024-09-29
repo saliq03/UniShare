@@ -2,17 +2,19 @@ import 'dart:io';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:unishare/res/routes/routes.dart';
 
-void main() {
+void main() async{
+  await dotenv.load(fileName: ".env");
   WidgetsFlutterBinding.ensureInitialized();
   Platform.isAndroid?
   Firebase.initializeApp(options: FirebaseOptions(
-      apiKey: "AIzaSyDrYiK56d8TzoJCdXHVi0l-30gZ-8Z1TmE",
-      appId: "1:930045691163:android:a22ee280f9b7813dd57fbe",
-      messagingSenderId: "930045691163",
-      projectId: "unishare-b55c6")):
+      apiKey: dotenv.env['API_KEY']!,
+      appId: dotenv.env['APP_ID']!,
+      messagingSenderId: dotenv.env['MESSAGING_SENDER_ID']!,
+      projectId: dotenv.env['PROJECT_ID']!)):
       Firebase.initializeApp();
   runApp(const MyApp());
 }
