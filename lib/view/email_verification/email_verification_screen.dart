@@ -11,6 +11,8 @@ import 'package:unishare/res/components/round_button.dart';
 import 'package:unishare/utils/utils.dart';
 import 'package:unishare/view/email_verification/widgets/writing_widget.dart';
 
+import '../../viewmodels/controller/emailverification_controller.dart';
+
 class EmailVerificationScreen extends StatefulWidget {
   const EmailVerificationScreen({super.key});
 
@@ -23,7 +25,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
  FirebaseAuth _auth=FirebaseAuth.instance;
 
  final authRepository=AuthRepository();
-
+ final emailVerificationController=EmailverificationController();
  late Timer timer;
  @override
   void initState() {
@@ -32,19 +34,26 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
 
     timer=Timer.periodic(Duration(seconds: 3), (timer){
       _auth.currentUser?.reload();
-      if(_auth.currentUser?.emailVerified==true){
-
-
-     // Utils.snackBar("Email Verified", "Email is sucussfully verified");
-
-      }
+     //  if(emailVerificationController.isEmailVerified()){
+     // // Utils.snackBar("Email Verified", "Email is sucussfully verified");
+     //  }
     });
 
+    @override
+    void dispose() {
+      print("dispose");
+      timer.cancel();
+      super.dispose();
+
+      emailVerificationController.EmailNotVerified();
+
+    }
 
  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(),
       body: Container(
         padding: EdgeInsets.symmetric(horizontal: 30,vertical: 30),
         child: Column(
@@ -53,7 +62,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
             Image.asset(IconsAssets.email,height: 100,),
            WritingWidget(email: email),
             RoundButton(title: "Resend Email", onPress: () async {
-             authRepository.sendVerificationEmail();
+             await authRepository.sendVerificationEmail();
             },width: 200,
             buttonColor: Colors.green,titleColor: Colors.white,)
 

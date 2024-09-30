@@ -9,8 +9,13 @@ class AuthRepository{
          email: email,
          password: password);
   }
+  on FirebaseAuthException catch(e){
+    
+     throw FirebaseAuthException(code: e.code,message: e.message);
+  }
   catch(e){
-     rethrow;
+     print("Unknown error occured while signup");
+     print(e);
   }
 }
 

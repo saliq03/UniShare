@@ -35,8 +35,8 @@ class SignupController extends GetxController{
    Signup() async {
     changeLoading(true);
     try{
-      authRepository.signInWithEmail(emailController.value.text, passwordController.value.text);
-      authRepository.sendVerificationEmail();
+      await authRepository.signInWithEmail(emailController.value.text, passwordController.value.text);
+       await authRepository.sendVerificationEmail();
       changeLoading(false);
       Get.toNamed(RoutesName.emailverification,
           arguments:emailController.value.text);
