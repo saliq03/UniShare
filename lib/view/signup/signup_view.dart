@@ -29,9 +29,9 @@ class _SignupViewState extends State<SignupView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
+      resizeToAvoidBottomInset: false,
       body: Container(
-        padding: EdgeInsets.symmetric(horizontal: 30),
+        padding: const EdgeInsets.symmetric(horizontal: 30),
         decoration: const BoxDecoration(
             gradient:LinearGradient(colors: [
               AppColors.loginGradient1,

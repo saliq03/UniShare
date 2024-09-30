@@ -1,0 +1,26 @@
+import 'package:firebase_auth/firebase_auth.dart';
+
+class AuthRepository{
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  signInWithEmail(String email,String password ) async {
+   try{
+     UserCredential userCredential = await FirebaseAuth.instance
+         .createUserWithEmailAndPassword(
+         email: email,
+         password: password);
+  }
+  catch(e){
+     rethrow;
+  }
+}
+
+  sendVerificationEmail() async {
+   try {
+     await _auth.currentUser?.sendEmailVerification();
+   }
+   catch (e){
+     print("error while sending verification email\n");
+     print(e);
+   }
+ }
+  }
