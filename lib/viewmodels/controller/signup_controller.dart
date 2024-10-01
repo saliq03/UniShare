@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:unishare/repositories/auth_repository.dart';
 import 'package:unishare/utils/utils.dart';
+import 'package:unishare/view/email_verification/email_verification_screen.dart';
 
 import '../../res/routes/routes_name.dart';
 
@@ -32,7 +33,7 @@ class SignupController extends GetxController{
     }
   }
 
-   Signup() async {
+   Signup(BuildContext context) async {
     changeLoading(true);
     try{
       await authRepository.signInWithEmail(emailController.value.text, passwordController.value.text);
@@ -40,6 +41,7 @@ class SignupController extends GetxController{
       changeLoading(false);
       Get.toNamed(RoutesName.emailverification,
           arguments:emailController.value.text);
+
 
     }
     on FirebaseAuthException catch (ex) {

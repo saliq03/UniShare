@@ -5,7 +5,6 @@ class EmailverificationController {
   FirebaseAuth _auth=FirebaseAuth.instance;
 
    isEmailVerified(){
-     print("isEmailVerified");
      if(_auth.currentUser?.emailVerified==true){
         return true;
      }
@@ -14,7 +13,7 @@ class EmailverificationController {
 
   EmailNotVerified() async {
     if(!isEmailVerified()){
-      print("EmailNotVerified");
+
       await _auth.currentUser?.delete();
     }
   }
