@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:unishare/repositories/auth_repository.dart';
-import 'package:unishare/utils/utils.dart';
-import 'package:unishare/view/email_verification/email_verification_screen.dart';
 
+import 'package:unishare/utils/utils.dart';
+
+import '../../res/constants/constants.dart';
 import '../../res/routes/routes_name.dart';
 
 class SignupController extends GetxController{
@@ -15,6 +16,7 @@ class SignupController extends GetxController{
   final passwordController=TextEditingController().obs;
   final nameController=TextEditingController().obs;
   final confirmPasswordController=TextEditingController().obs;
+  var gender=Constants.male.obs;
 
   final emailFocusNode= FocusNode().obs;
   final passwordFocusNode=FocusNode().obs;

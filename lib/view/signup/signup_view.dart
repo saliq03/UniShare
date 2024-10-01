@@ -6,6 +6,7 @@ import 'package:unishare/res/components/round_button.dart';
 import 'package:unishare/res/routes/routes.dart';
 import 'package:unishare/res/routes/routes_name.dart';
 import 'package:unishare/utils/utils.dart';
+import 'package:unishare/view/signup/widgets/gender_selection_widget.dart';
 import 'package:unishare/view/signup/widgets/login_row.dart';
 import 'package:unishare/view/signup/widgets/signup_confirmpassword_widget.dart';
 import 'package:unishare/view/signup/widgets/signup_input_email_widget.dart';
@@ -51,8 +52,13 @@ class _SignupViewState extends State<SignupView> {
               SignupNameWidget(),
               SizedBox(height: 20),
              SignupInputEmailWidget(),
+              SizedBox(height: 20,),
+             GenderSelectionWidget(),
               SizedBox(height: 20),
               SignupPasswordWidget(),
+
+
+
               SizedBox(height: 20),
               SignupConfirmpasswordWidget(),
               SizedBox(height: 20),
