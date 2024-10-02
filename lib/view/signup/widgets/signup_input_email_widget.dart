@@ -47,7 +47,7 @@ class SignupInputEmailWidget extends StatelessWidget {
       onFieldSubmitted: (value){
         Utils.fieldFocusChange(context,
             signupController.emailFocusNode.value,
-            signupController.passwordFocusNode.value);
+            signupController.genderFocusNode.value);
       },
     );
   }

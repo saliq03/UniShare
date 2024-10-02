@@ -6,11 +6,13 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
 import 'package:unishare/repositories/auth_repository.dart';
+import 'package:unishare/repositories/signuprepository/signup_repository.dart';
 import 'package:unishare/res/assets/icons_assets.dart';
 import 'package:unishare/res/components/round_button.dart';
 
 import 'package:unishare/view/email_verification/widgets/writing_widget.dart';
 
+import '../../utils/utils.dart';
 import '../../viewmodels/controller/emailverification_controller.dart';
 
 class EmailVerificationScreen extends StatefulWidget {
@@ -23,19 +25,22 @@ class EmailVerificationScreen extends StatefulWidget {
 class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
 
  FirebaseAuth _auth=FirebaseAuth.instance;
-late String email;
+late Map<String,dynamic> args;
  final authRepository=AuthRepository();
  final emailVerificationController=EmailverificationController();
+ final signupRepository=SignupRepository();
  late Timer timer;
  @override
   void initState() {
     super.initState();
-    email=Get.arguments as String;
+    args=Get.arguments;
 
     timer=Timer.periodic(Duration(seconds: 3), (timer){
       _auth.currentUser?.reload();
       if(emailVerificationController.isEmailVerified()){
-     // Utils.snackBar("Email Verified", "Email is sucussfully verified");
+        signupRepository.uploadUser(args['Name'], args['Email'], args['Gender']);
+       Utils.snackBar("Email Verified", "Email is sucussfully verified");
+       Navigator.pop(context);
       }
     });
  }
@@ -57,7 +62,7 @@ late String email;
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(IconsAssets.email,height: 100,),
-           WritingWidget(email: email),
+           WritingWidget(email: args['Email']),
             RoundButton(title: "Resend Email", onPress: () async {
              await authRepository.sendVerificationEmail();
             },width: 200,

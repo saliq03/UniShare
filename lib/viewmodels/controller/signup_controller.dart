@@ -21,6 +21,7 @@ class SignupController extends GetxController{
   final emailFocusNode= FocusNode().obs;
   final passwordFocusNode=FocusNode().obs;
   final nameFocusNode=FocusNode().obs;
+  final genderFocusNode=FocusNode().obs;
   final confirmPasswordFocusNode=FocusNode().obs;
   final loading=false.obs;
   final showPassword=true.obs;
@@ -42,7 +43,12 @@ class SignupController extends GetxController{
        await authRepository.sendVerificationEmail();
       changeLoading(false);
       Get.toNamed(RoutesName.emailverification,
-          arguments:emailController.value.text);
+          arguments: {
+           "Name" :nameController.value.text,
+           "Email" :emailController.value.text,
+            "Gender" :gender.value
+          });
+
 
 
     }
