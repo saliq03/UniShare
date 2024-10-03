@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:unishare/res/colors/app_colors.dart';
 import 'package:unishare/res/components/round_button.dart';
 import 'package:unishare/res/components/my_text_button.dart';
-import 'package:unishare/utils/utils.dart';
-import 'package:unishare/view/login/widgets/continuewithgoogle_widget.dart';
-import 'package:unishare/view/login/widgets/input_email_widget.dart';
-import 'package:unishare/view/login/widgets/input_password_widget.dart';
-import 'package:unishare/view/login/widgets/or_widget.dart';
-import 'package:unishare/view/login/widgets/signup_row.dart';
+import 'package:unishare/view/authentication/login/widgets/continuewithgoogle_widget.dart';
+import 'package:unishare/view/authentication/login/widgets/input_email_widget.dart';
+import 'package:unishare/view/authentication/login/widgets/input_password_widget.dart';
+import 'package:unishare/view/authentication/login/widgets/or_widget.dart';
+import 'package:unishare/view/authentication/login/widgets/signup_row.dart';
 
-import '../../viewmodels/controller/login_controller.dart';
+import '../../../viewmodels/controller/login_controller.dart';
+
 
 
 class LoginView extends StatefulWidget {

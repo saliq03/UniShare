@@ -1,9 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:unishare/repositories/auth_repository.dart';
 import 'package:unishare/utils/utils.dart';
 
 class LoginController extends GetxController{
+  final authRepository =AuthRepository();
+
   final emailController=TextEditingController().obs;
   final passwordController=TextEditingController().obs;
 
@@ -25,16 +28,14 @@ class LoginController extends GetxController{
    Future<void> login() async {
      changeLoading(true);
      try {
-       await FirebaseAuth.instance.signInWithEmailAndPassword(
-           email: emailController.value.text,
-           password: passwordController.value.text);
-       Utils.snackBar("succesfull", "Logged in");
-       // changeLoading(false);
+       await authRepository.logInWithEmailPassword(emailController.value.text, passwordController.value.text).then((value){
+         Utils.snackBar("succesfull", "Logged in");
+       });
+
      } on FirebaseAuthException catch (ex) {
-       changeLoading(false);
+       // changeLoading(false);
        Get.snackbar(ex.code, ex.message.toString(),duration: Duration(seconds: 5));
-       print("Error code:"+ex.code);
-       print("Error message"+ex.message.toString());
+
        switch (ex.code) {
          case 'wrong-password':
            Utils.toastMessage("Incorrect password");
@@ -60,5 +61,7 @@ class LoginController extends GetxController{
        changeLoading(false);
      }
    }
+
+
 
 }

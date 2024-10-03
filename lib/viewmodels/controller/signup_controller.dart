@@ -39,15 +39,19 @@ class SignupController extends GetxController{
    Signup(BuildContext context) async {
     changeLoading(true);
     try{
-      await authRepository.signInWithEmail(emailController.value.text, passwordController.value.text);
-       await authRepository.sendVerificationEmail();
-      changeLoading(false);
-      Get.toNamed(RoutesName.emailverification,
-          arguments: {
-           "Name" :nameController.value.text,
-           "Email" :emailController.value.text,
-            "Gender" :gender.value
-          });
+      await authRepository.signInWithEmail(emailController.value.text, passwordController.value.text).then((value) async {
+        await authRepository.sendVerificationEmail().then((value){
+          changeLoading(false);
+          Get.toNamed(RoutesName.emailverification,
+              arguments: {
+                "Name" :nameController.value.text,
+                "Email" :emailController.value.text,
+                "Gender" :gender.value
+              });
+        });
+      });
+
+
 
 
 

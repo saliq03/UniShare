@@ -4,8 +4,9 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:unishare/res/constants/constants.dart';
 
-import '../../../utils/utils.dart';
-import '../../../viewmodels/controller/signup_controller.dart';
+import '../../../../utils/utils.dart';
+import '../../../../viewmodels/controller/signup_controller.dart';
+
 
 class GenderSelectionWidget extends StatelessWidget {
   GenderSelectionWidget({super.key});

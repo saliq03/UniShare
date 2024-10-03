@@ -3,15 +3,13 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:unishare/res/colors/app_colors.dart';
 import 'package:unishare/res/components/round_button.dart';
-import 'package:unishare/res/routes/routes.dart';
-import 'package:unishare/res/routes/routes_name.dart';
-import 'package:unishare/utils/utils.dart';
-import 'package:unishare/view/signup/widgets/gender_selection_widget.dart';
-import 'package:unishare/view/signup/widgets/login_row.dart';
-import 'package:unishare/view/signup/widgets/signup_confirmpassword_widget.dart';
-import 'package:unishare/view/signup/widgets/signup_input_email_widget.dart';
-import 'package:unishare/view/signup/widgets/signup_name_widget.dart';
-import 'package:unishare/view/signup/widgets/signup_password_widget.dart';
+import 'package:unishare/view/authentication/signup/widgets/gender_selection_widget.dart';
+import 'package:unishare/view/authentication/signup/widgets/login_row.dart';
+import 'package:unishare/view/authentication/signup/widgets/signup_confirmpassword_widget.dart';
+import 'package:unishare/view/authentication/signup/widgets/signup_input_email_widget.dart';
+import 'package:unishare/view/authentication/signup/widgets/signup_name_widget.dart';
+import 'package:unishare/view/authentication/signup/widgets/signup_password_widget.dart';
+
 import 'package:unishare/viewmodels/controller/signup_controller.dart';
 
 class SignupView extends StatefulWidget {

@@ -9,11 +9,13 @@ import 'package:unishare/repositories/auth_repository.dart';
 import 'package:unishare/repositories/signuprepository/signup_repository.dart';
 import 'package:unishare/res/assets/icons_assets.dart';
 import 'package:unishare/res/components/round_button.dart';
+import 'package:unishare/view/authentication/email_verification/widgets/writing_widget.dart';
 
-import 'package:unishare/view/email_verification/widgets/writing_widget.dart';
 
-import '../../utils/utils.dart';
-import '../../viewmodels/controller/emailverification_controller.dart';
+
+import '../../../utils/utils.dart';
+import '../../../viewmodels/controller/emailverification_controller.dart';
+
 
 class EmailVerificationScreen extends StatefulWidget {
    const EmailVerificationScreen({super.key});
