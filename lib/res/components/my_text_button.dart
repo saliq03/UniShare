@@ -8,7 +8,7 @@ class MyTextButton extends StatelessWidget {
   const MyTextButton({super.key,
     required this.title,
     required this.onPress,
-    this.titleColor=AppColors.white,
+    this.titleColor=Colors.lightBlueAccent,
   this.fontSize=17});
  final String title;
  final VoidCallback onPress;
@@ -18,7 +18,7 @@ class MyTextButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onPress,
-      child: Text(title,style: TextStyle(color: titleColor,fontSize: fontSize),),
+      child: Text(title,style: TextStyle(color: titleColor,fontSize: fontSize,fontStyle: FontStyle.italic),),
     );
   }
 }
