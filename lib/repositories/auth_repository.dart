@@ -20,7 +20,9 @@ class AuthRepository{
 }
 
   sendVerificationEmail() async {
+
    try {
+     _auth.currentUser?.reload();
      await _auth.currentUser?.sendEmailVerification();
    }
    catch (e){
@@ -44,4 +46,18 @@ class AuthRepository{
      print(e);
    }
  }
+
+  Future<void> resetPasswordwithEmail(String email) async {
+   try{
+     await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+   } on FirebaseAuthException catch(e){
+
+     throw FirebaseAuthException(code: e.code,message: e.message);
+   }
+   catch(e){
+     print("Unknown error occured while signup");
+     print(e);
+   }
+
+  }
   }

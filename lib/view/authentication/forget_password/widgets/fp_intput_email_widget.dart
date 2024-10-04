@@ -16,7 +16,6 @@ class FpIntputEmailWidget extends StatelessWidget {
       child: TextFormField(
         controller:fpController.emailController.value,
         focusNode: fpController.emailFocusNode.value,
-        style: TextStyle(color: Colors.white),
         decoration: const InputDecoration(
           hintText: "Email",
           prefixIcon: Icon(Icons.email_outlined,size: 30,),
