@@ -79,13 +79,6 @@ class _SignupViewState extends State<SignupView> {
               Spacer(),
               LoginRow(),
               SizedBox(height: 50,)
-
-
-
-
-
-
-
             ],
           ),
         ),

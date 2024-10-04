@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:unishare/res/routes/routes.dart';
+import 'package:unishare/view/authentication/forget_password/after_forgetpassword_screen.dart';
 import 'package:unishare/view/authentication/forget_password/forget_password.dart';
 
 void main() async{
@@ -33,7 +34,6 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-     home: ForgetPassword(),
       getPages: AppRoutes.appRoutes(),
 
     );

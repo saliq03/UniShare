@@ -5,6 +5,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:unishare/res/colors/app_colors.dart';
 import 'package:unishare/res/components/round_button.dart';
 import 'package:unishare/res/components/my_text_button.dart';
+import 'package:unishare/res/routes/routes_name.dart';
 import 'package:unishare/view/authentication/login/widgets/continuewithgoogle_widget.dart';
 import 'package:unishare/view/authentication/login/widgets/input_email_widget.dart';
 import 'package:unishare/view/authentication/login/widgets/input_password_widget.dart';
@@ -64,7 +65,9 @@ class _LoginViewState extends State<LoginView> {
               }),
               const SizedBox(height: 5),
 
-              MyTextButton(title: "Forgot Password?", onPress: (){}),
+              MyTextButton(title: "Forgot Password?", onPress: (){
+                Get.toNamed(RoutesName.forgetPassword);
+              }),
               SizedBox(height: 70),
               SignupRow(),
               SizedBox(height: 20),
