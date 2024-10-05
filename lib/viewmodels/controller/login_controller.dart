@@ -1,8 +1,14 @@
+import 'dart:convert';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:unishare/repositories/auth_repository.dart';
+import 'package:unishare/repositories/signuprepository/signup_repository.dart';
 import 'package:unishare/utils/utils.dart';
+import 'package:http/http.dart' as http;
+
 
 class LoginController extends GetxController{
   final authRepository =AuthRepository();
@@ -14,6 +20,7 @@ class LoginController extends GetxController{
   final passwordFocusNode=FocusNode().obs;
   final loading=false.obs;
   final showPassword=true.obs;
+  final continuewithgoogleLoading=false.obs;
 
   void changeLoading(value)=>loading.value=value;
   void changeShowPassowrd(){
@@ -61,6 +68,76 @@ class LoginController extends GetxController{
        changeLoading(false);
      }
    }
+
+   logInWithGoogle() async {
+     continuewithgoogleLoading.value=true;
+     final GoogleSignIn googleSignIn = GoogleSignIn(
+       scopes: [
+         'email',
+         'profile',
+         'https://www.googleapis.com/auth/userinfo.profile',
+         'https://www.googleapis.com/auth/user.gender.read', // Required for gender info
+       ],
+     );
+
+    try{
+      final GoogleSignInAccount? guser= await GoogleSignIn().signIn();
+      final GoogleSignInAuthentication gauth=await guser!.authentication;
+      final crediential=GoogleAuthProvider.credential(
+          accessToken: gauth.accessToken,
+          idToken: gauth.idToken
+      );
+      UserCredential result= await FirebaseAuth.instance.signInWithCredential(crediential);
+
+      User? userDetails=result.user;
+      String gender=fetchUserGender(gauth.accessToken!);
+      continuewithgoogleLoading.value=false;
+      Utils.snackBar("Success", "sign in with google");
+
+      if(result!=null){
+       SignupRepository().uploadUser(userDetails!.displayName!,
+           userDetails.email!,gender);
+      }
+    }
+    catch(e){
+      print('Error in signin with google');
+      print(e.toString());
+    }
+     continuewithgoogleLoading.value=false;
+
+
+
+
+   }
+
+
+   fetchUserGender(String accessToken) async {
+
+    try{
+      final url = Uri.parse('https://people.googleapis.com/v1/people/me?personFields=genders');
+
+      final response = await http.get(
+        url,
+        headers: {
+          'Authorization': 'Bearer $accessToken',
+        },
+      );
+
+      if (response.statusCode == 200) {
+        final data = jsonDecode(response.body);
+        print("User Gender: ${data['genders'][0]['value']}");
+        return data['genders'][0]['value'];
+      } else {
+        print("Failed to fetch gender info: ${response.body}");
+      }
+    } catch(e){
+      print("error in fetchuserGender");
+      print(e.toString());
+    }
+    return null;
+    }
+
+
 
 
 
