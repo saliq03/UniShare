@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthRepository{
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -58,6 +59,35 @@ class AuthRepository{
      print("Unknown error occured while signup");
      print(e);
    }
+
+  }
+
+  SignInWithGoogle() async {
+    final GoogleSignIn googleSignIn = GoogleSignIn(
+      scopes: [
+        'email',
+        'profile',
+        'https://www.googleapis.com/auth/userinfo.profile',
+        'https://www.googleapis.com/auth/user.gender.read', // Required for gender info
+      ],
+    );
+    try{
+      final GoogleSignInAccount? guser= await GoogleSignIn().signIn();
+      final GoogleSignInAuthentication gauth=await guser!.authentication;
+      final crediential=GoogleAuthProvider.credential(
+          accessToken: gauth.accessToken,
+          idToken: gauth.idToken
+      );
+      UserCredential result= await FirebaseAuth.instance.signInWithCredential(crediential);
+
+      User? userDetails=result.user;
+
+      //we will return userdetails and gender in a map here
+
+    }catch(e){
+      print('Error in signin with google');
+      print(e.toString());
+    }
 
   }
   }
