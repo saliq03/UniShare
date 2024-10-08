@@ -93,6 +93,8 @@ class LoginController extends GetxController{
       String gender=fetchUserGender(gauth.accessToken!);
       continuewithgoogleLoading.value=false;
       Utils.snackBar("Success", "sign in with google");
+      print('value of result');
+      print(result);
 
       if(result!=null){
        SignupRepository().uploadUser(userDetails!.displayName!,

@@ -31,6 +31,9 @@ class _HomeBottomNavState extends State<HomeBottomNav> {
         color: Colors.black54,
         height: 65,
         animationDuration: Duration(milliseconds: 500),
+        onTap: (index){
+
+        },
       ),
     );
   }
