@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-import 'package:unishare/view/side_bar.dart';
+import 'package:unishare/view/pages/home_page/home_page.dart';
+import 'package:unishare/view/side_bar/side_bar.dart';
 
 class HomeBottomNav extends StatefulWidget {
   const HomeBottomNav({super.key});
@@ -15,11 +16,7 @@ class _HomeBottomNavState extends State<HomeBottomNav> {
     return Scaffold(
      drawer: SideBar(),
       appBar: AppBar(),
-      body:Padding(padding:EdgeInsets.symmetric(horizontal: 10,vertical: 20),
-        child: Container(
-          color: Colors.red,
-        ),
-      ),
+      body:HomePage(),
       bottomNavigationBar:CurvedNavigationBar(
           items: [
             Icon(Icons.home_outlined,color: Colors.white,),
