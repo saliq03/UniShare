@@ -25,41 +25,60 @@ class _HomePageState extends State<HomePage> {
               enabledBorder: OutlineInputBorder(
                  borderSide: BorderSide(
                    color: Colors.black,
-                   width: 2
-                 )
-              )
+                   width: 2)),
+              focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                      width: 2))
             ),
           ),
           SizedBox(height: 10,width: double.infinity,),
           Expanded(
             child: GridView.builder(
-              itemCount: 4,
+              itemCount: 7,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
                     crossAxisSpacing: 6,
                     mainAxisSpacing: 6,
-                    childAspectRatio: 0.8
+                    childAspectRatio: 0.7
                     ),
                 itemBuilder: (context,index){
                 return Card(
                   elevation: 5,
                   child: Container(
-                    padding: EdgeInsets.only(left: 10),
-                    child: GridTile(
-                        child: Hero(tag: index,
-                            child:Image.asset(ImagesAssets.demoImg,height: 100,fit: BoxFit.cover,) ),
-                      footer: Container(
-                        // padding: EdgeInsets.symmetric(horizontal: 7,vertical: 5),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+             // color: Colors.white54,
+                    padding: EdgeInsets.symmetric(horizontal: 10,vertical: 10),
+                    child: Column(
+                      children: [
+                        Stack(
                           children: [
-                            Text("Free",style: TextStyle(fontWeight: FontWeight.bold,color: Colors.green,fontSize: 20),),
-                            Text("Drafter blue")
+                            // The Image in the background
+                            Hero(
+                              tag: index,
+                              child: Image.asset(
+                                ImagesAssets.demoImg,
+                                height: 180,
+                                width: double.infinity,
+                                fit: BoxFit.fill,
+                              ),
+                            ),
+                            // The CircleAvatar positioned at the top-right
+                            Positioned(
+                              top: 3,
+                              right: 3, // Change left to right
+                              child: CircleAvatar(
+                                backgroundColor: Colors.white,
+                                child: Icon(Icons.favorite_border),
+                              ),
+                            ),
                           ],
                         ),
-                      ),
+                        SizedBox(height: 10,),
+                        Text("Free",style: TextStyle(color: Colors.green,fontWeight: FontWeight.bold,fontSize: 20),),
+                        Text("Drafter blue".toUpperCase(),style: TextStyle(fontSize: 15,),)
+                      ],
                     ),
                   ),
+
                 );
                 }),
           )
