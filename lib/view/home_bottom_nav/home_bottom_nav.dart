@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:unishare/res/colors/app_colors.dart';
+import 'package:unishare/view/home_bottom_nav/widgets/bottom_navigation_widget.dart';
+import 'package:unishare/view/home_bottom_nav/widgets/drawer_icon.dart';
 import 'package:unishare/view/pages/home_page/home_page.dart';
 import 'package:unishare/view/side_bar/side_bar.dart';
 
@@ -23,33 +24,10 @@ class _HomeBottomNavState extends State<HomeBottomNav> {
         title: Text("UniShare",style: TextStyle(fontSize: 28,fontWeight: FontWeight.bold,color: AppColors.loginGradient3),),
         centerTitle: true,
 
-        leading: Builder(builder: (context){
-          return InkWell(
-            onTap: (){
-              Scaffold.of(context).openDrawer();
-            },
-            child: CircleAvatar(
-              child: Icon(Icons.person),
-            ),
-          );
-        })
+        leading: DrawerIcon()
       ),
       body:HomePage(),
-      bottomNavigationBar:CurvedNavigationBar(
-          items: [
-            Icon(Icons.home_outlined,color: Colors.white,),
-            Icon(Icons.search_outlined,color: Colors.white,),
-            Icon(Icons.category_outlined,color: Colors.white,),
-          ],
-        buttonBackgroundColor: Colors.black,
-        backgroundColor: Colors.white,
-        color: Colors.black54,
-        height: 65,
-        animationDuration: Duration(milliseconds: 500),
-        onTap: (index){
-
-        },
-      ),
+      bottomNavigationBar:BottomNavigationWidget()
     );
   }
 }

@@ -9,11 +9,10 @@ import 'package:unishare/repositories/auth_repository.dart';
 import 'package:unishare/repositories/signuprepository/signup_repository.dart';
 import 'package:unishare/res/assets/icons_assets.dart';
 import 'package:unishare/res/components/round_button.dart';
+import 'package:unishare/res/routes/routes_name.dart';
 import 'package:unishare/view/authentication/email_verification/widgets/writing_widget.dart';
+import 'package:unishare/viewmodels/user_prefrences/user_prefrences.dart';
 
-
-
-import '../../../utils/utils.dart';
 import '../../../viewmodels/controller/emailverification_controller.dart';
 
 
@@ -31,6 +30,8 @@ late Map<String,dynamic> args;
  final authRepository=AuthRepository();
  final emailVerificationController=EmailverificationController();
  final signupRepository=SignupRepository();
+ final userPrefrences= UserPrefrences();
+
  late Timer timer;
  @override
   void initState() {
@@ -41,8 +42,9 @@ late Map<String,dynamic> args;
       _auth.currentUser?.reload();
       if(emailVerificationController.isEmailVerified()){
         signupRepository.uploadUser(args['Name'], args['Email'], args['Gender']);
-       Utils.snackBar("Email Verified", "Email is sucussfully verified");
-       Navigator.pop(context);
+        userPrefrences.SetLoginKey(true);
+        userPrefrences.SaveUser(args['Name'],args['Email'], args['Gender']);
+        Get.offNamed(RoutesName.homeBottomNav);
       }
     });
  }

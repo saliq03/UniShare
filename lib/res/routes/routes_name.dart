@@ -1,8 +1,9 @@
 class RoutesName{
   static const String splashscreen='/';
-  static const String loginview='/loginview';
-  static const String signupview='/signupview';
-  static const String emailverification='/emailverification';
-  static const String forgetPassword='/forgetpassword';
-  static const String afterForgetPasswordScreen='/afterforgetpasswordscreen';
+  static const String loginview='/login_view';
+  static const String signupview='/signup_view';
+  static const String emailverification='/email_verification';
+  static const String forgetPassword='/forget_password';
+  static const String afterForgetPasswordScreen='/after_forget_password_screen';
+  static const String homeBottomNav='/home_bottom_nav';
 }

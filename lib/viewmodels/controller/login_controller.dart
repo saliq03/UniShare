@@ -6,12 +6,15 @@ import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:unishare/repositories/auth_repository.dart';
 import 'package:unishare/repositories/signuprepository/signup_repository.dart';
+import 'package:unishare/res/routes/routes_name.dart';
 import 'package:unishare/utils/utils.dart';
 import 'package:http/http.dart' as http;
+import 'package:unishare/viewmodels/user_prefrences/user_prefrences.dart';
 
 
 class LoginController extends GetxController{
   final authRepository =AuthRepository();
+  final userPrefrences=UserPrefrences();
 
   final emailController=TextEditingController().obs;
   final passwordController=TextEditingController().obs;
@@ -36,6 +39,9 @@ class LoginController extends GetxController{
      changeLoading(true);
      try {
        await authRepository.logInWithEmailPassword(emailController.value.text, passwordController.value.text).then((value){
+         userPrefrences.SetLoginKey(true);
+         // userPrefrences.SaveUser(name, email, gender)
+         Get.offNamed(RoutesName.homeBottomNav);
          Utils.snackBar("succesfull", "Logged in");
        });
 
