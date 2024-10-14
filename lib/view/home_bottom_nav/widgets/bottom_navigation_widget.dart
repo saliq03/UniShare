@@ -9,7 +9,7 @@ class BottomNavigationWidget extends StatelessWidget {
     return CurvedNavigationBar(
     items: [
     Icon(Icons.home_outlined,color: Colors.white,),
-    Icon(Icons.search_outlined,color: Colors.white,),
+    Icon(Icons.add ,size: 40,color: Colors.white,),
     Icon(Icons.category_outlined,color: Colors.white,),
     ],
     buttonBackgroundColor: Colors.black,

@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-
 import 'package:unishare/view/side_bar/widgets/user_accounts_header_widget.dart';
-import 'package:unishare/viewmodels/user_prefrences/user_prefrences.dart';
-
 import '../../viewmodels/controller/home_controllers/sidebar_controller.dart';
 
 class SideBar extends StatelessWidget {
