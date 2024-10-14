@@ -1,4 +1,5 @@
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:unishare/model/user_model/user_model.dart';
 
 class UserPrefrences {
   SetLoginKey(bool value) async {
@@ -18,14 +19,11 @@ class UserPrefrences {
     return true;
   }
 
- Future<Map<String,dynamic>>  GetUser() async {
+ Future<UserModel>  GetUser() async {
     SharedPreferences sp=await SharedPreferences.getInstance();
-    String? token=sp.getString("token");
-    Map<String,dynamic> user={
-      "Name": sp.getString("Name"),
-      "Email": sp.getString("Email"),
-      "Gender": sp.getString("Gender"),
-    };
+
+    final user=UserModel(Name: sp.getString("Name")?? 'No Name', Email: sp.getString("Email")?? 'No Email', Gender: sp.getString("Gender")?? 'Unknown');
+
      return user;
   }
 

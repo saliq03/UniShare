@@ -1,20 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:unishare/viewmodels/controller/home_controllers/sidebar_controller.dart';
 
 import '../../../res/assets/icons_assets.dart';
 
 class UserAccountsHeaderWidget extends StatelessWidget {
-  const UserAccountsHeaderWidget({super.key});
+   UserAccountsHeaderWidget({super.key});
+final sidebarController=Get.put(SidebarController());
+
 
   @override
   Widget build(BuildContext context) {
     return UserAccountsDrawerHeader(
-        accountName: Text("Saliq javeed"),
-        accountEmail: Text("javidsaliq@gmail.com"),
-        currentAccountPicture: CircleAvatar(
-            child: ClipOval(
-              child: Image.asset(IconsAssets.tickedCircle
-                ,width: 90,height: 90,
-                fit: BoxFit.cover,),)),
+
+        accountName: Obx(()=>Text(sidebarController.Name.value)),
+
+
+        accountEmail:Obx(()=>Text(sidebarController.Email.value)) ,
+        currentAccountPicture: GestureDetector(
+          onTap: (){
+            sidebarController.LoadDataFromPrefrences();
+          },
+          child: CircleAvatar(
+              child: ClipOval(
+                child: Image.asset(IconsAssets.tickedCircle
+                  ,width: 90,height: 90,
+                  fit: BoxFit.cover,),)),
+        ),
         decoration: BoxDecoration(
           color: Colors.blue,
           image: DecorationImage(

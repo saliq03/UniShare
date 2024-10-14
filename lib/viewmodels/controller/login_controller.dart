@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:unishare/repositories/auth_repository.dart';
+import 'package:unishare/repositories/login_repository/login_repository.dart';
 import 'package:unishare/repositories/signuprepository/signup_repository.dart';
 import 'package:unishare/res/routes/routes_name.dart';
 import 'package:unishare/utils/utils.dart';
@@ -38,11 +39,14 @@ class LoginController extends GetxController{
    Future<void> login() async {
      changeLoading(true);
      try {
-       await authRepository.logInWithEmailPassword(emailController.value.text, passwordController.value.text).then((value){
+       await authRepository.logInWithEmailPassword(emailController.value.text, passwordController.value.text).then((value) async {
          userPrefrences.SetLoginKey(true);
-         // userPrefrences.SaveUser(name, email, gender)
-         Get.offNamed(RoutesName.homeBottomNav);
-         Utils.snackBar("succesfull", "Logged in");
+         await LoginRepository().fetchUser(emailController.value.text).then((user){
+           userPrefrences.SaveUser(user.Name, user.Email, user.Gender);
+           Get.offNamed(RoutesName.homeBottomNav);
+           Utils.snackBar("succesfull", "Logged in");
+         });
+
        });
 
      } on FirebaseAuthException catch (ex) {

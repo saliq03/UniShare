@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:unishare/res/assets/icons_assets.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+
 import 'package:unishare/view/side_bar/widgets/user_accounts_header_widget.dart';
+import 'package:unishare/viewmodels/user_prefrences/user_prefrences.dart';
+
+import '../../viewmodels/controller/home_controllers/sidebar_controller.dart';
 
 class SideBar extends StatelessWidget {
-  const SideBar({super.key});
-
+   SideBar({super.key});
+  final sidebarController=Get.put(SidebarController());
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -45,8 +50,10 @@ class SideBar extends StatelessWidget {
           Divider(),
           ListTile(
             leading: Icon(Icons.exit_to_app),
-            title: Text("Exit"),
-            onTap: (){Navigator.pop(context);},
+            title: Text("Logout"),
+            onTap: (){Navigator.pop(context);
+              sidebarController.logOut();
+              },
           ),
         ],
       ),
