@@ -32,7 +32,7 @@ class _HomeBottomNavState extends State<HomeBottomNav> {
 
         leading: DrawerIcon()
       ),
-      body:DonatePage(),
+      body:HomePage(),
       bottomNavigationBar:BottomNavigationWidget()
     );
   }

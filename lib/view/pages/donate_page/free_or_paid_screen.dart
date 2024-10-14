@@ -20,8 +20,13 @@ class _FreeOrPaidScreenState extends State<FreeOrPaidScreen> {
       ),
       body: Container(
         padding: EdgeInsets.symmetric(horizontal: 20),
+        decoration: BoxDecoration(
+          border: Border.symmetric(horizontal: BorderSide(color: Colors.grey.shade300,width: 1))
+        ),
         child: Column(
           children: [
+            // Divider(color: Colors.grey, // Set color of the divider
+            //   thickness: 1, ),
             Row(
               children: [
                 // Free radio button
@@ -61,6 +66,7 @@ class _FreeOrPaidScreenState extends State<FreeOrPaidScreen> {
               TextField(
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.currency_rupee,color:Colors.purpleAccent ,),
                   labelText: "Set Price",
                   border: OutlineInputBorder(),
                   hintText: "Enter the price",
