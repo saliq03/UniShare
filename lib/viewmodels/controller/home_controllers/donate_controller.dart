@@ -1,4 +1,5 @@
 import 'package:device_info_plus/device_info_plus.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -8,6 +9,11 @@ class DonateController extends GetxController{
   final ImagePicker _picker =ImagePicker();
   RxList<XFile> selectedImages=<XFile>[].obs;
   final RxList<String> imageUrlList=<String>[].obs;
+  final titleController=TextEditingController().obs;
+  final descriptionController=TextEditingController().obs;
+  final titleFocusNode=FocusNode().obs;
+  final descriptionFocusNode=FocusNode().obs;
+  final categoryFocusNode=FocusNode().obs;
 
   PickImages()async{
    // PermissionStatus status;
@@ -40,5 +46,10 @@ class DonateController extends GetxController{
     }catch(e){
       print(e.toString());
     }
+  }
+
+  RemoveImage(int index){
+   selectedImages.removeAt(index);
+   update();
   }
 }

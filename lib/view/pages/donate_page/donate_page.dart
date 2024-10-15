@@ -16,31 +16,40 @@ class DonatePage extends StatefulWidget {
 
 class _DonatePageState extends State<DonatePage> {
 
-
+  final GlobalKey<FormState> _formKey=GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
 
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: Text("Add product deatails"),
+        centerTitle: true,
+      ),
       body: Card(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              ShowImagesWidget(),
-             // UploadImageWidget(),
-              const SizedBox(height: 20),
-               TitleInputWidget(),
-              SizedBox(height: 16),
-              DescriptionInputWidget(),
-              const SizedBox(height: 16),
-              SelectCategoryWidget(),
-              Spacer(),
-              RectangleButton(title: "Next", onPress: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>FreeOrPaidScreen()));
-              }, buttonColor: Colors.purpleAccent.shade100,)
-            ],
+          child: Form(
+            key: _formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                MediaQuery.of(context).viewInsets.bottom > 0? Container():
+                ShowImagesWidget(),
+                const SizedBox(height: 20),
+                 TitleInputWidget(),
+                SizedBox(height: 16),
+                DescriptionInputWidget(),
+                const SizedBox(height: 16),
+                SelectCategoryWidget(),
+                Spacer(),
+                RectangleButton(title: "Next", onPress: (){
+                  if(_formKey.currentState!.validate()){
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>FreeOrPaidScreen()));
+                  }
+
+                }, buttonColor: Colors.purpleAccent.shade100,)
+              ],
+            ),
           ),
         ),
       ),
