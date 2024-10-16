@@ -1,8 +1,12 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import 'package:get/get_core/src/get_main.dart';
 import 'package:unishare/res/components/bottom_bar_button.dart';
-import 'package:unishare/view/pages/donate_page/donate_page.dart';
+import 'package:unishare/res/routes/routes_name.dart';
+
 
 class BottomNavigationWidget extends StatelessWidget {
 
@@ -17,7 +21,7 @@ class BottomNavigationWidget extends StatelessWidget {
           BottomBarButton(icon: Icons.home_outlined, name: "Home", onPress: (){}),
           BottomBarButton(icon: Icons.chat_bubble_outline, name: "Chat", onPress: (){}),
           BottomBarButton(icon: Icons.add_box, name: "Donate", onPress: (){
-            Navigator.push(context, MaterialPageRoute(builder: (contex)=>DonatePage()));
+            Get.toNamed(RoutesName.donate_page);
           }),
           BottomBarButton(icon: Icons.emergency_outlined, name: "Emergency", onPress: (){})
         ],
