@@ -7,8 +7,10 @@ import 'package:image_picker/image_picker.dart';
 import 'package:unishare/model/product_model/product_model.dart';
 
 import 'package:unishare/repositories/home_repository/home_repository.dart';
-import 'package:random_string/random_string.dart';
+import 'package:unishare/res/routes/routes_name.dart';
+
 import 'package:unishare/utils/utils.dart';
+import 'package:unishare/viewmodels/controller/home_controllers/home_controller.dart';
 import 'package:unishare/viewmodels/services/generate_ids_service.dart';
 import 'package:unishare/viewmodels/user_prefrences/user_prefrences.dart';
 
@@ -105,9 +107,12 @@ class DonateController extends GetxController{
           providerEmail: userModel.Email);
       await homeRepository.UploadProduct(productModel.toMap()).then((value){
         EasyLoading.dismiss();
+        HomeController homeController = Get.find<HomeController>();
+        homeController.refreshController();
+
         Get.back();
         Get.back();
-        Utils.snackBar("Sucess", "Product addded sucessfully");
+        Utils.snackBar("Added", "Product added sucessfully");
       });
     });
 

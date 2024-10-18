@@ -84,16 +84,10 @@ class _FreeOrPaidScreenState extends State<FreeOrPaidScreen> {
 
                 Spacer(),
                 RectangleButton(title: "Next", onPress: (){
-                  // if(donateController.offerType.value=="Free"){
-                  //   donateController.AddProduct("Free");
-                  //   Utils.toastMessage(" Free sucesss");
-                  // }
-                  // else{
                     if(_formKey.currentState!.validate()){
                       donateController.AddProduct(donateController.priceController.value.toString());
-                      Utils.toastMessage(" paid sucesss");
                     }
-                  // }
+
 
 
 
