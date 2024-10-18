@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:unishare/res/components/rectangle_button.dart';
@@ -53,7 +54,7 @@ class _DonatePageState extends State<DonatePage> {
                 RectangleButton(title: "Next", onPress: (){
                   if(_formKey.currentState!.validate()){
                     if(donateController.selectedImages.length>0){
-                      Get.toNamed(RoutesName.freeOrPaidPage);
+                        Get.toNamed(RoutesName.freeOrPaidPage);
                     }
                     else{
                       Utils.toastMessage("No image added");

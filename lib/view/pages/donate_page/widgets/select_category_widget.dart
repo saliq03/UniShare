@@ -8,7 +8,7 @@ import '../../../../viewmodels/controller/home_controllers/donate_controller.dar
 class SelectCategoryWidget extends StatelessWidget {
    SelectCategoryWidget({super.key});
   final List<String> _categories = ["Books", "Utensils","other"];
-  String? _selectedCategory;
+
    final donateController=Get.put(DonateController());
 
   @override
@@ -23,12 +23,12 @@ class SelectCategoryWidget extends StatelessWidget {
                 color: Colors.black)
         )),
       validator: (value){
-         if(_selectedCategory==null){
+         if(donateController.selectedCategory==null){
            return "Category can't be null";
          }
       },
 
-      value: _selectedCategory,
+      value: donateController.selectedCategory!.value.isEmpty ? null : donateController.selectedCategory!.value,
       items: _categories.map((gender) {
 
         return DropdownMenuItem<String>(
@@ -39,7 +39,7 @@ class SelectCategoryWidget extends StatelessWidget {
         );
       }).toList(),
       onChanged: (value) {
-        _selectedCategory=value;
+        donateController.selectedCategory!.value = value ?? '';
       },
       hint: Text('Select category',style: TextStyle(color: Colors.black,fontSize: 16),),
       dropdownColor: Colors.grey.shade500,

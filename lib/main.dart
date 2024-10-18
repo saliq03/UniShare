@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:unishare/res/routes/routes.dart';
 import 'package:unishare/view/authentication/forget_password/after_forgetpassword_screen.dart';
@@ -37,7 +38,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       getPages: AppRoutes.appRoutes(),
-
+      builder: EasyLoading.init(),
     );
   }
 }
