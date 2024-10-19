@@ -9,18 +9,20 @@ import 'package:unishare/res/routes/routes.dart';
 import 'package:unishare/view/authentication/forget_password/after_forgetpassword_screen.dart';
 import 'package:unishare/view/authentication/forget_password/forget_password.dart';
 import 'package:unishare/view/home_bottom_nav/home_bottom_nav.dart';
+import 'package:unishare/view/pages/product_page/product_page.dart';
 import 'package:unishare/view/splash_Screen.dart';
 
 void main() async{
-  await dotenv.load(fileName: ".env");
+
   WidgetsFlutterBinding.ensureInitialized();
+  await dotenv.load(fileName: ".env");
   Platform.isAndroid?
-  Firebase.initializeApp(options: FirebaseOptions(
+   await Firebase.initializeApp(options: FirebaseOptions(
       apiKey: dotenv.env['API_KEY']!,
       appId: dotenv.env['APP_ID']!,
       messagingSenderId: dotenv.env['MESSAGING_SENDER_ID']!,
       projectId: dotenv.env['PROJECT_ID']!)):
-      Firebase.initializeApp();
+     await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -37,6 +39,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
+      home: ProductPage(),
       getPages: AppRoutes.appRoutes(),
       builder: EasyLoading.init(),
     );

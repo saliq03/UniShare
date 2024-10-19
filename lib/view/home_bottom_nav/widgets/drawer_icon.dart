@@ -18,5 +18,6 @@ child: Image.asset(IconsAssets.person,height: 35,),
 ),
 );
 });
+
   }
 }
