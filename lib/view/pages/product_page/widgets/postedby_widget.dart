@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:shimmer/shimmer.dart';
+import 'package:unishare/res/components/my_text_button.dart';
 
 import '../../../../res/colors/app_colors.dart';
 import '../../../../viewmodels/controller/home_controllers/productpage_controller.dart';
@@ -27,26 +29,53 @@ class PostedbyWidget extends StatelessWidget {
               )
           ),
 
-          child: Row(
-            children: [
-              CircleAvatar(
-                radius: 40,
-                backgroundColor: Colors.red,
-
-              ),
-              SizedBox(width: 20,),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+          child: Obx((){
+            return controller.owner.value==null?
+            Shimmer.fromColors(
+              child: Row(
                 children: [
-                  Text("Posted by"),
-                  Obx((){
-                    return  controller.owner.value==null?Container():Text(controller.owner.value!.Name,style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),);
-                  }),
-                  Text("Posted on: $postedOn")
+                  CircleAvatar(
+                    radius: 40,
+                    backgroundColor: Colors.white,
+
+                  ),
+                  SizedBox(width: 20,),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(color: Colors.white,width: 100,height: 10,),
+                      SizedBox(height: 10,),
+                      Container(color: Colors.white,width: 90,height: 10),
+                      SizedBox(height: 10,),
+                      Container(color: Colors.white,width: 150,height: 10)
+                    ],
+                  )
                 ],
-              )
-            ],
-          ),
+              ),
+              baseColor: Colors.grey.shade700,
+              highlightColor: Colors.grey.shade100,)
+                : Row(
+              children: [
+                CircleAvatar(
+                  radius: 40,
+                  backgroundColor: Colors.red,
+
+                ),
+                SizedBox(width: 20,),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text("Posted by"),
+                    Text(controller.owner.value!.Name,style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),),
+                    Text("Posted on: $postedOn"),
+                    SizedBox(height: 10,),
+                    MyTextButton(title: " See profile", onPress: (){},fontSize: 18, titleColor: AppColors.loginGradient2,)
+                  ],
+                )
+              ],
+            );
+          })
+
         ),
       ],
     );

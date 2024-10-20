@@ -41,7 +41,7 @@ class PhotosWidget extends StatelessWidget {
           Positioned(
               bottom: 10,
               left: MediaQuery.of(context).size.width*0.4,
-              child: Obx((){
+              child: photos.length>1?Obx((){
                 return AnimatedSmoothIndicator(
                   activeIndex: controller.activeIndex.value,
                   count:photos.length,
@@ -50,7 +50,7 @@ class PhotosWidget extends StatelessWidget {
                       dotHeight:10,
                       dotWidth: 10
                   ),);
-              })),
+              }):Container()),
           // Positioned(
           //     top: 10,
           //     child: Container(

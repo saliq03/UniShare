@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:unishare/res/routes/routes.dart';
 import 'package:unishare/res/routes/routes_name.dart';
+import 'package:unishare/viewmodels/controller/home_controllers/favourites_controller.dart';
 import '../../../../viewmodels/controller/home_controllers/home_controller.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
@@ -11,6 +11,7 @@ class ShowProductWidget extends StatelessWidget {
   final int index;
 
   final homeController=Get.put(HomeController());
+  final favouritesController=Get.put(FavouritesController());
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -43,9 +44,18 @@ class ShowProductWidget extends StatelessWidget {
                   Positioned(
                     top: 3,
                     right: 3, // Change left to right
-                    child: CircleAvatar(
-                      backgroundColor: Colors.white,
-                      child: Icon(Icons.favorite_border),
+                    child: InkWell(
+                      onTap: (){
+                        favouritesController.addToFavourites(homeController.products[index].productId);
+                      },
+                      child: CircleAvatar(
+                        backgroundColor: Colors.white,
+                        child: Obx((){
+                          return favouritesController.favourites.contains(homeController.products[index].productId)?
+                          Icon(Icons.favorite,color: Colors.redAccent,)
+                              : Icon(Icons.favorite_border);
+                        })
+                      ),
                     ),
                   ),
                 ],

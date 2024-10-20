@@ -35,7 +35,6 @@ class HomeRepository {
   }
 
   Future<List<ProductModel>> getAllProducts() async {
-    print("getAllprocucts method called");
     try{
       final snapshot = await FirebaseFirestore.instance.collection("Products").get();
       final List<ProductModel> products = snapshot.docs.map((e) {
