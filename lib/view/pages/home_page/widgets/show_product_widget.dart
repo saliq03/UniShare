@@ -46,14 +46,14 @@ class ShowProductWidget extends StatelessWidget {
                     right: 3, // Change left to right
                     child: InkWell(
                       onTap: (){
-                        favouritesController.addToFavourites(homeController.products[index].productId);
+                        favouritesController.addOrRemoveFromFavourites(homeController.products[index].productId);
                       },
                       child: CircleAvatar(
                         backgroundColor: Colors.white,
                         child: Obx((){
                           return favouritesController.favourites.contains(homeController.products[index].productId)?
                           Icon(Icons.favorite,color: Colors.redAccent,)
-                              : Icon(Icons.favorite_border);
+                              :Icon(Icons.favorite_border);
                         })
                       ),
                     ),

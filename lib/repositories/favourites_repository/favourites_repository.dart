@@ -53,4 +53,8 @@ class FavouritesRepository{
   }
 
   }
+
+  FetchFavouriteProducts(List<String> ids){
+
+  }
 }

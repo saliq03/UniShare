@@ -10,6 +10,7 @@ import 'package:unishare/view/pages/product_page/widgets/bottomnav_button_widget
 import 'package:unishare/view/pages/product_page/widgets/details_widget.dart';
 import 'package:unishare/view/pages/product_page/widgets/photos_widget.dart';
 import 'package:unishare/view/pages/product_page/widgets/postedby_widget.dart';
+import 'package:unishare/viewmodels/controller/home_controllers/favourites_controller.dart';
 import 'package:unishare/viewmodels/controller/home_controllers/productpage_controller.dart';
 
 
@@ -22,6 +23,7 @@ class ProductPage extends StatefulWidget {
 
 class _ProductPageState extends State<ProductPage> {
   final controller=Get.put(ProductPageController());
+  final favController=Get.put(FavouritesController());
   @override
   Widget build(BuildContext context) {
     final ProductModel product=Get.arguments;
@@ -37,7 +39,16 @@ class _ProductPageState extends State<ProductPage> {
             size: 35
           ),
           actions: [
-            IconButton(onPressed: (){}, icon: Icon(Icons.favorite_outline_sharp,color: Colors.white,size: 35,))
+            Obx((){
+              return IconButton(
+                  padding: EdgeInsets.only(right: 15),
+                  onPressed: (){
+                favController.addOrRemoveFromFavourites(product.productId);
+              }, icon: favController.favourites.contains(product.productId)?
+              Icon(Icons.favorite_outlined,color: Colors.redAccent,size: 35,):
+              Icon(Icons.favorite_outline_sharp,color: Colors.white,size: 35,));
+            })
+
           ],// Removes the shadow
 
         ),
