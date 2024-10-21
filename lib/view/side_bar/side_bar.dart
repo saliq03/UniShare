@@ -25,9 +25,12 @@ class SideBar extends StatelessWidget {
             },
           ),
           ListTile(
-            leading: Icon(Icons.share),
-            title: Text("Share"),
-            onTap: ()=>null,
+            leading: Icon(Icons.add_box),
+            title: Text("My Ads"),
+            onTap: (){
+              Get.back();
+              Get.toNamed(RoutesName.myAdsPage);
+            },
           ),
           ListTile(
             leading: Icon(Icons.notifications),

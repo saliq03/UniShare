@@ -6,12 +6,14 @@ import 'package:unishare/view/home_bottom_nav/home_bottom_nav.dart';
 import 'package:unishare/view/pages/donate_page/donate_page.dart';
 import 'package:unishare/view/pages/donate_page/free_or_paid_screen.dart';
 import 'package:unishare/view/pages/favourites_page/favourites_page.dart';
+
 import 'package:unishare/view/pages/product_page/product_page.dart';
 import 'package:unishare/view/splash_Screen.dart';
 
 import '../../view/authentication/email_verification/email_verification_screen.dart';
 import '../../view/authentication/login/login_view.dart';
 import '../../view/authentication/signup/signup_view.dart';
+import '../../view/pages/my_adds/my_ads.dart';
 
 class AppRoutes{
   static appRoutes()=>[
@@ -78,6 +80,12 @@ class AppRoutes{
     GetPage(
         name: RoutesName.favouritesPage,
         page: ()=>  FavouritesPage(),
+        transitionDuration: const Duration(milliseconds: 250),
+        transition: Transition.fadeIn
+    ),
+    GetPage(
+        name: RoutesName.myAdsPage,
+        page: ()=>  MyAds(),
         transitionDuration: const Duration(milliseconds: 250),
         transition: Transition.fadeIn
     ),
