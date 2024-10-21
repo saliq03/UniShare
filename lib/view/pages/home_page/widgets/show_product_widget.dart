@@ -61,7 +61,7 @@ class ShowProductWidget extends StatelessWidget {
                 ],
               ),
               SizedBox(height: 10,),
-              Text(homeController.products[index].price,style: TextStyle(color: Colors.green,fontWeight: FontWeight.bold,fontSize: 20),),
+              Text(homeController.products[index].price=="Free"?"Free": "₹ ${homeController.products[index].price}",style: TextStyle(color: Colors.green,fontWeight: FontWeight.bold,fontSize: 20),),
               Text(homeController.products[index].title.toUpperCase(),style: TextStyle(fontSize: 15,),maxLines: 1, // Single line
                 overflow: TextOverflow.ellipsis, softWrap: false,)
             ],

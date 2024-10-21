@@ -1,26 +1,24 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:intl/intl.dart';
 import 'package:unishare/model/product_model/product_model.dart';
+import 'package:unishare/utils/utils.dart';
+import 'package:unishare/viewmodels/controller/home_controllers/my_ads_controller.dart';
 
 class MyProductWidget extends StatelessWidget {
-  const MyProductWidget({required this.myProduct, super.key});
+  MyProductWidget({required this.myProduct, super.key});
    final ProductModel myProduct;
+
+   final myAdsController=Get.put(MyAdsController());
   @override
   Widget build(BuildContext context) {
     return Card(
       elevation: 5,
       child: Container(
         padding: EdgeInsets.only(left: 10,right: 10),
-        decoration: BoxDecoration(
-            border: Border(
-                bottom: BorderSide(
-                    color: Colors.grey,
-                    width: 2
-                )
-            )
-        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -34,8 +32,7 @@ class MyProductWidget extends StatelessWidget {
                         print("edit");
                         // Handle edit
                       } else if (value == 'remove') {
-                        print("remove");
-                        // Handle remove
+                        showDeleteConfirmationDialog(context, myProduct.productId);
                       }
                     },
                     itemBuilder: (context)=>[
@@ -73,18 +70,46 @@ class MyProductWidget extends StatelessWidget {
                 SizedBox(width: 20,),
                 Column(crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(myProduct.title,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
-                    Text(myProduct.price=="Free"? "Free":"₹ ${myProduct.price}",style: TextStyle(fontSize: 20),)
+                    SizedBox(width: 200,
+                        child: Text(myProduct.title,maxLines: 1,overflow: TextOverflow.ellipsis, softWrap: false,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),)),
+                    Text(myProduct.price=="Free"? "Free":"₹ ${myProduct.price}",style: const TextStyle(fontSize: 20),)
                   ],
                 )
               ],
             ),
-            SizedBox(height: 10,)
+            const SizedBox(height: 10,)
 
 
           ],
         ),
       ),
     );
+  }
+
+  showDeleteConfirmationDialog(BuildContext context,String productId){
+    showDialog(
+        context: context, builder: (BuildContext context){
+          return AlertDialog(
+            title: const Text("Remove product"),
+            content: const Text('Are you sure you want to remove this product?'),
+            actions: [
+          TextButton(
+          child: const Text('Cancel'),
+          onPressed: () {
+          Navigator.of(context).pop(); // Close the dialog
+         }),
+
+              TextButton(
+                  child: const Text('Remove'),
+                  onPressed: () {
+                    myAdsController.removeMyProduct(productId).then((value){
+                      Utils.snackBar("Removed", "Product removed Sucessfully");
+                    });
+                    Navigator.of(context).pop();// Close the dialog
+                  }),
+
+            ],
+          );
+    });
   }
 }

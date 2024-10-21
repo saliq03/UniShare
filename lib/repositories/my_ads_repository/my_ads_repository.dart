@@ -23,4 +23,15 @@ class MyAdsRepository{
     }
 
   }
+  Future<void> RemoveProduct(String productId)async {
+    try{
+      await FirebaseFirestore.instance
+          .collection('Products') // Replace with your actual collection
+          .doc(productId) // myId is the document ID to be deleted
+          .delete();
+    } catch(e){
+      print(e.toString());
+    }
+
+  }
 }

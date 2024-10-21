@@ -13,13 +13,18 @@ class MyAdsController extends GetxController{
   void onInit(){
     super.onInit();
     loading.value=true;
-    GetMyProducts().then((value){
+    getMyProducts().then((value){
       loading.value=false;
     });
   }
 
-  Future<void> GetMyProducts()async{
+  Future<void> getMyProducts()async{
     myProducts.value= await myAdsRepository.FetchMyAds();
     update();
+  }
+ Future<void> removeMyProduct(String productId)async {
+    myAdsRepository.RemoveProduct(productId).then((value){
+      getMyProducts();
+    });
   }
 }

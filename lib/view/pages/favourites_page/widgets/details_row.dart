@@ -23,7 +23,7 @@ class DetailsRow extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(product.price,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
+            Text(product.price=="Free"?"Free":"₹ ${product.price}",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
             SizedBox(width: 200,
                 child: Text(product.title,maxLines: 1,overflow: TextOverflow.ellipsis, softWrap: false,style: TextStyle(fontSize: 20),)),
           ],
