@@ -9,4 +9,5 @@ class RoutesName{
   static const String donate_page='/donate_page';
   static const String freeOrPaidPage='/free_or_paid_page';
   static const String productPage='/product_page';
+  static const String favouritesPage='/favourites_page';
 }

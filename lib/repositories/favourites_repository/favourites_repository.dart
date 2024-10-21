@@ -2,6 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:unishare/model/user_model/user_model.dart';
 import 'package:unishare/viewmodels/user_prefrences/user_prefrences.dart';
 
+import '../../model/product_model/product_model.dart';
+
 class FavouritesRepository{
 
   AddToFavourites(String productId) async {
@@ -34,7 +36,7 @@ class FavouritesRepository{
     }
   }
 
- Future<List<String>> GetFavourites() async {
+  Future<List<String>> GetFavourites() async {
     UserModel user=await UserPrefrences().GetUser();
   try{
     final snapshot = await FirebaseFirestore.instance.
@@ -54,7 +56,24 @@ class FavouritesRepository{
 
   }
 
-  FetchFavouriteProducts(List<String> ids){
+  Future<List<ProductModel>> FetchFavouriteProducts(List<String> ids) async {
+        print("fetch fav products method called");
+    try {
+      if(ids.isEmpty){
+        return [];
+      }
+      final snapshot = await FirebaseFirestore.instance.collection("Products")
+          .where('ProductId', whereIn: ids)  // Filter products by IDs
+          .get();
+      final List<ProductModel> products = snapshot.docs.map((e) {
+        return ProductModel.fromMap(e.data() as Map<String, dynamic>);
+      }).toList();
+
+      return products;
+    } catch(e){
+      print(e.toString());
+      throw e;
+    }
 
   }
 }

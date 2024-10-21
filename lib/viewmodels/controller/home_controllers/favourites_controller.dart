@@ -1,19 +1,28 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
 import 'package:unishare/repositories/favourites_repository/favourites_repository.dart';
+
+import '../../../model/product_model/product_model.dart';
 
 class FavouritesController extends GetxController{
  var favourites=<String>[].obs;
  final favouritesRepository=FavouritesRepository();
+ RxList<ProductModel> favProducts=<ProductModel>[].obs;
+ final loading=false.obs;
 
  @override
  void onInit(){
   super.onInit();
-  getFavourites();
+  loading.value=true;
+  getFavourites().then((value){
+   getFavProducts();
+   loading.value=false;
+   update();
+  });
+
  }
 
- getFavourites()async{
+  Future<void> getFavourites()async{
   favourites.value = await favouritesRepository.GetFavourites();
   update();
  }
@@ -35,11 +44,18 @@ class FavouritesController extends GetxController{
  addOrRemoveFromFavourites(String id){
   if(favourites.contains(id)){
    removeFromFavourites(id);
-
   }
   else{
    addToFavourites(id);
   }
+  getFavProducts();
+  update();
+ }
+
+ getFavProducts() async {
+  print("get favroute products method called");
+  favProducts.value=await favouritesRepository.FetchFavouriteProducts(favourites);
+
  }
 
 }

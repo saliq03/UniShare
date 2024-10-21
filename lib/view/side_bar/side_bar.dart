@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:unishare/res/routes/routes_name.dart';
 import 'package:unishare/view/side_bar/widgets/user_accounts_header_widget.dart';
 import '../../viewmodels/controller/home_controllers/sidebar_controller.dart';
 
@@ -18,7 +19,10 @@ class SideBar extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.favorite),
             title: Text("Favourites"),
-            onTap: ()=>null,
+            onTap: (){
+              Get.back();
+              Get.toNamed(RoutesName.favouritesPage);
+            },
           ),
           ListTile(
             leading: Icon(Icons.share),
