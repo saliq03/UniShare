@@ -6,6 +6,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:intl/intl.dart';
 import 'package:unishare/model/product_model/product_model.dart';
 import 'package:unishare/utils/utils.dart';
+import 'package:unishare/view/pages/edit_product_page/edit_product_page.dart';
 import 'package:unishare/viewmodels/controller/home_controllers/my_ads_controller.dart';
 
 class MyProductWidget extends StatelessWidget {
@@ -30,9 +31,9 @@ class MyProductWidget extends StatelessWidget {
                     onSelected: (value){
                       if (value == 'edit info') {
                         print("edit");
-                        // Handle edit
+                        Get.to(EditProductPage());
                       } else if (value == 'remove') {
-                        showDeleteConfirmationDialog(context, myProduct.productId);
+                        showDeleteConfirmationDialog(context, myProduct);
                       }
                     },
                     itemBuilder: (context)=>[
@@ -86,7 +87,7 @@ class MyProductWidget extends StatelessWidget {
     );
   }
 
-  showDeleteConfirmationDialog(BuildContext context,String productId){
+  showDeleteConfirmationDialog(BuildContext context,ProductModel product){
     showDialog(
         context: context, builder: (BuildContext context){
           return AlertDialog(
@@ -102,7 +103,7 @@ class MyProductWidget extends StatelessWidget {
               TextButton(
                   child: const Text('Remove'),
                   onPressed: () {
-                    myAdsController.removeMyProduct(productId).then((value){
+                    myAdsController.removeMyProduct(product).then((value){
                       Utils.snackBar("Removed", "Product removed Sucessfully");
                     });
                     Navigator.of(context).pop();// Close the dialog

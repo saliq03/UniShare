@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
 import '../../model/product_model/product_model.dart';
 import '../../model/user_model/user_model.dart';
@@ -33,5 +34,13 @@ class MyAdsRepository{
       print(e.toString());
     }
 
+  }
+  Future<void> DeleteProductImage(String imageUrl)async {
+    try {
+      final Reference storageRef = FirebaseStorage.instance.refFromURL(imageUrl);
+      await storageRef.delete();
+    }catch(e){
+      print(e.toString());
+    }
   }
 }
