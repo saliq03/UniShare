@@ -11,4 +11,5 @@ class RoutesName{
   static const String productPage='/product_page';
   static const String favouritesPage='/favourites_page';
   static const String myAdsPage='/my_ads_page';
+  static const String editProductPage='/edit_product_page';
 }

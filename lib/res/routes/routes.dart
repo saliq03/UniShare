@@ -5,6 +5,7 @@ import 'package:unishare/view/authentication/forget_password/forget_password.dar
 import 'package:unishare/view/home_bottom_nav/home_bottom_nav.dart';
 import 'package:unishare/view/pages/donate_page/donate_page.dart';
 import 'package:unishare/view/pages/donate_page/free_or_paid_screen.dart';
+import 'package:unishare/view/pages/edit_product_page/edit_product_page.dart';
 import 'package:unishare/view/pages/favourites_page/favourites_page.dart';
 
 import 'package:unishare/view/pages/product_page/product_page.dart';
@@ -86,6 +87,12 @@ class AppRoutes{
     GetPage(
         name: RoutesName.myAdsPage,
         page: ()=>  MyAds(),
+        transitionDuration: const Duration(milliseconds: 250),
+        transition: Transition.fadeIn
+    ),
+    GetPage(
+        name: RoutesName.editProductPage,
+        page: ()=>  EditProductPage(),
         transitionDuration: const Duration(milliseconds: 250),
         transition: Transition.fadeIn
     ),

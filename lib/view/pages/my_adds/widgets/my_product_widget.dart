@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:intl/intl.dart';
 import 'package:unishare/model/product_model/product_model.dart';
+import 'package:unishare/res/routes/routes_name.dart';
 import 'package:unishare/utils/utils.dart';
 import 'package:unishare/view/pages/edit_product_page/edit_product_page.dart';
 import 'package:unishare/viewmodels/controller/home_controllers/my_ads_controller.dart';
@@ -30,8 +31,8 @@ class MyProductWidget extends StatelessWidget {
                     icon: Icon(Icons.more_horiz,size: 30,),
                     onSelected: (value){
                       if (value == 'edit info') {
-                        print("edit");
-                        Get.to(EditProductPage());
+
+                        Get.toNamed(RoutesName.editProductPage,arguments: myProduct);
                       } else if (value == 'remove') {
                         showDeleteConfirmationDialog(context, myProduct);
                       }
