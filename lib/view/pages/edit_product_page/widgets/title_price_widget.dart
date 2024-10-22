@@ -1,15 +1,21 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+
+import '../../../../viewmodels/controller/home_controllers/edit_product_controller.dart';
 
 class TitlePriceWidget extends StatelessWidget {
-  const TitlePriceWidget({required this.title,required this.price,super.key});
-  final String title,price;
+   TitlePriceWidget({super.key});
+
+  final editProductController=Get.put(EditProductController());
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         TextFormField(
-          initialValue: title,
+          controller: editProductController.titleController.value,
+
           decoration: InputDecoration(labelText: 'Title',
               labelStyle: TextStyle(fontWeight: FontWeight.bold,fontSize: 25,color: Colors.black)),
           // onSaved: (value) => _title = value ?? '',
@@ -22,7 +28,7 @@ class TitlePriceWidget extends StatelessWidget {
         ),
         SizedBox(height: 16),
         TextFormField(
-          initialValue: price,
+          controller: editProductController.priceController.value,
 
           decoration: InputDecoration(labelText: 'Price (for free set price as 0)',
               labelStyle: TextStyle(fontWeight: FontWeight.bold,fontSize: 25,color: Colors.black)
