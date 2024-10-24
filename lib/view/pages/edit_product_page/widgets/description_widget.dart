@@ -16,7 +16,7 @@ class DescriptionWidget extends StatelessWidget {
       color: Colors.grey.shade300,
       child: TextFormField(
           controller: editProductController.descriptionController.value,
-
+          focusNode: editProductController.descriptionFocusNode.value,
         decoration: InputDecoration(
           border: OutlineInputBorder(
 
@@ -26,6 +26,9 @@ class DescriptionWidget extends StatelessWidget {
         validator: (value) {
           if (value == null || value.isEmpty) {
             return 'Please enter a description';
+          }
+          else if(value.length<11){
+            return 'Description too short';
           }
           return null;
         },

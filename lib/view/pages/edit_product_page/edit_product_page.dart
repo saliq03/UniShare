@@ -21,12 +21,14 @@ class EditProductPage extends StatefulWidget {
 class _EditProductPageState extends State<EditProductPage> {
 
   final editProductController=Get.put(EditProductController());
+  final GlobalKey<FormState> _formKey=GlobalKey<FormState>();
 
 // @override
-//   void initState() {
-//     // TODO: implement initState
-//     super.initState();
-//   }
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    editProductController.initializeControllers(Get.arguments);
+  }
   @override
   Widget build(BuildContext context) {
     final ProductModel product=Get.arguments;
@@ -38,10 +40,13 @@ class _EditProductPageState extends State<EditProductPage> {
           Padding(
             padding: const EdgeInsets.only(right: 10),
             child: RoundButton(title: "Save", onPress: (){
-              editProductController.updateProduct(product).then((value){
-                Get.back();
-                Utils.snackBar("Product updated", "The product info has been updated sucessfully");
-              });
+              if(_formKey.currentState!.validate()){
+                editProductController.updateProduct(product).then((value){
+                  Get.back();
+                  Utils.snackBar("Product updated", "The product info has been updated sucessfully");
+                });
+              }
+
             },
             buttonColor: AppColors.loginGradient2,titleColor: AppColors.white,
             width: 80,height: 40,),
@@ -50,22 +55,25 @@ class _EditProductPageState extends State<EditProductPage> {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Divider(),
-            ProductImageWidget(images: product.images,),
-            SizedBox(height: 20,),
-            TitlePriceWidget(),
+        child: Form(
+          key: _formKey,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Divider(),
+              ProductImageWidget(images: product.images,),
+              SizedBox(height: 20,),
+              TitlePriceWidget(),
 
-            SizedBox(height: 16),
-            Text("Description:",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
-            DescriptionWidget()
+              SizedBox(height: 16),
+              Text("Description:",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
+              DescriptionWidget()
 
 
 
 
-          ],
+            ],
+          ),
         ),
       ),
     );

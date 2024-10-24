@@ -46,9 +46,12 @@ class SideBar extends StatelessWidget {
             onTap: ()=>null,
           ),
           ListTile(
-            leading: Icon(Icons.settings),
-            title: Text("Setting"),
-            onTap: ()=>null,
+            leading: Icon(Icons.person),
+            title: Text("Edit Profile"),
+            onTap: (){
+              Get.back();
+              Get.toNamed(RoutesName.editProfilePage);
+            },
           ),
 
           Divider(),

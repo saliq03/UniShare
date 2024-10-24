@@ -45,15 +45,20 @@ class MyAdsRepository{
   }
 
   Future<void> UpdateProductInfo(ProductModel product)async {
+    print("in update product info method repo");
+    print(product);
     try{
-      await FirebaseFirestore.instance.collection('products').doc(product.productId).
+      await FirebaseFirestore.instance.collection('Products').doc(product.productId).
       update({
         "Title":product.title,
         "Price":product.price,
         "Description":product.description,
         "Images":product.images
+      }).then((value){
+        print("updated");
       });
     }catch(e){
+      print("error:");
       print(e.toString());
     }
   }

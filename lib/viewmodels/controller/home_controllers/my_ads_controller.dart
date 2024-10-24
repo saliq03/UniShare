@@ -18,6 +18,10 @@ class MyAdsController extends GetxController{
     });
   }
 
+  refreshController(){
+    getMyProducts();
+  }
+
   Future<void> getMyProducts()async{
     myProducts.value= await myAdsRepository.FetchMyAds();
     update();
