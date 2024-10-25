@@ -27,10 +27,12 @@ class _EditProfilePageState extends State<EditProfilePage> {
       ),
       body: Container(
         padding: EdgeInsets.only(left: 20,right: 20,top: 30),
+
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text("Basic information",style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),),
+            SizedBox(height: 20,),
             Row(
               children: [
                 Stack(
@@ -46,10 +48,26 @@ class _EditProfilePageState extends State<EditProfilePage> {
                SizedBox(width: 20,),
                Expanded(
                  child: TextFormField(
-                   decoration: InputDecoration(hintText: "hinnoij"),
+                   decoration: const InputDecoration(
+                       labelText: "Enter your name",
+                     labelStyle: TextStyle(color:AppColors.loginGradient2 )),
                  ),
                )
               ],
+            ),
+            SizedBox(height: 20,),
+            TextFormField(
+              decoration: InputDecoration(
+                labelText: "Something about you",
+                labelStyle: TextStyle(color: AppColors.loginGradient2,fontSize: 18)
+              ),
+            ),
+            SizedBox(height: 30,),
+            Text("Contact Information",style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),),
+            TextFormField(
+              decoration: InputDecoration(
+                labelText: "Phone Number"
+              ),
             )
           ],
         ),
