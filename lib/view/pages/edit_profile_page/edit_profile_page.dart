@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:unishare/res/colors/app_colors.dart';
+import 'package:unishare/view/pages/edit_profile_page/widgets/bio_input_widget.dart';
+import 'package:unishare/view/pages/edit_profile_page/widgets/contact_information_widget.dart';
+import 'package:unishare/view/pages/edit_profile_page/widgets/photo_name_widget.dart';
 
 class EditProfilePage extends StatefulWidget {
   const EditProfilePage({super.key});
@@ -33,42 +36,13 @@ class _EditProfilePageState extends State<EditProfilePage> {
           children: [
             Text("Basic information",style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),),
             SizedBox(height: 20,),
-            Row(
-              children: [
-                Stack(
-                  children: [
-                    CircleAvatar(
-                      radius: 60,
-                      backgroundColor: Colors.blue,
-                    ),
-                    Positioned(bottom: 15,right: 25,
-                        child: Icon(Icons.add_a_photo_outlined,color: Colors.white,))
-                  ],
-                ),
-               SizedBox(width: 20,),
-               Expanded(
-                 child: TextFormField(
-                   decoration: const InputDecoration(
-                       labelText: "Enter your name",
-                     labelStyle: TextStyle(color:AppColors.loginGradient2 )),
-                 ),
-               )
-              ],
-            ),
+            PhotoNameWidget(),
             SizedBox(height: 20,),
-            TextFormField(
-              decoration: InputDecoration(
-                labelText: "Something about you",
-                labelStyle: TextStyle(color: AppColors.loginGradient2,fontSize: 18)
-              ),
-            ),
-            SizedBox(height: 30,),
-            Text("Contact Information",style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),),
-            TextFormField(
-              decoration: InputDecoration(
-                labelText: "Phone Number"
-              ),
-            )
+            BioInputWidget(),
+            SizedBox(height: 40,),
+            Divider(),
+            SizedBox(height: 10,),
+            ContactInformationWidget()
           ],
         ),
       ),

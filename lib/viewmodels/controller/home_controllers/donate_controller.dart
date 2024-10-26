@@ -7,7 +7,6 @@ import 'package:image_picker/image_picker.dart';
 import 'package:unishare/model/product_model/product_model.dart';
 
 import 'package:unishare/repositories/home_repository/home_repository.dart';
-import 'package:unishare/res/routes/routes_name.dart';
 
 import 'package:unishare/utils/utils.dart';
 import 'package:unishare/viewmodels/controller/home_controllers/home_controller.dart';
