@@ -1,3 +1,4 @@
+import 'package:unishare/res/assets/images_assets.dart';
 import 'package:unishare/services/firebase_services/firebase_services.dart';
 
 class SignupRepository{
@@ -7,7 +8,9 @@ class SignupRepository{
     Map<String,dynamic> userdata={
       "Name":name,
       "Email":email,
-      "Gender":gender
+      "Gender":gender,
+      "Bio": '',
+      "Photo":ImagesAssets.defaultProfileImage
     };
 
     try{

@@ -1,7 +1,9 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:unishare/view/pages/edit_profile_page/edit_profile_page.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:unishare/res/assets/images_assets.dart';
 import 'package:unishare/viewmodels/controller/home_controllers/edit_profile_controller.dart';
 
 import '../../../../res/colors/app_colors.dart';
@@ -14,15 +16,34 @@ class PhotoNameWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Stack(
-          children: [
-            CircleAvatar(
-              radius: 60,
-              backgroundColor: Colors.blue,
-            ),
-            Positioned(bottom: 15,right: 25,
-                child: Icon(Icons.add_a_photo_outlined,color: Colors.white,))
-          ],
+        GestureDetector(
+          onTap: (){
+            showImageSourceDialog(context);
+          },
+          child: Stack(
+            children: [
+              Obx((){
+                return Container(
+                  width: 120,
+                  height: 120,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(60),
+                    color: Colors.grey
+                  ),
+                  child:  ClipRRect(
+                    borderRadius: BorderRadius.circular(60),
+                    child: epController.selectedImage.value==null?
+                    CachedNetworkImage(fit: BoxFit.cover,
+                      imageUrl: ImagesAssets.defaultProfileImage,
+                    placeholder: (context,url)=>Center(child: CircularProgressIndicator()),):
+                        Image.file(epController.selectedImage.value!,fit: BoxFit.cover,),
+                  )
+                );
+              }),
+              Positioned(bottom: 15,right: 25,
+                  child: Icon(Icons.add_a_photo_outlined,color: Colors.white,))
+            ],
+          ),
         ),
         SizedBox(width: 20,),
         Expanded(
@@ -36,4 +57,36 @@ class PhotoNameWidget extends StatelessWidget {
       ],
     );
   }
+
+   void showImageSourceDialog(BuildContext context) {
+     showModalBottomSheet(
+       elevation: 5,
+       shape: RoundedRectangleBorder(
+         borderRadius: BorderRadius.vertical(top: Radius.circular(20))
+       ),
+       context: context,
+       builder: (_) {
+         return Wrap(
+           children: [
+             ListTile(
+               leading: Icon(Icons.photo_library),
+               title: Text("Gallery"),
+               onTap: () {
+                 epController.PickImage(ImageSource.gallery);
+                 Navigator.pop(context);
+               },
+             ),
+             ListTile(
+               leading: Icon(Icons.camera_alt),
+               title: Text("Camera"),
+               onTap: () {
+                 epController.PickImage(ImageSource.camera);
+                 Navigator.pop(context);
+               },
+             ),
+           ],
+         );
+       },
+     );
+   }
 }

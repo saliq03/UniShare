@@ -42,7 +42,7 @@ class LoginController extends GetxController{
        await authRepository.logInWithEmailPassword(emailController.value.text, passwordController.value.text).then((value) async {
          userPrefrences.SetLoginKey(true);
          await LoginRepository().fetchUser(emailController.value.text).then((user){
-           userPrefrences.SaveUser(user.Name, user.Email, user.Gender);
+           userPrefrences.SaveUser(user.Name, user.Email, user.Gender,user.Photo);
            Get.offNamed(RoutesName.homeBottomNav);
            Utils.snackBar("succesfull", "Logged in");
          });

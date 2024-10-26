@@ -8,6 +8,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:unishare/repositories/auth_repository.dart';
 import 'package:unishare/repositories/signuprepository/signup_repository.dart';
 import 'package:unishare/res/assets/icons_assets.dart';
+import 'package:unishare/res/assets/images_assets.dart';
 import 'package:unishare/res/components/round_button.dart';
 import 'package:unishare/res/routes/routes_name.dart';
 import 'package:unishare/view/authentication/email_verification/widgets/writing_widget.dart';
@@ -43,7 +44,7 @@ late Map<String,dynamic> args;
       if(emailVerificationController.isEmailVerified()){
         signupRepository.uploadUser(args['Name'], args['Email'], args['Gender']);
         userPrefrences.SetLoginKey(true);
-        userPrefrences.SaveUser(args['Name'],args['Email'], args['Gender']);
+        userPrefrences.SaveUser(args['Name'],args['Email'], args['Gender'],ImagesAssets.defaultProfileImage);
         Get.offNamed(RoutesName.homeBottomNav);
       }
     });

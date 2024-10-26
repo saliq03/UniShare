@@ -13,7 +13,6 @@ class EditProfileController extends GetxController{
   Rx<File?> selectedImage = Rx<File?>(null);
 
   PickImage(ImageSource source) async {
-
     try {
       final img = await ImagePicker().pickImage(source: source,imageQuality: 80);
       if (img == null) return;

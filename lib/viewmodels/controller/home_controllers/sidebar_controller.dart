@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:unishare/res/assets/images_assets.dart';
 import 'package:unishare/viewmodels/user_prefrences/user_prefrences.dart';
 
 import '../../../model/user_model/user_model.dart';
@@ -7,6 +8,8 @@ import '../../../res/routes/routes_name.dart';
 class SidebarController extends GetxController{
   final Name= ''.obs;
   final Email=''.obs;
+  final Photo=ImagesAssets.defaultProfileImage.obs;
+
 
 
   @override
@@ -22,6 +25,7 @@ class SidebarController extends GetxController{
     UserModel userModel = await userPreference.GetUser();
     Name.value=userModel.Name;
     Email.value=userModel.Email;
+    Photo.value=userModel.Photo;
   }
 
   logOut(){

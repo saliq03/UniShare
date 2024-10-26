@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -18,16 +19,10 @@ final sidebarController=Get.put(SidebarController());
 
 
         accountEmail:Obx(()=>Text(sidebarController.Email.value)) ,
-        currentAccountPicture: GestureDetector(
-          onTap: (){
-            sidebarController.LoadDataFromPrefrences();
-          },
-          child: CircleAvatar(
+        currentAccountPicture:  CircleAvatar(
               child: ClipOval(
-                child: Image.asset(IconsAssets.tickedCircle
-                  ,width: 90,height: 90,
-                  fit: BoxFit.cover,),)),
-        ),
+                child: CachedNetworkImage(imageUrl:sidebarController.Photo.value,
+                placeholder: (context,url)=>Center(child: CircularProgressIndicator()),))),
         decoration: BoxDecoration(
           color: Colors.blue,
           image: DecorationImage(
