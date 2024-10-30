@@ -44,7 +44,7 @@ class EditProfileController extends GetxController{
   saveUserDetails() async {
     loading.value=true;
     final user=await userPrefrences.GetUser();
-    if(selectedImage==null){
+    if(selectedImage.value==null){
       UserModel userModel=UserModel(
               Photo: user.Photo,
               Bio: bioController.value.text,
@@ -52,8 +52,8 @@ class EditProfileController extends GetxController{
               Email: user.Email,
               Gender: user.Gender);
       editProfileRepo.UpdateUser(userModel).then((value){
-        userPrefrences.SaveUser(nameController.value.text,
-            user.Email, user.Gender, user.Photo);
+        UserModel userModel=UserModel(Photo: user.Photo, Bio:bioController.value.text , Name: nameController.value.text, Email: user.Email, Gender: user.Gender);
+        userPrefrences.SaveUser(userModel);
         loading.value=false;
         Utils.snackBar("Updated", "Profile edited sucessfully");
       });
@@ -68,8 +68,9 @@ class EditProfileController extends GetxController{
             Email: user.Email,
             Gender: user.Gender);
         editProfileRepo.UpdateUser(userModel).then((v){
-          userPrefrences.SaveUser(nameController.value.text,
-              user.Email, user.Gender, value);
+          UserModel userModel=UserModel(Photo: value, Bio:bioController.value.text , Name: nameController.value.text, Email: user.Email, Gender: user.Gender);
+
+          userPrefrences.SaveUser(userModel);
           loading.value=false;
           Utils.snackBar("Updated", "Profile edited sucessfully");
         });

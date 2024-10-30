@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:unishare/model/user_model/user_model.dart';
 import 'package:unishare/services/firebase_services/firebase_services.dart';
@@ -16,7 +15,7 @@ class EditProfileRepository{
 
   Future<String> UploadProfileImage(XFile image,String email) async {
     String id="profile$email";
-     return await firebaseServices.uploadImage("Product_images", id, image);
+     return await firebaseServices.uploadImage("Profile_images", id, image);
   }
 
 }

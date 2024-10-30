@@ -11,19 +11,20 @@ class UserPrefrences {
     return sp.getBool('islogin');
   }
 
-  Future<bool> SaveUser(String name, String email, String gender,String photo) async {
+  Future<bool> SaveUser(UserModel user) async {
     SharedPreferences sp=await SharedPreferences.getInstance();
-    sp.setString("Name", name);
-    sp.setString("Email", email);
-    sp.setString("Gender", gender);
-    sp.setString("Photo", photo);
+    sp.setString("Name", user.Name);
+    sp.setString("Email", user.Email);
+    sp.setString("Gender", user.Gender);
+    sp.setString("Photo", user.Photo);
+    sp.setString("Bio", user.Bio);
     return true;
   }
 
  Future<UserModel>  GetUser() async {
     SharedPreferences sp=await SharedPreferences.getInstance();
 
-    final user=UserModel(Name: sp.getString("Name")?? 'No Name', Email: sp.getString("Email")?? 'No Email', Gender: sp.getString("Gender")?? 'Unknown',Bio: '',Photo: sp.getString("Photo")?? 'error');
+    final user=UserModel(Name: sp.getString("Name")?? 'No Name', Email: sp.getString("Email")?? 'No Email', Gender: sp.getString("Gender")?? 'Unknown',Bio: sp.getString("Bio")?? '',Photo: sp.getString("Photo")?? 'error');
 
      return user;
   }

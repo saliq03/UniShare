@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:unishare/model/user_model/user_model.dart';
 
 import 'package:unishare/repositories/auth_repository.dart';
 import 'package:unishare/repositories/signuprepository/signup_repository.dart';
@@ -44,7 +45,8 @@ late Map<String,dynamic> args;
       if(emailVerificationController.isEmailVerified()){
         signupRepository.uploadUser(args['Name'], args['Email'], args['Gender']);
         userPrefrences.SetLoginKey(true);
-        userPrefrences.SaveUser(args['Name'],args['Email'], args['Gender'],ImagesAssets.defaultProfileImage);
+        UserModel userModel=UserModel(Photo: ImagesAssets.defaultProfileImage, Bio: '', Name: args['Name'], Email: args['Email'], Gender: args['Gender']);
+        userPrefrences.SaveUser(userModel);
         Get.offNamed(RoutesName.homeBottomNav);
       }
     });
