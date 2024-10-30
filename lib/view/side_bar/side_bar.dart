@@ -50,7 +50,7 @@ class SideBar extends StatelessWidget {
             title: Text("Edit Profile"),
             onTap: (){
               Get.back();
-              Get.toNamed(RoutesName.editProfilePage);
+              Get.toNamed(RoutesName.editProfilePage,arguments: sidebarController.Photo.value);
             },
           ),
 

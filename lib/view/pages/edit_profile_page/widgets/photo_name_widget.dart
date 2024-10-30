@@ -3,13 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:unishare/res/assets/images_assets.dart';
+
 import 'package:unishare/viewmodels/controller/home_controllers/edit_profile_controller.dart';
 
 import '../../../../res/colors/app_colors.dart';
 
 class PhotoNameWidget extends StatelessWidget {
-   PhotoNameWidget({super.key});
+   PhotoNameWidget({required this.initImage,super.key});
+   final String initImage;
 
   final epController=Get.put(EditProfileController());
   @override
@@ -34,7 +35,8 @@ class PhotoNameWidget extends StatelessWidget {
                     borderRadius: BorderRadius.circular(60),
                     child: epController.selectedImage.value==null?
                     CachedNetworkImage(fit: BoxFit.cover,
-                      imageUrl: ImagesAssets.defaultProfileImage,
+                      width: 120,height: 120,
+                      imageUrl: initImage,
                     placeholder: (context,url)=>Center(child: CircularProgressIndicator()),):
                         Image.file(epController.selectedImage.value!,fit: BoxFit.cover,),
                   )

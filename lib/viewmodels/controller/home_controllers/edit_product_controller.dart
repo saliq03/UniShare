@@ -22,6 +22,7 @@ class EditProductController extends GetxController{
 
 
   initializeControllers(ProductModel product){
+
     titleController.value.text=product.title;
     product.price=="Free" ?
     priceController.value.text=0.toString() :priceController.value.text=product.price;

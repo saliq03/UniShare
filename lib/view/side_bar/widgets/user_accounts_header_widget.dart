@@ -19,10 +19,14 @@ final sidebarController=Get.put(SidebarController());
 
 
         accountEmail:Obx(()=>Text(sidebarController.Email.value)) ,
-        currentAccountPicture:  CircleAvatar(
-              child: ClipOval(
-                child: CachedNetworkImage(imageUrl:sidebarController.Photo.value,
-                placeholder: (context,url)=>Center(child: CircularProgressIndicator()),))),
+        currentAccountPicture:  Container(
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(40),
+            child: CachedNetworkImage(
+              fit: BoxFit.cover,
+              imageUrl:sidebarController.Photo.value,
+              placeholder: (context,url)=>Center(child: CircularProgressIndicator()),),
+          )),
         decoration: BoxDecoration(
           color: Colors.blue,
           image: DecorationImage(
