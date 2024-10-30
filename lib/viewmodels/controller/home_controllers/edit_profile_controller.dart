@@ -5,7 +5,8 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:unishare/model/user_model/user_model.dart';
 import 'package:unishare/repositories/edit_profile_repository/edit_profile_repository.dart';
-import 'package:unishare/utils/utils.dart';
+
+import 'package:unishare/viewmodels/controller/home_controllers/sidebar_controller.dart';
 import 'package:unishare/viewmodels/user_prefrences/user_prefrences.dart';
 
 class EditProfileController extends GetxController{
@@ -41,10 +42,10 @@ class EditProfileController extends GetxController{
     }
   }
 
-  saveUserDetails() async {
+ Future<void> saveUserDetails() async {
     loading.value=true;
     final user=await userPrefrences.GetUser();
-    if(selectedImage.value==null){
+    if(selectedImage.value == null){
       UserModel userModel=UserModel(
               Photo: user.Photo,
               Bio: bioController.value.text,
@@ -53,9 +54,10 @@ class EditProfileController extends GetxController{
               Gender: user.Gender);
       editProfileRepo.UpdateUser(userModel).then((value){
         UserModel userModel=UserModel(Photo: user.Photo, Bio:bioController.value.text , Name: nameController.value.text, Email: user.Email, Gender: user.Gender);
-        userPrefrences.SaveUser(userModel);
+        userPrefrences.SaveUser(userModel).then((data){
+          Get.find<SidebarController>().refreshController();
+        });
         loading.value=false;
-        Utils.snackBar("Updated", "Profile edited sucessfully");
       });
     }
     else{
@@ -70,13 +72,16 @@ class EditProfileController extends GetxController{
         editProfileRepo.UpdateUser(userModel).then((v){
           UserModel userModel=UserModel(Photo: value, Bio:bioController.value.text , Name: nameController.value.text, Email: user.Email, Gender: user.Gender);
 
-          userPrefrences.SaveUser(userModel);
+          userPrefrences.SaveUser(userModel).then((data){
+            Get.find<SidebarController>().refreshController();
+          });
           loading.value=false;
-          Utils.snackBar("Updated", "Profile edited sucessfully");
         });
       });
 
     }
-    
-  }
+
+
+
+ }
 }

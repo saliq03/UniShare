@@ -7,6 +7,8 @@ import 'package:unishare/view/pages/edit_profile_page/widgets/contact_informatio
 import 'package:unishare/view/pages/edit_profile_page/widgets/photo_name_widget.dart';
 import 'package:unishare/viewmodels/controller/home_controllers/edit_profile_controller.dart';
 
+import '../../../utils/utils.dart';
+
 class EditProfilePage extends StatefulWidget {
   const EditProfilePage({super.key});
 
@@ -38,7 +40,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
            return epController.loading.value?
                CircularProgressIndicator():
            TextButton(onPressed: (){
-             epController.saveUserDetails();
+             epController.saveUserDetails().then((value){
+               Get.back();
+               Utils.snackBar("Updated", "Profile edited sucessfully");
+             });
            }, child: Text("Save",style: TextStyle(fontSize: 20,color: Colors.black),),
            ) ;
           })

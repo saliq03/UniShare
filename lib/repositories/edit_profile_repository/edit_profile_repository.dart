@@ -10,12 +10,22 @@ class EditProfileRepository{
       "Bio":user.Bio,
       "Photo":user.Photo,
     };
-    firebaseServices.updateData("Users", user.Email, data);
-  }
+    try{
+      firebaseServices.updateData("Users", user.Email, data);
+    }
+    catch(e){
+      print(e.toString());
+    }
+ }
 
   Future<String> UploadProfileImage(XFile image,String email) async {
     String id="profile$email";
-     return await firebaseServices.uploadImage("Profile_images", id, image);
+    try{
+      return await firebaseServices.uploadImage("Profile_images", id, image);
+    }catch(e){
+      print(e.toString());
+      throw e;
+    }
   }
 
 }

@@ -34,6 +34,17 @@ class FirebaseServices{
 
    }
 
+   Future<void> deleteData(String collection,String id) async {
+     try{
+      await FirebaseFirestore.instance
+           .collection(collection) // Replace with your actual collection
+           .doc(id)
+           .delete();
+     } catch(e){
+       print(e.toString());
+     }
+   }
+
    Future<String>uploadImage(String ref,String id,XFile image) async {
 
      TaskSnapshot snapshot = await storage.
@@ -42,4 +53,13 @@ class FirebaseServices{
      putFile(File(image.path));
      return await snapshot.ref.getDownloadURL();
    }
+
+  Future<void> DeleteImage(String imageUrl)async {
+    try {
+      final Reference storageRef = FirebaseStorage.instance.refFromURL(imageUrl);
+      await storageRef.delete();
+    }catch(e){
+      print(e.toString());
+    }
+  }
 }

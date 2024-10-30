@@ -1,11 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_storage/firebase_storage.dart';
+import 'package:unishare/services/firebase_services/firebase_services.dart';
 
 import '../../model/product_model/product_model.dart';
 import '../../model/user_model/user_model.dart';
 import '../../viewmodels/user_prefrences/user_prefrences.dart';
 
 class MyAdsRepository{
+
+  final firebaseServices=FirebaseServices();
   Future<List<ProductModel>> FetchMyAds() async {
     UserModel user=await UserPrefrences().GetUser();
     try{
@@ -24,37 +26,33 @@ class MyAdsRepository{
     }
 
   }
+  
   Future<void> RemoveProduct(String productId)async {
     try{
-      await FirebaseFirestore.instance
-          .collection('Products') // Replace with your actual collection
-          .doc(productId) // myId is the document ID to be deleted
-          .delete();
+      firebaseServices.deleteData('Products', productId);
     } catch(e){
       print(e.toString());
     }
 
   }
+
   Future<void> DeleteProductImage(String imageUrl)async {
     try {
-      final Reference storageRef = FirebaseStorage.instance.refFromURL(imageUrl);
-      await storageRef.delete();
+      firebaseServices.DeleteImage(imageUrl);
     }catch(e){
       print(e.toString());
     }
   }
 
   Future<void> UpdateProductInfo(ProductModel product)async {
-    print("in update product info method repo");
-    print(product);
+    Map<String, dynamic> data={
+      "Title":product.title,
+      "Price":product.price,
+      "Description":product.description,
+      "Images":product.images
+    };
     try{
-      await FirebaseFirestore.instance.collection('Products').doc(product.productId).
-      update({
-        "Title":product.title,
-        "Price":product.price,
-        "Description":product.description,
-        "Images":product.images
-      }).then((value){
+      firebaseServices.updateData('Products', product.productId, data).then((value){
         print("updated");
       });
     }catch(e){
