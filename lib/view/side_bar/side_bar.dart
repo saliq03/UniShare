@@ -33,6 +33,14 @@ class SideBar extends StatelessWidget {
             },
           ),
           ListTile(
+            leading: Icon(Icons.person),
+            title: Text("Edit Profile"),
+            onTap: (){
+              Get.back();
+              Get.toNamed(RoutesName.editProfilePage,arguments: sidebarController.Photo.value);
+            },
+          ),
+          ListTile(
             leading: Icon(Icons.notifications),
             title: Text("Request"),
             trailing: ClipOval(
@@ -44,14 +52,6 @@ class SideBar extends StatelessWidget {
               ),
             ),
             onTap: ()=>null,
-          ),
-          ListTile(
-            leading: Icon(Icons.person),
-            title: Text("Edit Profile"),
-            onTap: (){
-              Get.back();
-              Get.toNamed(RoutesName.editProfilePage,arguments: sidebarController.Photo.value);
-            },
           ),
 
           Divider(),
