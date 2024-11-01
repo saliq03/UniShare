@@ -13,4 +13,5 @@ class RoutesName{
   static const String myAdsPage='/my_ads_page';
   static const String editProductPage='/edit_product_page';
   static const String editProfilePage='/edit_profile_page';
+  static const String chatScreen='/chat_screen';
 }

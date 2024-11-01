@@ -7,19 +7,31 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:unishare/res/components/bottom_bar_button.dart';
 import 'package:unishare/res/routes/routes_name.dart';
 
+import '../../../viewmodels/controller/bottom_nav_controller.dart';
+
 
 class BottomNavigationWidget extends StatelessWidget {
+  final bnController=Get.put(BottomNavController());
 
   @override
   Widget build(BuildContext context) {
     return BottomAppBar(
+      color: Colors.grey.shade100,
+      elevation: 5,
       shape: CircularNotchedRectangle(),
       height: 70,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          BottomBarButton(icon: Icons.home_outlined, name: "Home", onPress: (){}),
-          BottomBarButton(icon: Icons.chat_bubble_outline, name: "Chat", onPress: (){}),
+          Obx(()=>BottomBarButton(icon: bnController.pageindex.value==0?
+           Icons.home :Icons.home_outlined, name: "Home", onPress: (){
+          bnController.changePageIndex(0);
+        }),),
+
+         Obx(()=>BottomBarButton(icon: bnController.pageindex.value==1?
+             Icons.chat_bubble:Icons.chat_bubble_outline, name: "Chat", onPress: (){
+           bnController.changePageIndex(1);
+         }), ) ,
           BottomBarButton(icon: Icons.add_box, name: "Donate", onPress: (){
             Get.toNamed(RoutesName.donate_page);
           }),

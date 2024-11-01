@@ -3,6 +3,7 @@ import 'package:unishare/res/routes/routes_name.dart';
 import 'package:unishare/view/authentication/forget_password/after_forgetpassword_screen.dart';
 import 'package:unishare/view/authentication/forget_password/forget_password.dart';
 import 'package:unishare/view/home_bottom_nav/home_bottom_nav.dart';
+import 'package:unishare/view/pages/chat_screen/chat_screen.dart';
 import 'package:unishare/view/pages/donate_page/donate_page.dart';
 import 'package:unishare/view/pages/donate_page/free_or_paid_screen.dart';
 import 'package:unishare/view/pages/edit_product_page/edit_product_page.dart';
@@ -100,6 +101,12 @@ class AppRoutes{
     GetPage(
         name: RoutesName.editProfilePage,
         page: ()=>  EditProfilePage(),
+        transitionDuration: const Duration(milliseconds: 250),
+        transition: Transition.fadeIn
+    ),
+    GetPage(
+        name: RoutesName.chatScreen,
+        page: ()=>  ChatScreen(),
         transitionDuration: const Duration(milliseconds: 250),
         transition: Transition.fadeIn
     ),
