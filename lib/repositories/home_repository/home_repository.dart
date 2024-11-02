@@ -35,11 +35,11 @@ class HomeRepository {
 
   Future<List<ProductModel>> getAllProducts() async {
     try{
-      final snapshot = await FirebaseFirestore.instance.collection("Products").get();
+      final snapshot = await FirebaseFirestore.instance.collection("Products").orderBy("CreatedAt",descending: false).get();
       final List<ProductModel> products = snapshot.docs.map((e) {
         return ProductModel.fromMap(e.data() as Map<String, dynamic>);
       }).toList();
-      print(products);
+
       return products;
     } catch(e){
       print(e.toString());

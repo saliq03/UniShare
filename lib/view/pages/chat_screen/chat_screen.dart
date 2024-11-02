@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import 'package:unishare/model/user_model/user_model.dart';
+import 'package:unishare/view/pages/chat_screen/widgets/appbar_title_widget.dart';
+import 'package:unishare/view/pages/chat_screen/widgets/message_send_widget.dart';
+import 'package:unishare/view/pages/chat_screen/widgets/show_messages_widget.dart';
 
 class ChatScreen extends StatefulWidget {
   const ChatScreen({super.key});
@@ -8,48 +14,26 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<ChatScreen> {
+  late UserModel user;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    user=Get.arguments;
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
     appBar: AppBar(
-      title: Row(
-            children: [
-              Container(
-                  width:50,height: 50,
-                  decoration: BoxDecoration(
-                    color: Colors.black,
-                    borderRadius: BorderRadius.circular(25),
-
-                  ),
-
-              ),
-              SizedBox(width: 10,),
-              Text("Marouf",style: TextStyle(fontSize: 25),),
-
-            ],
-          ),
+      title:AppbarTitleWidget(photo: user.Photo,name: user.Name,)
     ),
       body: Column(
         children: [
-          Expanded(child: Container(color: Colors.grey.shade200,)),
-          Container(
-            margin: EdgeInsets.only(bottom: 10,left: 10,right: 10),
-            padding: EdgeInsets.only(left: 10),
-            height: 50,
-            color: Colors.grey,
-            child: TextFormField(
-
-              decoration: InputDecoration(
-                hintText: "Message...",
-                border: InputBorder.none,           // Removes the border
-                enabledBorder: InputBorder.none,     // Removes the enabled border (default)
-                focusedBorder: InputBorder.none,
-              ),
-            ),
-          )
+          Expanded(child:ShowMessagesWidget()),
+          MessageSendWidget(receiverId: user.Email)
         ],
       )
-
     );
   }
 }
