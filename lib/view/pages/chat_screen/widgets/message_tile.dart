@@ -21,7 +21,7 @@ class MessageTile extends StatelessWidget {
               padding: EdgeInsets.only(left: 16, top: 10,right: 50,bottom: 25),
               margin: EdgeInsets.symmetric(vertical: 2.5, horizontal: 25),
               constraints: BoxConstraints(
-                maxWidth: 300.0, // Maximum width for the message container
+                maxWidth: 300.0, 
               ),
               decoration: BoxDecoration(
                 color: currentUser == newMessage.senderId ? Colors.green : Colors.grey.shade300,
@@ -36,7 +36,12 @@ class MessageTile extends StatelessWidget {
             ),
             Positioned(
                 right: 33,bottom: 7,
-                child: Text(DateFormat.jm().format(DateTime.timestamp()),style: TextStyle(fontSize: 13,color: Colors.black45),))
+                child: Row(
+                  children: [
+                    Text(DateFormat.jm().format(DateTime.timestamp()),style: TextStyle(fontSize: 13,color: Colors.black45),),
+                    Text(" //")
+                  ],
+                ))
           ],
         ),
       ],
