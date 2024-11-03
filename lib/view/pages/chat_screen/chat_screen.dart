@@ -6,6 +6,8 @@ import 'package:unishare/view/pages/chat_screen/widgets/appbar_title_widget.dart
 import 'package:unishare/view/pages/chat_screen/widgets/message_send_widget.dart';
 import 'package:unishare/view/pages/chat_screen/widgets/show_messages_widget.dart';
 
+import '../../../viewmodels/controller/home_controllers/chat_screen_controller.dart';
+
 class ChatScreen extends StatefulWidget {
   const ChatScreen({super.key});
 
@@ -14,12 +16,18 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<ChatScreen> {
-  late UserModel user;
+  late UserModel user,currUser;
+
+  final csController=Get.put(ChatScreenController());
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     user=Get.arguments;
+    getCurrUser();
+  }
+  getCurrUser() async {
+    currUser=await csController.getCurrentUser();
   }
   @override
   Widget build(BuildContext context) {
@@ -30,7 +38,7 @@ class _ChatScreenState extends State<ChatScreen> {
     ),
       body: Column(
         children: [
-          Expanded(child:ShowMessagesWidget()),
+          Expanded(child:ShowMessagesWidget(receiverEmail:user.Email,)),
           MessageSendWidget(receiverId: user.Email)
         ],
       )

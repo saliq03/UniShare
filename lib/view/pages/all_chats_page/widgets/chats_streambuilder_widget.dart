@@ -38,7 +38,7 @@ class ChatsStreambuilderWidget extends StatelessWidget {
                   });
             }
             else {
-              return Center(child: Text("No chats yet",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),));
+              return Text("No chats yet",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),);
             }
 
           }
