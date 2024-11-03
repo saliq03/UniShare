@@ -1,19 +1,20 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_common/get_reset.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:unishare/model/user_model/user_model.dart';
 import 'package:unishare/res/routes/routes_name.dart';
 
 class ChatTile extends StatelessWidget {
-  const ChatTile({required this.index,super.key});
-  final int index;
+  const ChatTile({required this.user,super.key});
+  final UserModel user;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: (){
-          Get.toNamed(RoutesName.chatScreen);
+          Get.toNamed(RoutesName.chatScreen,arguments: user);
       },
       child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 15),
@@ -24,16 +25,21 @@ class ChatTile extends StatelessWidget {
                 children: [
                   SizedBox(width: 5),
                   Container(
-                      width:70,height: 70,
-                      decoration: BoxDecoration(
-                        color: Colors.black,
-                        borderRadius: BorderRadius.circular(35),
+                    width:70,height: 70,
+                    decoration: BoxDecoration(
+                      color: Colors.black,
+                      borderRadius: BorderRadius.circular(35),
 
-                      ),
-                      child: Center(child: Text(index.toString(),style: TextStyle(color: Colors.white,fontSize: 15),))
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(35),
+                      child: CachedNetworkImage(imageUrl: user.Photo,
+                        placeholder: (context,url)=>Center(child: CircularProgressIndicator(strokeWidth: 2,)),),
+                    ),
+
                   ),
                   SizedBox(width: 20,),
-                  Text("Marouf",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
+                  Text(user.Name,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
 
                 ],
               ),

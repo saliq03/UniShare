@@ -5,20 +5,26 @@ import 'package:unishare/viewmodels/user_prefrences/user_prefrences.dart';
 
 import '../../../repositories/login_repository/login_repository.dart';
 
-class AllChatsPageController extends GetxController{
- final chatServices=ChatServices();
+class AllChatsPageController extends GetxController {
+  final chatServices = ChatServices();
 
-  Stream<List<UserModel>> getChats(String currentUserId) {
-    return chatServices.getAllchats(currentUserId).asyncMap((idList) async {
+
+  Stream<List<UserModel>> getChats() async* {
+    String currentUserId = await getCurrentUser();
+
+    yield* chatServices.getAllchats(currentUserId).asyncMap((idList) async {
       final userList = await Future.wait(idList.map((id) async {
         String otherUserId = id.replaceFirst(currentUserId, "").replaceAll("_", '');
         return await LoginRepository().fetchUser(otherUserId);
       }));
       return userList;
     });
-
   }
 
-
-
+  Future<String> getCurrentUser() async {
+    UserModel currUser = await UserPrefrences().GetUser();
+    return currUser.Email;
+  }
 }
+
+
