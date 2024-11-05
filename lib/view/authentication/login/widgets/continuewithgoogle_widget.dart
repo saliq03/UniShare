@@ -13,8 +13,7 @@ class ContinuewithgoogleWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Obx((){
-      return InkWell(
-        child: InkWell(
+      return  InkWell(
           onTap: (){
             loginController.logInWithGoogle();
           },
@@ -22,18 +21,20 @@ class ContinuewithgoogleWidget extends StatelessWidget {
             elevation: 8,
             color: Colors.white,
             shadowColor: Colors.black26,
-            margin: EdgeInsets.symmetric(horizontal: 20),
-            child: loginController.continuewithgoogleLoading.value? Center(child: CircularProgressIndicator()):Row(
+            margin: const EdgeInsets.symmetric(horizontal: 20),
+            child: loginController.continuewithgoogleLoading.value? const Padding(
+              padding: EdgeInsets.symmetric(vertical: 10),
+              child: Center(child: CircularProgressIndicator()),
+            ):Row(
               children: [
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
                   child: Image.asset(IconsAssets.google,width: 30,height: 30,),
                 ),
-                Text("Continue with Google",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),)
+                const Text("Continue with Google",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),)
               ],
             ),
           ),
-        ),
       );
     });
 

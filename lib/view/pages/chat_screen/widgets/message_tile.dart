@@ -36,12 +36,7 @@ class MessageTile extends StatelessWidget {
             ),
             Positioned(
                 right: 33,bottom: 7,
-                child: Row(
-                  children: [
-                    Text(DateFormat.jm().format(DateTime.timestamp()),style: TextStyle(fontSize: 13,color: Colors.black45),),
-                    Text(" //")
-                  ],
-                ))
+                child: Text(DateFormat.jm().format(DateTime.timestamp()),style: TextStyle(fontSize: 13,color: Colors.black45),))
           ],
         ),
       ],

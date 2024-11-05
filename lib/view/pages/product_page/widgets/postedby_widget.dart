@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -56,10 +57,18 @@ class PostedbyWidget extends StatelessWidget {
               highlightColor: Colors.grey.shade100,)
                 : Row(
               children: [
-                CircleAvatar(
-                  radius: 40,
-                  backgroundColor: Colors.red,
-
+                Container(
+                  width: 80,height: 80,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(40),
+                  ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(40),
+                    child: CachedNetworkImage(
+                      fit: BoxFit.cover,
+                      imageUrl: controller.owner.value!.Photo,
+                    placeholder: (context,url)=>Center(child: CircularProgressIndicator(strokeWidth: 2,)),),
+                  ),
                 ),
                 SizedBox(width: 20,),
                 Column(

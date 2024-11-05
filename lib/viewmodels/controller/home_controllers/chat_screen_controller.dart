@@ -8,6 +8,8 @@ import 'package:unishare/viewmodels/user_prefrences/user_prefrences.dart';
 class ChatScreenController extends GetxController{
   final chatServices=ChatServices();
  final messageController=TextEditingController().obs;
+ final messageFocusNode=FocusNode().obs;
+ final scrollController=ScrollController().obs;
   Rx<UserModel?> currentUser = Rx<UserModel?>(null);
 
   @override
@@ -17,6 +19,23 @@ class ChatScreenController extends GetxController{
     update();
   }
 
+  manageScrollDown(){
+    messageFocusNode.value.addListener((){
+      if(messageFocusNode.value.hasFocus){
+        Future.delayed(const Duration(milliseconds: 300),
+            ()=>scrollDown());
+      }
+    });
+
+    Future.delayed(const Duration(milliseconds: 500),
+            ()=>scrollDown());
+  }
+  scrollDown(){
+    scrollController.value.animateTo(
+        scrollController.value.position.maxScrollExtent,
+        duration: const Duration(milliseconds: 500),
+        curve: Curves.fastOutSlowIn);
+  }
 
   sendMessage(String receiverId)async{
     print(" controller method ");
@@ -27,7 +46,9 @@ class ChatScreenController extends GetxController{
         print(e.toString());
       }
       messageController.value.clear();
+      manageScrollDown();
     }
+
 
 
   }

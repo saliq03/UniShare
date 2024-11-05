@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
@@ -10,11 +9,14 @@ import 'package:unishare/repositories/login_repository/login_repository.dart';
 import 'package:unishare/repositories/signuprepository/signup_repository.dart';
 import 'package:unishare/res/routes/routes_name.dart';
 import 'package:unishare/utils/utils.dart';
-import 'package:http/http.dart' as http;
+
 import 'package:unishare/viewmodels/user_prefrences/user_prefrences.dart';
+import '../../res/assets/images_assets.dart';
 
 
 class LoginController extends GetxController{
+
+  final signUpRepository=SignupRepository();
   final authRepository =AuthRepository();
   final userPrefrences=UserPrefrences();
 
@@ -28,7 +30,7 @@ class LoginController extends GetxController{
   final continuewithgoogleLoading=false.obs;
 
   void changeLoading(value)=>loading.value=value;
-  void changeShowPassowrd(){
+  void changeShowPassword(){
     if(showPassword.value==false){
       showPassword.value=true;
     }
@@ -82,14 +84,6 @@ class LoginController extends GetxController{
 
    logInWithGoogle() async {
      continuewithgoogleLoading.value=true;
-     final GoogleSignIn googleSignIn = GoogleSignIn(
-       scopes: [
-         'email',
-         'profile',
-         'https://www.googleapis.com/auth/userinfo.profile',
-         'https://www.googleapis.com/auth/user.gender.read', // Required for gender info
-       ],
-     );
 
     try{
       final GoogleSignInAccount? guser= await GoogleSignIn().signIn();
@@ -101,16 +95,27 @@ class LoginController extends GetxController{
       UserCredential result= await FirebaseAuth.instance.signInWithCredential(crediential);
 
       User? userDetails=result.user;
-      String gender=fetchUserGender(gauth.accessToken!);
-      continuewithgoogleLoading.value=false;
-      Utils.snackBar("Success", "sign in with google");
+
       print('value of result');
       print(result);
 
       if(result!=null){
-       SignupRepository().uploadUser(userDetails!.displayName!,
-           userDetails.email!,gender);
+        signUpRepository.ifUserExists(userDetails!.email!).then((userDoc){
+          userPrefrences.SetLoginKey(true);
+          if(!userDoc.exists){
+            userDetails.photoURL!=null?
+            SignupRepository().uploadUser(name: userDetails!.displayName!, email: userDetails!.email!,gender: 'Unknown', photo: userDetails!.photoURL!):
+            SignupRepository().uploadUser(name: userDetails!.displayName!, email: userDetails!.email!,gender: 'Unknown') ;
+            UserModel userModel=UserModel(Photo:userDetails.photoURL!=null? userDetails!.photoURL!:ImagesAssets.defaultProfileImage, Bio: '', Name: userDetails!.displayName!, Email: userDetails!.email!, Gender: 'Unknown');
+            userPrefrences.SaveUser(userModel).then((value)=>Get.offNamed(RoutesName.homeBottomNav));
+          }
+          else{
+            LoginRepository().fetchUser(userDetails!.email!).then((user){
+              userPrefrences.SaveUser(user).then((value)=>Get.offNamed(RoutesName.homeBottomNav));
+            });}
+        });
       }
+      continuewithgoogleLoading.value=false;
     }
     catch(e){
       print('Error in signin with google');
@@ -123,32 +128,6 @@ class LoginController extends GetxController{
 
    }
 
-
-   fetchUserGender(String accessToken) async {
-
-    try{
-      final url = Uri.parse('https://people.googleapis.com/v1/people/me?personFields=genders');
-
-      final response = await http.get(
-        url,
-        headers: {
-          'Authorization': 'Bearer $accessToken',
-        },
-      );
-
-      if (response.statusCode == 200) {
-        final data = jsonDecode(response.body);
-        print("User Gender: ${data['genders'][0]['value']}");
-        return data['genders'][0]['value'];
-      } else {
-        print("Failed to fetch gender info: ${response.body}");
-      }
-    } catch(e){
-      print("error in fetchuserGender");
-      print(e.toString());
-    }
-    return null;
-    }
 
 
 

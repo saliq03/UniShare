@@ -33,9 +33,15 @@ class HomeRepository {
     }
   }
 
-  Future<List<ProductModel>> getAllProducts() async {
+  Future<List<ProductModel>> getAllProducts(String email) async {
     try{
-      final snapshot = await FirebaseFirestore.instance.collection("Products").orderBy("CreatedAt",descending: false).get();
+      // where("ProviderEmail", isNotEqualTo: email)
+      final snapshot = await FirebaseFirestore.instance
+          .collection("Products")
+          .where("ProviderEmail", isNotEqualTo: email)
+          .orderBy("ProviderEmail") // Required for inequality filter
+          .orderBy("CreatedAt", descending: true)
+          .get();
       final List<ProductModel> products = snapshot.docs.map((e) {
         return ProductModel.fromMap(e.data() as Map<String, dynamic>);
       }).toList();

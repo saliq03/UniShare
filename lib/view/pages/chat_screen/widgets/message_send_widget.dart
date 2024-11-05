@@ -28,6 +28,7 @@ class MessageSendWidget extends StatelessWidget {
               child: Center(
                 child: TextFormField(
                   controller: csController.messageController.value,
+                  focusNode: csController.messageFocusNode.value,
                   style: TextStyle(fontSize: 18),
                   decoration: InputDecoration(
                     hintText: "Message...",

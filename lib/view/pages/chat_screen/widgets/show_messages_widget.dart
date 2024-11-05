@@ -34,7 +34,12 @@ class ShowMessagesWidget extends StatelessWidget {
       return Center(child: CircularProgressIndicator());
       }
       else {
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+         csController.manageScrollDown();
+        });
         return ListView.builder(
+          controller: csController.scrollController.value,
+
             itemCount: snapshot.data!.length,
             itemBuilder: (context,index){
               return MessageTile(currentUser: csController.currentUser.value!.Email, newMessage: snapshot.data![index]);

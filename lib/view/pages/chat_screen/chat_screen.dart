@@ -25,6 +25,7 @@ class _ChatScreenState extends State<ChatScreen> {
     super.initState();
     user=Get.arguments;
     getCurrUser();
+    csController.manageScrollDown();
   }
   getCurrUser() async {
     currUser=await csController.getCurrentUser();

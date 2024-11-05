@@ -43,7 +43,7 @@ late Map<String,dynamic> args;
     timer=Timer.periodic(Duration(seconds: 3), (timer){
       _auth.currentUser?.reload();
       if(emailVerificationController.isEmailVerified()){
-        signupRepository.uploadUser(args['Name'], args['Email'], args['Gender']);
+        signupRepository.uploadUser(name: args['Name'], email: args['Email'], gender: args['Gender']);
         userPrefrences.SetLoginKey(true);
         UserModel userModel=UserModel(Photo: ImagesAssets.defaultProfileImage, Bio: '', Name: args['Name'], Email: args['Email'], Gender: args['Gender']);
         userPrefrences.SaveUser(userModel);

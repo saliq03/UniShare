@@ -25,7 +25,7 @@ class InputPasswordWidget extends StatelessWidget {
           hintText: "Password",
 
           suffixIcon: IconButton(onPressed: (){
-            loginController.changeShowPassowrd();
+            loginController.changeShowPassword();
           },
               icon: loginController.showPassword.value?
               const Icon(CupertinoIcons.eye,color: AppColors.white):
