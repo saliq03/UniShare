@@ -103,10 +103,8 @@ class LoginController extends GetxController{
         signUpRepository.ifUserExists(userDetails!.email!).then((userDoc){
           userPrefrences.SetLoginKey(true);
           if(!userDoc.exists){
-            userDetails.photoURL!=null?
-            SignupRepository().uploadUser(name: userDetails!.displayName!, email: userDetails!.email!,gender: 'Unknown', photo: userDetails!.photoURL!):
-            SignupRepository().uploadUser(name: userDetails!.displayName!, email: userDetails!.email!,gender: 'Unknown') ;
-            UserModel userModel=UserModel(Photo:userDetails.photoURL!=null? userDetails!.photoURL!:ImagesAssets.defaultProfileImage, Bio: '', Name: userDetails!.displayName!, Email: userDetails!.email!, Gender: 'Unknown');
+            SignupRepository().uploadUser(name: userDetails!.displayName!, email: userDetails!.email!,gender: 'Unknown', photo: userDetails!.photoURL!);
+            UserModel userModel=UserModel(Photo:userDetails!.photoURL!, Bio: '', Name: userDetails!.displayName!, Email: userDetails!.email!, Gender: 'Unknown');
             userPrefrences.SaveUser(userModel).then((value)=>Get.offNamed(RoutesName.homeBottomNav));
           }
           else{
