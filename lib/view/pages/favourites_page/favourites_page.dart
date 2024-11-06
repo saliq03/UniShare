@@ -64,13 +64,13 @@ class _FavouritesPageState extends State<FavouritesPage> {
                            Get.toNamed(RoutesName.productPage,arguments: favController.favProducts[index]);
                          },
                          child: Padding(
-                           padding: EdgeInsets.symmetric(horizontal: 10,vertical: 2),
+                           padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 2),
                            child: Card(
                              elevation: 5,
                              child: Container(
-                               padding: EdgeInsets.only(right: 10,top: 10,bottom: 10,left: 10),
+                               padding: const EdgeInsets.only(right: 10,top: 10,bottom: 10,left: 10),
                                decoration: BoxDecoration(
-                                   color: Color(0xFF087E8B).withOpacity(0.14),
+                                   color: const Color(0xFF087E8B).withOpacity(0.14),
                                    borderRadius: BorderRadius.circular(10)
                                ),
                                child: Column(

@@ -11,6 +11,7 @@ import 'package:unishare/view/pages/edit_profile_page/edit_profile_page.dart';
 import 'package:unishare/view/pages/favourites_page/favourites_page.dart';
 
 import 'package:unishare/view/pages/product_page/product_page.dart';
+import 'package:unishare/view/pages/users_profile/users_profile.dart';
 import 'package:unishare/view/splash_Screen.dart';
 
 import '../../view/authentication/email_verification/email_verification_screen.dart';
@@ -110,6 +111,13 @@ class AppRoutes{
         transitionDuration: const Duration(milliseconds: 250),
         transition: Transition.fadeIn
     ),
+    GetPage(
+        name: RoutesName.usersProfile,
+        page: ()=>  UsersProfile(),
+        transitionDuration: const Duration(milliseconds: 250),
+        transition: Transition.fadeIn
+    ),
+
 
   ];
 }

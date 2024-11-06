@@ -16,5 +16,8 @@ class ProductPageController extends GetxController{
   chat(){
     Get.toNamed(RoutesName.chatScreen,arguments: owner.value);
   }
+  seeProfile(){
+    Get.toNamed(RoutesName.usersProfile,arguments: owner.value);
+  }
 
 }

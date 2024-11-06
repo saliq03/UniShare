@@ -14,4 +14,5 @@ class RoutesName{
   static const String editProductPage='/edit_product_page';
   static const String editProfilePage='/edit_profile_page';
   static const String chatScreen='/chat_screen';
+  static const String usersProfile='/users_profile';
 }

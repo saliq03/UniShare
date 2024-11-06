@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:unishare/res/components/my_text_button.dart';
+import 'package:unishare/res/routes/routes_name.dart';
 
 import '../../../../res/colors/app_colors.dart';
 import '../../../../viewmodels/controller/home_controllers/productpage_controller.dart';
@@ -64,10 +65,13 @@ class PostedbyWidget extends StatelessWidget {
                   ),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(40),
-                    child: CachedNetworkImage(
-                      fit: BoxFit.cover,
-                      imageUrl: controller.owner.value!.Photo,
-                    placeholder: (context,url)=>Center(child: CircularProgressIndicator(strokeWidth: 2,)),),
+                    child: Hero(
+                      tag: controller.owner.value!.Photo,
+                      child: CachedNetworkImage(
+                        fit: BoxFit.cover,
+                        imageUrl: controller.owner.value!.Photo,
+                      placeholder: (context,url)=>Center(child: CircularProgressIndicator(strokeWidth: 2,)),),
+                    ),
                   ),
                 ),
                 SizedBox(width: 20,),
@@ -77,8 +81,10 @@ class PostedbyWidget extends StatelessWidget {
                     Text("Posted by"),
                     Text(controller.owner.value!.Name,style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),),
                     Text("Posted on: $postedOn"),
-                    SizedBox(height: 10,),
-                    MyTextButton(title: " See profile", onPress: (){},fontSize: 18, titleColor: AppColors.loginGradient2,)
+                    const SizedBox(height: 10,),
+                    MyTextButton(title: " See profile", onPress: (){
+                      controller.seeProfile();
+                    },fontSize: 18, titleColor: AppColors.loginGradient2,)
                   ],
                 )
               ],
