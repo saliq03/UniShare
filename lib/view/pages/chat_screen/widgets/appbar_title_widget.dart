@@ -11,6 +11,7 @@ class AppbarTitleWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
+        const SizedBox(width: 20,),
         GestureDetector(
           onTap: (){
             showDialog(context: context, builder: (BuildContext context)=> ShowPhoto(photo: photo));

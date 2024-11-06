@@ -4,4 +4,5 @@ class IconsAssets{
   static const String tickedCircle='assets/icons/tickedcircle.png';
   static const String lock='assets/icons/lock.png';
   static const String person='assets/icons/person.png';
+  static const String splashLogo='assets/icons/splash_logo.png';
 }

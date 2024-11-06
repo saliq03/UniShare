@@ -8,6 +8,8 @@ import 'package:unishare/view/pages/favourites_page/widgets/details_row.dart';
 import 'package:unishare/view/pages/favourites_page/widgets/fav_icon_widget.dart';
 import 'package:unishare/viewmodels/controller/home_controllers/favourites_controller.dart';
 
+import '../../../res/components/customized_back_button.dart';
+
 class FavouritesPage extends StatefulWidget {
   const FavouritesPage({super.key});
 
@@ -21,8 +23,8 @@ class _FavouritesPageState extends State<FavouritesPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("FAVOURITES",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: AppColors.loginGradient2),),
-        centerTitle: true,
+          title: const Text(" My Favourites",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 24),),
+          leading: const CustomizedBackButton()
       ),
       body: Container(
         padding: EdgeInsets.only(top: 10),
@@ -61,17 +63,30 @@ class _FavouritesPageState extends State<FavouritesPage> {
                          onTap: (){
                            Get.toNamed(RoutesName.productPage,arguments: favController.favProducts[index]);
                          },
-                         child: Column(
-                           children: [
-                             Row(
-                               mainAxisAlignment:  MainAxisAlignment.spaceBetween,
-                               children: [
-                                 DetailsRow(product: favController.favProducts[index],),
-                                 FavIconWidget(productId:favController.favProducts[index].productId,)
-                               ],
+                         child: Padding(
+                           padding: EdgeInsets.symmetric(horizontal: 10,vertical: 2),
+                           child: Card(
+                             elevation: 5,
+                             child: Container(
+                               padding: EdgeInsets.only(right: 10,top: 10,bottom: 10,left: 10),
+                               decoration: BoxDecoration(
+                                   color: Color(0xFF087E8B).withOpacity(0.14),
+                                   borderRadius: BorderRadius.circular(10)
+                               ),
+                               child: Column(
+                                 children: [
+                                   Row(
+                                     mainAxisAlignment:  MainAxisAlignment.spaceBetween,
+                                     children: [
+                                       DetailsRow(product: favController.favProducts[index],),
+                                       FavIconWidget(productId:favController.favProducts[index].productId,)
+                                     ],
+                                   ),
+
+                                 ],
+                               ),
                              ),
-                             Divider()
-                           ],
+                           ),
                          ),
                        );
                      });

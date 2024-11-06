@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:unishare/model/product_model/product_model.dart';
 
 class DetailsRow extends StatelessWidget {
@@ -11,7 +12,7 @@ class DetailsRow extends StatelessWidget {
     return   Row(
       children: [
         Container(
-          margin: EdgeInsets.only(left: 10,right: 20),
+          margin: const EdgeInsets.only(right: 20),
           height: 100,
           width: 100,
           child: CachedNetworkImage(
@@ -23,9 +24,12 @@ class DetailsRow extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(product.price=="Free"?"Free":"₹ ${product.price}",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
             SizedBox(width: 200,
-                child: Text(product.title,maxLines: 1,overflow: TextOverflow.ellipsis, softWrap: false,style: TextStyle(fontSize: 20),)),
+                child: Text(product.title,maxLines: 1,overflow: TextOverflow.ellipsis, softWrap: false,style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),)),
+            Text(DateFormat('dd-MMM-yyyy').format(product.createdAt.toDate()),style: TextStyle(fontSize: 16,color:Color(0xFF898989) ),),
+
+            Text(product.price=="Free"?"Free":"₹ ${product.price}",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
+
           ],
         ),
       ],

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:unishare/model/user_model/user_model.dart';
+import 'package:unishare/res/components/customized_back_button.dart';
 import 'package:unishare/view/pages/chat_screen/widgets/appbar_title_widget.dart';
 import 'package:unishare/view/pages/chat_screen/widgets/message_send_widget.dart';
 import 'package:unishare/view/pages/chat_screen/widgets/show_messages_widget.dart';
@@ -35,7 +36,9 @@ class _ChatScreenState extends State<ChatScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
     appBar: AppBar(
-      title:AppbarTitleWidget(photo: user.Photo,name: user.Name,)
+      title:AppbarTitleWidget(photo: user.Photo,name: user.Name,),
+      centerTitle: true,
+      leading: const CustomizedBackButton(),
     ),
       body: Column(
         children: [
