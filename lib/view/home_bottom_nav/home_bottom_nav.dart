@@ -32,7 +32,8 @@ class _HomeBottomNavState extends State<HomeBottomNav> {
         title: Text("UniShare",style: TextStyle(fontSize: 28,fontWeight: FontWeight.bold,color: AppColors.loginGradient3),),
         centerTitle: true,
 
-        leading:Obx(()=>bnController.pageindex.value==0?DrawerIcon():SizedBox.shrink())
+        leading:Obx(()=>bnController.pageindex.value==0?
+        DrawerIcon():const SizedBox.shrink())
       ),
       body:Obx(()=>pages[bnController.pageindex.value]),
       bottomNavigationBar:BottomNavigationWidget()

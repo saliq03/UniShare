@@ -11,14 +11,14 @@ class SideBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      child: ListView(
-        padding: EdgeInsets.zero,
+      child: Column(
+        // padding: EdgeInsets.zero,
         children: [
          UserAccountsHeaderWidget(),
           
           ListTile(
-            leading: Icon(Icons.favorite),
-            title: Text("Favourites"),
+            leading:Icon(Icons.favorite,),
+            title: Text("Favorites",style: TextStyle(fontSize: 18),),
             onTap: (){
               Get.back();
               Get.toNamed(RoutesName.favouritesPage);
@@ -26,7 +26,7 @@ class SideBar extends StatelessWidget {
           ),
           ListTile(
             leading: Icon(Icons.add_box),
-            title: Text("My Ads"),
+            title: Text("My Ads",style: TextStyle(fontSize: 18,),),
             onTap: (){
               Get.back();
               Get.toNamed(RoutesName.myAdsPage);
@@ -34,26 +34,28 @@ class SideBar extends StatelessWidget {
           ),
           ListTile(
             leading: Icon(Icons.person),
-            title: Text("Edit Profile"),
+            title: Text("Edit Profile",style: TextStyle(fontSize: 18),),
             onTap: (){
               Get.back();
               Get.toNamed(RoutesName.editProfilePage,arguments: sidebarController.Photo.value);
             },
           ),
-          ListTile(
-            leading: Icon(Icons.notifications),
-            title: Text("Request"),
-            trailing: ClipOval(
-              child: Container(
-                color: Colors.red,
-                width: 20,
-                height: 20,
-                child: Center(child: Text("8",style: TextStyle(color: Colors.white,fontSize: 12),)),
-              ),
-            ),
-            onTap: ()=>null,
-          ),
 
+          // ListTile(
+          //   leading: Icon(Icons.notifications),
+          //   title: Text("Request"),
+          //   trailing: ClipOval(
+          //     child: Container(
+          //       color: Colors.red,
+          //       width: 20,
+          //       height: 20,
+          //       child: Center(child: Text("8",style: TextStyle(color: Colors.white,fontSize: 12),)),
+          //     ),
+          //   ),
+          //   onTap: ()=>null,
+          // ),
+
+          SizedBox(height: 30,),
           Divider(),
           ListTile(
             leading: Icon(Icons.exit_to_app),
@@ -62,6 +64,7 @@ class SideBar extends StatelessWidget {
               sidebarController.logOut();
               },
           ),
+          const SizedBox(height: 30,)
         ],
       ),
     );

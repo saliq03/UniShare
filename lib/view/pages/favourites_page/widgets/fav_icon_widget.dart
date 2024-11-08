@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-
 import '../../../../viewmodels/controller/home_controllers/favourites_controller.dart';
 
 class FavIconWidget extends StatelessWidget {
@@ -12,13 +10,12 @@ class FavIconWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(right: 1),
-      child: InkWell(
+    return  InkWell(
         onTap: (){
          favController.addOrRemoveFromFavourites(productId);
         },
-          child: Icon(Icons.favorite,size: 35,)),
-    );
+          child: CircleAvatar(
+              backgroundColor:Colors.white,
+              child: Center(child: Icon(Icons.favorite,color:Colors.red.shade500,size: 25,))));
   }
 }

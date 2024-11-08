@@ -36,7 +36,7 @@ class _ChatScreenState extends State<ChatScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
     appBar: AppBar(
-      title:AppbarTitleWidget(photo: user.Photo,name: user.Name,),
+      title:AppbarTitleWidget(user: user,),
       centerTitle: true,
       leading: const CustomizedBackButton(),
     ),

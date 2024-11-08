@@ -31,6 +31,7 @@ class DonateController extends GetxController{
   final descriptionFocusNode=FocusNode().obs;
   final categoryFocusNode=FocusNode().obs;
   RxString?  selectedCategory=''.obs;
+  final loading=false.obs;
 
   final offerType="Free".obs;
 
@@ -40,24 +41,7 @@ class DonateController extends GetxController{
   }
 
   PickImages()async{
-   // PermissionStatus status;
-   // DeviceInfoPlugin deviceInfo=DeviceInfoPlugin();
-   // AndroidDeviceInfo androidDeviceInfo= await deviceInfo.androidInfo;
-   // if(androidDeviceInfo.version.sdkInt<=32){
-   //   status=await Permission.storage.request();
-   // }
-   // else{
-   //   status=await Permission.mediaLibrary.request();
-   // }
-   // if(status==PermissionStatus.granted){
-   //
-   // }
-   // else if(status==PermissionStatus.denied){
-   //   Utils.toastMessage("Error\n Please allow permission for further usage");
-   // }
-   // else if(status==PermissionStatus.permanentlyDenied){
-   //   Utils.toastMessage("Error\n Please allow permission for further usage");
-   // }
+
 
     List<XFile> imgs=[];
     try{
@@ -88,6 +72,7 @@ class DonateController extends GetxController{
   }
 
   Future<void> AddProduct(String price)async {
+    loading.value=true;
     EasyLoading.show();
     await UploadProductImages().then((value) async {
 
@@ -105,10 +90,11 @@ class DonateController extends GetxController{
           createdAt: DateTime.now(),
           providerEmail: userModel.Email);
       await homeRepository.UploadProduct(productModel.toMap()).then((value){
-        EasyLoading.dismiss();
+
         HomeController homeController = Get.find<HomeController>();
         homeController.refreshController();
-
+        EasyLoading.dismiss();
+        loading.value=false;
         Get.back();
         Get.back();
         Utils.snackBar("Added", "Product added sucessfully");
