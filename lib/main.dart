@@ -4,18 +4,15 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
 import 'package:unishare/res/routes/routes.dart';
-import 'package:unishare/view/authentication/forget_password/after_forgetpassword_screen.dart';
-import 'package:unishare/view/authentication/forget_password/forget_password.dart';
-import 'package:unishare/view/home_bottom_nav/home_bottom_nav.dart';
-import 'package:unishare/view/pages/favourites_page/favourites_page.dart';
-import 'package:unishare/view/pages/product_page/product_page.dart';
-import 'package:unishare/view/splash_Screen.dart';
+
 
 void main() async{
 
-  WidgetsFlutterBinding.ensureInitialized();
+  WidgetsBinding widgetsBinding=WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   await dotenv.load(fileName: ".env");
   Platform.isAndroid?
    await Firebase.initializeApp(options: FirebaseOptions(

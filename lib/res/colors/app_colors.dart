@@ -8,4 +8,5 @@ class AppColors{
   static const Color loginGradient1=Color(0xFF78398F);
   static const Color loginGradient3=Color(0xFF473085);
   static const Color loginGradient2=Color(0xff5f3489);
+  static const Color splashColor=Color(0xff00646E);
 }
