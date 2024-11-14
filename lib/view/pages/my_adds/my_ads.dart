@@ -20,7 +20,7 @@ class _MyAdsState extends State<MyAds> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(" My ADS",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 24),),
+        title:  Text(" My ADS",style: Theme.of(context).textTheme.headlineMedium,),
        leading: const CustomizedBackButton()
       ),
       body: Obx((){

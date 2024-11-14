@@ -19,7 +19,7 @@ class _FavouritesPageState extends State<FavouritesPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: const Text(" My Favourites",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 24),),
+          title:  Text(" My Favourites",style: Theme.of(context).textTheme.headlineMedium,),
           leading: const CustomizedBackButton()
       ),
       body: Container(

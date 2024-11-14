@@ -26,7 +26,7 @@ class FavProductWidget extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.only(right: 10,top: 10,bottom: 10,left: 10),
                 decoration: BoxDecoration(
-                    color: const Color(0xFF087E8B).withOpacity(0.14),
+                    color: const Color.fromRGBO(8, 126, 139, 0.14),
                     borderRadius: BorderRadius.circular(10)
                 ),
                 child: DetailsRow(product: favController.favProducts[index],),

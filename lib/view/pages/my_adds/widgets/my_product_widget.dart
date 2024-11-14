@@ -24,7 +24,7 @@ class MyProductWidget extends StatelessWidget {
         children: [
           Container(
             decoration: BoxDecoration(
-                color: Color(0xFF087E8B).withOpacity(0.14),
+                color: const Color.fromRGBO(8, 126, 139, 0.14),
                 borderRadius: BorderRadius.circular(10)
             ),
 
@@ -52,7 +52,7 @@ class MyProductWidget extends StatelessWidget {
                         children: [
                           const SizedBox(height: 5,),
                           SizedBox(width: 200,
-                              child: Text(myProduct.title,maxLines: 1,overflow: TextOverflow.ellipsis, softWrap: false,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),)),
+                              child: Text(myProduct.title,maxLines: 1,overflow: TextOverflow.ellipsis, softWrap: false,style: Theme.of(context).textTheme.titleMedium,)),
                           Text(DateFormat('dd-MMM-yyyy').format(myProduct.createdAt.toDate()),style: TextStyle(fontSize: 16,color:Color(0xFF898989) ),),
                           Text(myProduct.price=="Free"? "Free":"₹ ${myProduct.price}",style: const TextStyle(fontSize: 18,fontWeight: FontWeight.bold),)
                         ],
