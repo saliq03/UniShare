@@ -19,54 +19,74 @@ class ShowProductWidget extends StatelessWidget {
         Get.toNamed(RoutesName.productPage,arguments:homeController.products[index] );
       },
       child: Card(
+        color:Color(0xFFFFFFFF),
         elevation: 5,
-        child: Container(
-          // color: Colors.white54,
-          padding: EdgeInsets.symmetric(horizontal: 10,vertical: 10),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Stack(
-                children: [
-                  // The Image in the background
-                  Hero(
-                    tag: homeController.products[index].images[0],
-                    child: CachedNetworkImage(
-                      height: 180,
-                        width:  double.infinity,
-                        fit: BoxFit.cover,
-                        imageUrl: homeController.products[index].images[0],
-                    placeholder: (context,url)=>Center(child: CircularProgressIndicator( )),
-                    errorWidget: (context,url,error)=> Icon(Icons.error_outline,color: Colors.red,),),
+        child:Column(
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                  color: const Color(0x3FC1839F),
+              ),
 
-                  ),
-                  // The CircleAvatar positioned at the top-right
-                  Positioned(
-                    top: 3,
-                    right: 3, // Change left to right
-                    child: InkWell(
-                      onTap: (){
-                        favouritesController.addOrRemoveFromFavourites(homeController.products[index].productId);
-                      },
-                      child: CircleAvatar(
-                        backgroundColor: Colors.white,
-                        child: Obx((){
-                          return favouritesController.favourites.contains(homeController.products[index].productId)?
-                          Icon(Icons.favorite,color: Colors.redAccent,)
-                              :Icon(Icons.favorite_border);
-                        })
+              padding: const EdgeInsets.symmetric(horizontal: 10,),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Stack(
+                    children: [
+                      // The Image in the background
+                      Hero(
+                        tag: homeController.products[index].images[0],
+                        child: CachedNetworkImage(
+                          height: 180,
+                          width:  double.infinity,
+                          fit: BoxFit.cover,
+                          imageUrl: homeController.products[index].images[0],
+                          placeholder: (context,url)=>Center(child: CircularProgressIndicator( )),
+                          errorWidget: (context,url,error)=> Icon(Icons.error_outline,color: Colors.red,),),
+
                       ),
-                    ),
+                      // The CircleAvatar positioned at the top-right
+                      Positioned(
+                        top: 3,
+                        right: 3, // Change left to right
+                        child: InkWell(
+                          onTap: (){
+                            favouritesController.addOrRemoveFromFavourites(homeController.products[index].productId);
+                          },
+                          child: CircleAvatar(
+                              backgroundColor: Colors.white,
+                              child: Obx((){
+                                return favouritesController.favourites.contains(homeController.products[index].productId)?
+                                Icon(Icons.favorite,color: Colors.redAccent,)
+                                    :Icon(Icons.favorite_border);
+                              })
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
+
+
                 ],
               ),
-              SizedBox(height: 10,),
-              Text(homeController.products[index].price=="Free"?"Free": "₹ ${homeController.products[index].price}",style: TextStyle(color: Colors.green,fontWeight: FontWeight.bold,fontSize: 20),),
-              Text(homeController.products[index].title.toUpperCase(),style: TextStyle(fontSize: 15,),maxLines: 1, // Single line
-                overflow: TextOverflow.ellipsis, softWrap: false,)
-            ],
-          ),
-        ),
+            ),
+            Container(
+              padding: EdgeInsets.only(left: 10),
+              width: double.infinity,
+              color: Color(0xFFFFFFFF),
+              child: Column(
+                crossAxisAlignment:CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: 10,),
+                  Text(homeController.products[index].price=="Free"?"Free": "₹ ${homeController.products[index].price}",style: TextStyle(color: Colors.green,fontWeight: FontWeight.bold,fontSize: 20),),
+                  Text(homeController.products[index].title.toUpperCase(),style: TextStyle(fontSize: 15,),maxLines: 1, // Single line
+                    overflow: TextOverflow.ellipsis, softWrap: false,)
+                ],
+              ),
+            )
+          ],
+        )
 
       ),
     );

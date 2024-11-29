@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 import 'package:unishare/res/colors/app_colors.dart';
 import 'package:unishare/view/home_bottom_nav/widgets/bottom_navigation_widget.dart';
@@ -23,20 +22,29 @@ class _HomeBottomNavState extends State<HomeBottomNav> {
   final bnController=Get.put(BottomNavController());
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      key: _scaffoldKey,
-     drawer:SideBar(),
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        title: Text("UniShare",style: TextStyle(fontSize: 28,fontWeight: FontWeight.bold,color: AppColors.loginGradient3),),
-        centerTitle: true,
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Color(0xFFF5F5F5),
 
-        leading:Obx(()=>bnController.pageindex.value==0?
-        DrawerIcon():const SizedBox.shrink())
+          key: _scaffoldKey,
+       drawer:SideBar(),
+
+        body:Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Obx(()=>bnController.pageindex.value==0?
+                DrawerIcon():const SizedBox(height: 55,width: 60,)),
+                const Text("UniShare",style: TextStyle(fontSize: 28,fontWeight: FontWeight.bold,color: AppColors.loginGradient3),),
+                const SizedBox(width: 10,)
+              ],
+            ),
+            Expanded(child: Obx(()=>pages[bnController.pageindex.value])),
+          ],
+        ),
+        bottomNavigationBar:BottomNavigationWidget()
       ),
-      body:Obx(()=>pages[bnController.pageindex.value]),
-      bottomNavigationBar:BottomNavigationWidget()
     );
   }
 }

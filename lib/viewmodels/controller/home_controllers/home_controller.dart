@@ -5,7 +5,6 @@ import 'package:unishare/model/user_model/user_model.dart';
 import 'package:unishare/repositories/home_repository/home_repository.dart';
 import 'package:unishare/viewmodels/user_prefrences/user_prefrences.dart';
 
-import '../../../res/assets/images_assets.dart';
 
 class HomeController extends GetxController{
   final homeRepository=HomeRepository();

@@ -16,13 +16,24 @@ return InkWell(
 onTap: (){
 Scaffold.of(context).openDrawer();
 },
-child:  CircleAvatar(
-  backgroundColor: Colors.white,
-  child: ClipRRect(
-    borderRadius: BorderRadius.circular(20),
+child:  Container(
+    height: 50,width: 50,
+  margin:  EdgeInsets.only(left: 10,bottom: 5),
+      decoration: BoxDecoration(
+        color:  Colors.white,
+        borderRadius: BorderRadius.circular(25),
+        border: Border.all(
+          color: Colors.black,
+          width: 2
+        )
+      ),
+
+
+     child: ClipRRect(
+       borderRadius: BorderRadius.circular(25),
     child: CachedNetworkImage(
         fit: BoxFit.cover,
-        height: 40,width: 40,
+        height: 50,width: 50,
         imageUrl: bnController.photo.value,
         placeholder: (context,url)=> Image.asset(IconsAssets.person,height: 35,),
         ),

@@ -13,7 +13,7 @@ class BottomNavController extends GetxController{
     loadDataFromPref();
   }
 
-  loadDataFromPref(){
+  loadDataFromPref() async {
     var userPreference = UserPrefrences(); // Assuming this is where GetUser() is defined
     userPreference.GetUser().then((userModel){
       photo.value=userModel.Photo;
