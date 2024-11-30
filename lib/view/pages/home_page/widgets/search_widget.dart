@@ -14,12 +14,15 @@ class SearchWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
+
       controller: homeController.searchController.value,
       focusNode: homeController.searchFocusNode.value,
       onChanged: (value){
         homeController.onSearchTextChanged(value);
       },
       decoration: InputDecoration(
+        filled: true,
+        fillColor: const Color(0xFFDEDEDE),
           suffixIcon:Obx((){
             if(homeController.searchText==""){
               return const SizedBox.shrink();
@@ -32,18 +35,25 @@ class SearchWidget extends StatelessWidget {
               }, icon: Icon(CupertinoIcons.xmark_circle_fill,color: Colors.grey.shade700,));
             }
            }),
-
-          prefixIcon: Icon(Icons.search,size: 30,),
+            
+          prefixIcon: Icon(Icons.search,size: 26,color: Color(0xFF828282),),
           hintText: "Find Books, Buckets and More..",
-          hintStyle: TextStyle(color: Colors.black54,fontSize: 18
+          hintStyle: TextStyle(color: Color(0xFF828282),fontSize: 16
           ),
-          enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(
-                  color: Colors.black,
-                  width: 2)),
+          enabledBorder:
+          OutlineInputBorder(
+            borderRadius: BorderRadius.circular(22),
+              borderSide: const BorderSide(
+                  color: Color(0xFFDEDEDE),
+                  width: 0)
+                  ),
           focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(
-                  width: 2))
+              borderRadius: BorderRadius.circular(22),
+              borderSide: const BorderSide(
+                  color: Color(0xFFDEDEDE),
+                  width: 0)
+          ),
+
       ),
     );
   }

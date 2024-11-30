@@ -18,7 +18,7 @@ Scaffold.of(context).openDrawer();
 },
 child:  Container(
     height: 50,width: 50,
-  margin:  EdgeInsets.only(left: 10,bottom: 5),
+  margin:  EdgeInsets.only(left: 10,bottom: 5,top: 5),
       decoration: BoxDecoration(
         color:  Colors.white,
         borderRadius: BorderRadius.circular(25),

@@ -72,7 +72,7 @@ class ShowProductWidget extends StatelessWidget {
               ),
             ),
             Container(
-              padding: EdgeInsets.only(left: 10),
+              padding: EdgeInsets.only(left: 10,right: 10),
               width: double.infinity,
               color: Color(0xFFFFFFFF),
               child: Column(
