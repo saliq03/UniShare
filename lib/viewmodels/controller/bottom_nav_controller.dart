@@ -12,6 +12,10 @@ class BottomNavController extends GetxController{
     super.onInit();
     loadDataFromPref();
   }
+  refreshController(){
+    loadDataFromPref();
+    update();
+  }
 
   loadDataFromPref() async {
     var userPreference = UserPrefrences(); // Assuming this is where GetUser() is defined

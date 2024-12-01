@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:unishare/model/user_model/user_model.dart';
 import 'package:unishare/repositories/edit_profile_repository/edit_profile_repository.dart';
+import 'package:unishare/viewmodels/controller/bottom_nav_controller.dart';
 
 import 'package:unishare/viewmodels/controller/home_controllers/sidebar_controller.dart';
 import 'package:unishare/viewmodels/user_prefrences/user_prefrences.dart';
@@ -56,6 +57,8 @@ class EditProfileController extends GetxController{
         UserModel userModel=UserModel(Photo: user.Photo, Bio:bioController.value.text , Name: nameController.value.text, Email: user.Email, Gender: user.Gender);
         userPrefrences.SaveUser(userModel).then((data){
           Get.find<SidebarController>().refreshController();
+
+          Get.back();
         });
         loading.value=false;
       });
@@ -74,8 +77,11 @@ class EditProfileController extends GetxController{
 
           userPrefrences.SaveUser(userModel).then((data){
             Get.find<SidebarController>().refreshController();
+            Get.find<BottomNavController>().loadDataFromPref();
+            Get.back();
+            loading.value=false;
           });
-          loading.value=false;
+
         });
       });
 

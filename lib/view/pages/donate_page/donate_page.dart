@@ -60,7 +60,8 @@ class _DonatePageState extends State<DonatePage> {
                     }
                   }
 
-                }, buttonColor: Colors.purpleAccent.shade100,),
+                }, buttonColor: Colors.purpleAccent.shade100,
+                titleColor: Colors.white,),
                 SizedBox(height: 10,)
               ],
             ),

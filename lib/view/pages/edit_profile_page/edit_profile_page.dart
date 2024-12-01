@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:unishare/res/colors/app_colors.dart';
+import 'package:unishare/res/routes/routes_name.dart';
 import 'package:unishare/view/pages/edit_profile_page/widgets/bio_input_widget.dart';
 import 'package:unishare/view/pages/edit_profile_page/widgets/contact_information_widget.dart';
 import 'package:unishare/view/pages/edit_profile_page/widgets/photo_name_widget.dart';
@@ -38,12 +39,9 @@ class _EditProfilePageState extends State<EditProfilePage> {
         actions: [
           Obx((){
            return epController.loading.value?
-               CircularProgressIndicator():
+               const SizedBox.shrink():
            TextButton(onPressed: (){
-             epController.saveUserDetails().then((value){
-               Get.back();
-               Utils.snackBar("Updated", "Profile edited sucessfully");
-             });
+             epController.saveUserDetails();
            }, child: Text("Save",style: TextStyle(fontSize: 20,color: Colors.black),),
            ) ;
           })

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:unishare/res/components/customized_back_button.dart';
 
 import 'package:unishare/viewmodels/controller/home_controllers/donate_controller.dart';
 
@@ -20,12 +21,12 @@ class _FreeOrPaidScreenState extends State<FreeOrPaidScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Set your offer"),
+        title:  Text("Set offer",style: Theme.of(context).textTheme.headlineMedium,),
         centerTitle: true,
         leading: Obx((){
           return donateController.loading.value?
           const SizedBox.shrink():
-              const BackButton();
+              const CustomizedBackButton();
         }),
       ),
       body: Stack(
@@ -98,7 +99,7 @@ class _FreeOrPaidScreenState extends State<FreeOrPaidScreen> {
 
 
 
-                    }, buttonColor: Colors.purpleAccent.shade100,),
+                    }, buttonColor: Colors.purpleAccent.shade100,titleColor: Colors.white,),
                     const SizedBox(height: 30,)
                   ],
                 ),
