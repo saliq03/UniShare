@@ -17,10 +17,7 @@ class DescriptionInputWidget extends StatelessWidget {
       children: [
         Text(
           'Description',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 18,
-          ),
+          style:Theme.of(context).textTheme.titleLarge,
         ),
 
         TextFormField(

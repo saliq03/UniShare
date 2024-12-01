@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:unishare/res/components/rectangle_button.dart';
 import 'package:unishare/res/routes/routes_name.dart';
 import 'package:unishare/utils/utils.dart';
-import 'package:unishare/view/pages/donate_page/free_or_paid_screen.dart';
 import 'package:unishare/view/pages/donate_page/widgets/description_input_widget.dart';
 import 'package:unishare/view/pages/donate_page/widgets/select_category_widget.dart';
 import 'package:unishare/view/pages/donate_page/widgets/show_images_widget.dart';
 import 'package:unishare/view/pages/donate_page/widgets/title_input_widget.dart';
 
+import '../../../res/components/customized_back_button.dart';
 import '../../../viewmodels/controller/home_controllers/donate_controller.dart';
 
 
@@ -30,8 +28,9 @@ class _DonatePageState extends State<DonatePage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Add product deatails"),
+        title: Text("Add product",style: Theme.of(context).textTheme.headlineMedium,),
         centerTitle: true,
+        leading: const CustomizedBackButton()
       ),
       body: Card(
         child: Padding(
@@ -50,10 +49,10 @@ class _DonatePageState extends State<DonatePage> {
                 DescriptionInputWidget(),
                 const SizedBox(height: 16),
                 SelectCategoryWidget(),
-                Spacer(),
+                const Spacer(),
                 RectangleButton(title: "Next", onPress: (){
                   if(_formKey.currentState!.validate()){
-                    if(donateController.selectedImages.length>0){
+                    if(donateController.selectedImages.isNotEmpty){
                         Get.toNamed(RoutesName.freeOrPaidPage);
                     }
                     else{

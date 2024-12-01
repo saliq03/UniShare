@@ -16,10 +16,7 @@ class TitleInputWidget extends StatelessWidget {
       children: [
         Text(
           'Title',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 20,
-          ),
+          style: Theme.of(context).textTheme.titleLarge,
         ),
 
         TextFormField(

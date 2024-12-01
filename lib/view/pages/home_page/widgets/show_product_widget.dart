@@ -72,15 +72,15 @@ class ShowProductWidget extends StatelessWidget {
               ),
             ),
             Container(
-              padding: EdgeInsets.only(left: 10,right: 10),
+              padding: const EdgeInsets.only(left: 10,right: 10),
               width: double.infinity,
-              color: Color(0xFFFFFFFF),
+              color: const Color(0xFFFFFFFF),
               child: Column(
                 crossAxisAlignment:CrossAxisAlignment.start,
                 children: [
-                  SizedBox(height: 10,),
+                  SizedBox(height: 15,),
                   Text(homeController.products[index].price=="Free"?"Free": "₹ ${homeController.products[index].price}",style: TextStyle(color: Colors.green,fontWeight: FontWeight.bold,fontSize: 20),),
-                  Text(homeController.products[index].title.toUpperCase(),style: TextStyle(fontSize: 15,),maxLines: 1, // Single line
+                  Text(capitalizeEachWord(homeController.products[index].title),style:  TextStyle(fontSize: 22,fontFamily: "FiraSans",fontWeight: FontWeight.w500,),maxLines: 1, // Single line
                     overflow: TextOverflow.ellipsis, softWrap: false,)
                 ],
               ),
@@ -91,4 +91,15 @@ class ShowProductWidget extends StatelessWidget {
       ),
     );
   }
+
+
+   String capitalizeEachWord(String text) {
+     if (text.isEmpty) return text;
+     return text
+         .split(' ')
+         .map((word) => word.isNotEmpty
+         ? word[0].toUpperCase() + word.substring(1).toLowerCase()
+         : '')
+         .join(' ');
+   }
 }

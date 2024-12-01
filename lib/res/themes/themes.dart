@@ -12,6 +12,7 @@ textTheme: TextTheme(
        fontFamily: "FiraSans",
        color: Color(0xff3C3C3C)
      ),
+
      headlineMedium: TextStyle(
          fontSize: 30,
          fontWeight: FontWeight.w700,
@@ -23,6 +24,12 @@ textTheme: TextTheme(
       fontWeight: FontWeight.w500,
       fontFamily: "FiraSans",
       color: Color(0xff616161)
-  )
+  ),
+  titleLarge: TextStyle(
+      fontSize: 24,
+      fontWeight: FontWeight.w500,
+      fontFamily: "FiraSans",
+      color: Color(0xff616161)
+  ),
    )
     );

@@ -23,25 +23,25 @@ class SelectCategoryWidget extends StatelessWidget {
                 color: Colors.black)
         )),
       validator: (value){
-         if(donateController.selectedCategory==null){
+         if(donateController.selectedCategory==''){
            return "Category can't be null";
          }
       },
 
-      value: donateController.selectedCategory!.value.isEmpty ? null : donateController.selectedCategory!.value,
+      value: donateController.selectedCategory!.value=='' ? null : donateController.selectedCategory!.value,
       items: _categories.map((gender) {
 
         return DropdownMenuItem<String>(
 
           value: gender,
 
-          child: Text(gender,style: TextStyle(color: Colors.black),),
+          child: Text(gender,style: const TextStyle(color: Colors.black),),
         );
       }).toList(),
       onChanged: (value) {
         donateController.selectedCategory!.value = value ?? '';
       },
-      hint: Text('Select category',style: TextStyle(color: Colors.black,fontSize: 16),),
+      hint: Text('Select category',style: TextStyle(color: Color(0xff616161),fontSize: 16),),
       dropdownColor: Colors.grey.shade500,
       iconEnabledColor: Colors.black54,
 
