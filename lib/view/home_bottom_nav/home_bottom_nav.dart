@@ -31,15 +31,7 @@ class _HomeBottomNavState extends State<HomeBottomNav> {
 
         body:Column(
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Obx(()=>bnController.pageindex.value==0?
-                DrawerIcon():const SizedBox(height: 55,width: 60,)),
-                const Text("UniShare",style: TextStyle(fontSize: 28,fontWeight: FontWeight.bold,color: AppColors.loginGradient3),),
-                const SizedBox(width: 10,)
-              ],
-            ),
+
             Expanded(child: Obx(()=>pages[bnController.pageindex.value])),
           ],
         ),

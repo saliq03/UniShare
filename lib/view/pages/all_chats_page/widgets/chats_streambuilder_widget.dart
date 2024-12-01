@@ -34,7 +34,12 @@ class ChatsStreambuilderWidget extends StatelessWidget {
               return ListView.builder(
                   itemCount: snapshot.data!.length,
                   itemBuilder: (context,index){
-                    return ChatTile(user: snapshot.data![index],);
+                    return Column(
+                      children: [
+                        ChatTile(user: snapshot.data![index], lastChat: 'how much for the old one ', lastTime: '9:03 AM', lastSender: 'You',),
+                        const SizedBox(height: 10,)
+                      ],
+                    );
                   });
             }
             else {

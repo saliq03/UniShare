@@ -6,6 +6,9 @@ import 'package:unishare/view/pages/home_page/widgets/search_widget.dart';
 import 'package:unishare/view/pages/home_page/widgets/show_product_widget.dart';
 import 'package:unishare/viewmodels/controller/home_controllers/home_controller.dart';
 
+import '../../../res/colors/app_colors.dart';
+import '../../home_bottom_nav/widgets/drawer_icon.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -19,9 +22,20 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Container(
+
       padding: EdgeInsets.symmetric(horizontal: 10),
       child: Column(
         children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              DrawerIcon(),
+              const Text("UniShare",style: TextStyle(fontSize: 30,
+                  fontWeight: FontWeight.w700,
+                  fontFamily: "FiraSans",color: AppColors.loginGradient3),),
+              const SizedBox(width: 10,)
+            ],
+          ),
           SearchWidget(),
           const SizedBox(height: 10,width: double.infinity,),
           Obx((){
