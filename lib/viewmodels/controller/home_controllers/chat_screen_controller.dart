@@ -11,10 +11,12 @@ class ChatScreenController extends GetxController{
  final messageFocusNode=FocusNode().obs;
  final scrollController=ScrollController().obs;
   Rx<UserModel?> currentUser = Rx<UserModel?>(null);
+  var isTextFieldEmpty = true.obs;
 
   @override
   void onInit() {
     super.onInit();
+
     getCurrentUser();
     update();
   }
@@ -65,5 +67,10 @@ class ChatScreenController extends GetxController{
 
  getCurrentUser() async {
     currentUser.value=await UserPrefrences().GetUser();
+  }
+
+  onMessageTextChanged(String value){
+    isTextFieldEmpty.value = value==''?true:false;
+    update();
   }
 }
