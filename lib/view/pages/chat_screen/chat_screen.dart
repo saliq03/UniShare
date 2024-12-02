@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -37,8 +38,12 @@ class _ChatScreenState extends State<ChatScreen> {
       backgroundColor: Colors.white,
     appBar: AppBar(
       title:AppbarTitleWidget(user: user,),
-      centerTitle: true,
+      titleSpacing: 0,
       leading: const CustomizedBackButton(),
+      actions: [
+        IconButton(onPressed: (){}, icon: Icon(Icons.call,size: 28,)),
+        SizedBox(width: 10,)
+      ],
     ),
       body: Column(
         children: [

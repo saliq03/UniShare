@@ -36,7 +36,8 @@ class MessageTile extends StatelessWidget {
             ),
             Positioned(
                 right: 33,bottom: 7,
-                child: Text(DateFormat.jm().format(DateTime.timestamp()),style: TextStyle(fontSize: 13,color: Colors.black45),))
+                child: Text(DateFormat('hh:mm a').format(newMessage.timeStamp.toDate())
+                  ,style: TextStyle(fontSize: 13,color: Colors.black45),))
           ],
         ),
       ],
