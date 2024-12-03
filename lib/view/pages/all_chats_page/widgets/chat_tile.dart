@@ -1,9 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:intl/intl.dart';
 import 'package:unishare/model/message_model/chat_model.dart';
 import 'package:unishare/model/user_model/user_model.dart';
@@ -30,7 +28,7 @@ class ChatTile extends StatelessWidget {
 
             padding: const EdgeInsets.symmetric(vertical: 15,horizontal: 10),
             decoration: BoxDecoration(
-              color: Color(0xFFFFFFFF),
+              color: const Color(0xFFFFFFFF),
 
               borderRadius: BorderRadius.circular(15)
             ),

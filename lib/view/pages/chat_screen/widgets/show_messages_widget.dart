@@ -37,6 +37,10 @@ class ShowMessagesWidget extends StatelessWidget {
         WidgetsBinding.instance.addPostFrameCallback((_) {
          csController.manageScrollDown();
         });
+
+        // final sortedMessages = List.from(snapshot.data!)
+        //   ..sort((a, b) => a.timeStamp.compareTo(b.timeStamp));
+
         return ListView.builder(
           controller: csController.scrollController.value,
 

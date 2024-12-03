@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -37,7 +36,7 @@ class MessageTile extends StatelessWidget {
             ),
             Positioned(
                 right: 33,bottom: 7,
-                child: Text(DateFormat('hh:mm a').format(newMessage.timeStamp.toDate())
+                child: Text(DateFormat('hh:mm:ss a').format(newMessage.timeStamp.toDate())
                   ,style: TextStyle(fontSize: 13,color: Colors.black45),))
           ],
         ),
