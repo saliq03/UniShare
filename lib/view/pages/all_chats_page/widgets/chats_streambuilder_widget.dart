@@ -36,14 +36,16 @@ class ChatsStreambuilderWidget extends StatelessWidget {
                   itemBuilder: (context,index){
                     return Column(
                       children: [
-                        ChatTile(user: snapshot.data![index], lastChat: 'how much for the old one ', lastTime: '9:03 AM', lastSender: 'You',),
+                        ChatTile(user: snapshot.data![index]["User"],chat: snapshot.data![index]["Chat"],),
                         const SizedBox(height: 10,)
                       ],
                     );
                   });
             }
             else {
-              return Text("No chats yet",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),);
+              return Container(
+                height: double.infinity,
+                  child: Center(child: Text("No chats yet",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),)));
             }
 
           }

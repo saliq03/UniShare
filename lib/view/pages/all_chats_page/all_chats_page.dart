@@ -24,7 +24,8 @@ class _AllChatsPageState extends State<AllChatsPage> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-           Text("Messages",style: Theme.of(context).textTheme.headlineMedium,),
+           Center( child: Padding( padding: const EdgeInsets.symmetric(vertical: 5),
+               child: Text("Messages",style: Theme.of(context).textTheme.headlineMedium,))),
           Expanded(child: ChatsStreambuilderWidget())
         ],
       ),

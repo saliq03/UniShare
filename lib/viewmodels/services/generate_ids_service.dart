@@ -9,4 +9,8 @@ class GenerateIds{
     String id=randomAlphaNumeric(5);
     return "UniShare-$category-$id";
   }
+  GeneratMessageId(String sender,String reciever){
+    String id =randomAlphaNumeric(7);
+    return '$sender-$reciever-$id';
+  }
 }
