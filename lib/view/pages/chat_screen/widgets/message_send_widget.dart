@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:unishare/viewmodels/controller/home_controllers/chat_screen_controller.dart';
 
 class MessageSendWidget extends StatelessWidget {
@@ -33,7 +34,7 @@ class MessageSendWidget extends StatelessWidget {
                   decoration: InputDecoration(
 
                     suffixIcon: IconButton(
-                        onPressed: (){}, icon: Icon(Icons.camera_enhance,size: 35,)),
+                        onPressed: (){ csController.pickImage(ImageSource.camera);}, icon: Icon(Icons.camera_enhance,size: 35,)),
                     hintText: "Message...",
                     hintStyle: TextStyle(fontSize: 18),
 

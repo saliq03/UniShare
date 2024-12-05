@@ -26,7 +26,8 @@ class _AllChatsPageState extends State<AllChatsPage> {
         children: [
            Center( child: Padding( padding: const EdgeInsets.symmetric(vertical: 5),
                child: Text("Messages",style: Theme.of(context).textTheme.headlineMedium,))),
-          Expanded(child: ChatsStreambuilderWidget())
+
+              Expanded(child: ChatsStreambuilderWidget()),
         ],
       ),
     );

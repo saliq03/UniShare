@@ -45,10 +45,32 @@ class _ChatScreenState extends State<ChatScreen> {
         SizedBox(width: 10,)
       ],
     ),
-      body: Column(
+      body:Stack(
         children: [
-          Expanded(child:ShowMessagesWidget(receiverEmail:user.Email,)),
-          MessageSendWidget(receiverId: user.Email)
+          Column(
+            children: [
+              Expanded(child:ShowMessagesWidget(receiverEmail:user.Email,)),
+              MessageSendWidget(receiverId: user.Email)
+            ],
+          ),
+
+          Obx(()=>csController.selectedImage.value==null?
+          const SizedBox.shrink():
+          Positioned(
+              bottom: 90,left: 5,right: 5,
+              child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 15,vertical: 15),
+                  decoration: BoxDecoration(
+                      color: Colors.black45,
+                      borderRadius: BorderRadius.circular(20)
+                  ),
+                  height: MediaQuery.of(context).size.height*0.6,
+                  width: double.infinity,
+
+                  child: Image.file(csController.selectedImage.value!,fit: BoxFit.cover,),
+              ))
+          )
+
         ],
       )
     );

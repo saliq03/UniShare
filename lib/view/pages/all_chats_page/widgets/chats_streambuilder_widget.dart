@@ -17,12 +17,16 @@ class ChatsStreambuilderWidget extends StatelessWidget {
         stream: allchatsController.getChats(),
          builder: (context,snapshot){
           if(snapshot.hasError){
-            return Center(
-              child: Column(
-                children: [
-                  Icon(Icons.error_outline_rounded,size: 50,color: Colors.red,),
-                  Text("Something went wrong",style: TextStyle(fontSize: 20),)
-                ],
+            return Container(
+              height: double.infinity,
+              width: double.infinity,
+              child: Center(
+                child: Column(
+                  children: [
+                    Icon(Icons.error_outline_rounded,size: 50,color: Colors.red,),
+                    Text("Something went wrong",style: TextStyle(fontSize: 20),)
+                  ],
+                ),
               ),
             );
           }

@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:unishare/model/message_model/message.dart';
 import 'package:unishare/model/user_model/user_model.dart';
 import 'package:unishare/services/chat_services/chat_services.dart';
@@ -12,6 +15,9 @@ class ChatScreenController extends GetxController{
  final scrollController=ScrollController().obs;
   Rx<UserModel?> currentUser = Rx<UserModel?>(null);
   var isTextFieldEmpty = true.obs;
+
+  final ImagePicker _picker =ImagePicker();
+  Rx<File?> selectedImage = Rx<File?>(null);
 
   @override
   void onInit() {
@@ -72,5 +78,18 @@ class ChatScreenController extends GetxController{
   onMessageTextChanged(String value){
     isTextFieldEmpty.value = value==''?true:false;
     update();
+  }
+
+  pickImage(ImageSource source) async {
+    try {
+      final img = await ImagePicker().pickImage(source: source,imageQuality: 70);
+      if (img == null) return;
+      final tempimg = File(img.path);
+      selectedImage.value=tempimg;
+      update();
+    }
+    catch(ex){
+      print(ex.toString());
+    }
   }
 }
