@@ -5,6 +5,8 @@ class Message{
   final String senderId;
   final String recieverId;
   final String message;
+  final String photo;
+  final String video;
   final Timestamp timeStamp;
 
   Message( {
@@ -12,11 +14,19 @@ class Message{
     required  this.senderId,
     required this.recieverId,
     required this.message,
+    required this.photo,
+    required this.video,
     required this.timeStamp,
    });
 
   toJson(){
-    return {"Id":id, "SenderId":senderId, "RecieverId":recieverId, "Message":message, "TimeStamp":timeStamp};
+    return {"Id":id,
+      "SenderId":senderId,
+      "RecieverId":recieverId,
+      "Message":message,
+      "Photo":photo,
+      "Video":video,
+      "TimeStamp":timeStamp};
   }
 
 
@@ -26,7 +36,10 @@ class Message{
         senderId: json["SenderId"],
         recieverId: json["RecieverId"],
         message: json["Message"],
-        timeStamp: json["TimeStamp"]);
+        photo: json["Photo"],
+        video: json["Video"],
+        timeStamp: json["TimeStamp"],
+       );
   }
 
 }

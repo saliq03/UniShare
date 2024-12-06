@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:unishare/model/message_model/message.dart';
@@ -15,8 +16,9 @@ class ChatScreenController extends GetxController{
  final scrollController=ScrollController().obs;
   Rx<UserModel?> currentUser = Rx<UserModel?>(null);
   var isTextFieldEmpty = true.obs;
+  final loading=false.obs;
 
-  final ImagePicker _picker =ImagePicker();
+
   Rx<File?> selectedImage = Rx<File?>(null);
 
   @override
@@ -46,20 +48,40 @@ class ChatScreenController extends GetxController{
   }
 
   sendMessage(String receiverId)async{
+
     print(" controller method ");
+    if(selectedImage.value==null){
     if(messageController.value.text!=''){
       try{
-         await chatServices.sendMessage(receiverId, messageController.value.text);
+         await chatServices.sendMessage(receiverId, messageController.value.text,'','');
       } catch(e){
         print(e.toString());
       }
       messageController.value.clear();
       manageScrollDown();
     }
-
-
-
   }
+    else{
+      try{
+         loading.value=true;
+        final img = XFile(selectedImage.value!.path);
+        chatServices.uploadImage(img).then((value){
+           chatServices.sendMessage(receiverId, messageController.value.text,value,'').then((value){
+             loading.value=false;
+             selectedImage.value=null;
+             messageController.value.clear();
+             manageScrollDown();
+           });
+        });
+        } catch(e){
+        print(e.toString());
+      }
+
+    }
+
+    }
+
+
 
   Stream<List<Message>> recieveMessages(String receiverId) async* {
     UserModel currUser=await UserPrefrences().GetUser();
@@ -84,12 +106,14 @@ class ChatScreenController extends GetxController{
     try {
       final img = await ImagePicker().pickImage(source: source,imageQuality: 70);
       if (img == null) return;
-      final tempimg = File(img.path);
-      selectedImage.value=tempimg;
+      final tempImg = File(img.path);
+      selectedImage.value=tempImg;
       update();
     }
     catch(ex){
-      print(ex.toString());
+      if (kDebugMode) {
+        print(ex.toString());
+      }
     }
   }
 }

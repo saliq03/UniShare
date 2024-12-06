@@ -2,7 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:image_picker/image_picker.dart';
+
+import 'package:unishare/view/pages/chat_screen/widgets/show_image_source.dart';
 import 'package:unishare/viewmodels/controller/home_controllers/chat_screen_controller.dart';
 
 class MessageSendWidget extends StatelessWidget {
@@ -34,7 +35,7 @@ class MessageSendWidget extends StatelessWidget {
                   decoration: InputDecoration(
 
                     suffixIcon: IconButton(
-                        onPressed: (){ csController.pickImage(ImageSource.camera);}, icon: Icon(Icons.camera_enhance,size: 35,)),
+                        onPressed: (){ ShowImageSource().showImageSourceDialog(context);}, icon: Icon(Icons.camera_enhance,size: 35,)),
                     hintText: "Message...",
                     hintStyle: TextStyle(fontSize: 18),
 
@@ -51,7 +52,7 @@ class MessageSendWidget extends StatelessWidget {
           ),
           SizedBox(width: 10,),
           Obx((){
-            return csController.isTextFieldEmpty.value?
+            return csController.isTextFieldEmpty.value && csController.selectedImage.value==null?
             InkWell(
               onLongPress: (){},
                 child: Container(
@@ -77,8 +78,8 @@ class MessageSendWidget extends StatelessWidget {
                     borderRadius: BorderRadius.circular(28)
                 ),
 
-                child: Center(child:
-
+                child: Center(child: csController.loading.value?
+                    const CircularProgressIndicator():
                 const Icon(Icons.send,color: Colors.white,)),
               ),
             );

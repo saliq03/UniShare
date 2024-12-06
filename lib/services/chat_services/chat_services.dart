@@ -2,14 +2,19 @@
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:unishare/model/message_model/chat_model.dart';
 import 'package:unishare/viewmodels/services/generate_ids_service.dart';
 import 'package:unishare/viewmodels/user_prefrences/user_prefrences.dart';
 
 import '../../model/message_model/message.dart';
+import '../firebase_services/firebase_services.dart';
 
 class ChatServices{
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  final firebaseServices=FirebaseServices();
+
 
   Stream<List<ChatModel>>getAllchats(String currentUserId) {
     return _firestore.collection('Chat_Rooms').snapshots().map((snapshot) {
@@ -20,7 +25,7 @@ class ChatServices{
     });
   }
 
-  Future<void> sendMessage(String receiverId,String message)async {
+  Future<void> sendMessage(String receiverId,String message,String photo,String video)async {
     print("in services method");
 
     final currentUser=await UserPrefrences().GetUser();
@@ -35,6 +40,8 @@ class ChatServices{
          senderId: currentUser.Email,
          recieverId: receiverId,
          message: message,
+         photo: photo ,
+         video: video,
          timeStamp: timestamp);
      ChatModel chat=ChatModel(id:  chatRoomId,
          lastMessage: message,
@@ -63,6 +70,18 @@ class ChatServices{
     collection("Messages").
     orderBy("TimeStamp",descending: false).
     snapshots();
+  }
+
+  Future<String> uploadImage(XFile image,) async {
+    String id=GenerateIds().GenerateMessageImageId();
+    try{
+      return await firebaseServices.uploadImage("Chat_images", id, image);
+    }catch(e){
+      if (kDebugMode) {
+        print(e.toString());
+      }
+      throw e;
+    }
   }
 
   }
