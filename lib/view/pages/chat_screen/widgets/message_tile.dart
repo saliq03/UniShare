@@ -1,5 +1,4 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -24,7 +23,7 @@ class MessageTile extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Container(
-                  padding: const EdgeInsets.only(left: 16, top: 10,right: 16,bottom: 10),
+                  padding: const EdgeInsets.only(left: 7, top: 10,right: 7,bottom: 10),
                   margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 25),
                   constraints: const BoxConstraints(
                     maxWidth: 300.0,
@@ -51,7 +50,8 @@ class MessageTile extends StatelessWidget {
                     children: [
                       newMessage.photo==''?const SizedBox.shrink():
                           CachedNetworkImage(imageUrl: newMessage.photo,
-                          placeholder: (context,index)=>const Center(child: CircularProgressIndicator()),),
+                          placeholder: (context,index)=>const SizedBox(height: 300,
+                              child:  Center(child: CircularProgressIndicator())),),
                       newMessage.message==''?const SizedBox.shrink(): Text(
                         newMessage.message,
                         softWrap: true, // Allow the text to wrap

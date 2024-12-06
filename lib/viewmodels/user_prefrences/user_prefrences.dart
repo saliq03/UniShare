@@ -24,7 +24,7 @@ class UserPrefrences {
  Future<UserModel>  GetUser() async {
     SharedPreferences sp=await SharedPreferences.getInstance();
 
-    final user=UserModel(Name: sp.getString("Name")?? 'No Name', Email: sp.getString("Email")?? 'No Email', Gender: sp.getString("Gender")?? 'Unknown',Bio: sp.getString("Bio")?? '',Photo: sp.getString("Photo")?? 'error');
+    final user=UserModel(Name: sp.getString("Name")?? 'No Name', Email: sp.getString("Email")?? 'No Email', Gender: sp.getString("Gender")?? 'Unknown',Bio: sp.getString("Bio")?? '',Photo: sp.getString("Photo")?? 'error',Status: sp.getString("Status")??'online');
 
      return user;
   }

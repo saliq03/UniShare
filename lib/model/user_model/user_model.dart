@@ -6,16 +6,18 @@ class UserModel{
   final String Gender;
   final String Photo;
   final String Bio;
+  final String Status;
 
   UserModel( {
     required  this.Photo,
     required this.Bio,
     required this.Name,
     required this.Email,
-    required this.Gender});
+    required this.Gender,
+    required this.Status});
 
   toJson(){
-    return {"Name":Name, "Email":Email, "Gender":Gender};
+    return {"Name":Name, "Email":Email, "Gender":Gender, "Status":Status};
   }
 
   factory UserModel.fromSnapshot(DocumentSnapshot<Map<String,dynamic>> document){
@@ -25,7 +27,8 @@ class UserModel{
         Email: data["Email"],
         Gender: data["Gender"],
         Bio: data["Bio"],
-        Photo: data["Photo"]
+        Photo: data["Photo"],
+        Status:  data["Status"]
     );
   }
 

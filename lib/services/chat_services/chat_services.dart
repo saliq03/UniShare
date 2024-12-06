@@ -5,6 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:unishare/model/message_model/chat_model.dart';
+import 'package:unishare/model/user_model/user_model.dart';
 import 'package:unishare/viewmodels/services/generate_ids_service.dart';
 import 'package:unishare/viewmodels/user_prefrences/user_prefrences.dart';
 
@@ -84,4 +85,15 @@ class ChatServices{
     }
   }
 
+  Stream<UserModel> fetchUser(String email) {
+    return FirebaseFirestore.instance
+        .collection("Users")
+        .where("Email", isEqualTo: email)
+        .snapshots()
+        .map((snapshot) {
+      final userData = snapshot.docs.map((e) => UserModel.fromSnapshot(e)).single;
+      return userData;
+    });
   }
+
+}

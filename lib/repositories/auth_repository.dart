@@ -90,4 +90,15 @@ class AuthRepository{
     }
 
   }
+
+  Future<void> logout() async {
+    try {
+      await _auth.signOut();
+      print('User logged out successfully');
+    } catch (e) {
+      print('Error logging out: $e');
+      throw e; // Optionally handle or rethrow the exception
+    }
+  }
+
   }

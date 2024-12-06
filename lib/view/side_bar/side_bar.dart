@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:unishare/repositories/auth_repository.dart';
 import 'package:unishare/res/routes/routes_name.dart';
 import 'package:unishare/view/side_bar/widgets/user_accounts_header_widget.dart';
 import '../../viewmodels/controller/home_controllers/sidebar_controller.dart';
@@ -55,12 +56,13 @@ class SideBar extends StatelessWidget {
           //   onTap: ()=>null,
           // ),
 
-          SizedBox(height: 30,),
-          Divider(),
+          const SizedBox(height: 30,),
+          const Divider(),
           ListTile(
             leading: Icon(Icons.exit_to_app),
             title: Text("Logout"),
             onTap: (){Navigator.pop(context);
+              AuthRepository().logout();
               sidebarController.logOut();
               },
           ),

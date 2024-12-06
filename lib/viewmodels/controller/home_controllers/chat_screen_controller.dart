@@ -10,6 +10,8 @@ import 'package:unishare/services/chat_services/chat_services.dart';
 import 'package:unishare/viewmodels/user_prefrences/user_prefrences.dart';
 
 class ChatScreenController extends GetxController{
+
+
   final chatServices=ChatServices();
  final messageController=TextEditingController().obs;
  final messageFocusNode=FocusNode().obs;
@@ -115,5 +117,9 @@ class ChatScreenController extends GetxController{
         print(ex.toString());
       }
     }
+  }
+
+  Stream<UserModel> getStatus(String email){
+    return chatServices.fetchUser(email);
   }
 }

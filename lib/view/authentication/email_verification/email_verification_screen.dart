@@ -45,7 +45,7 @@ late Map<String,dynamic> args;
       if(emailVerificationController.isEmailVerified()){
         signupRepository.uploadUser(name: args['Name'], email: args['Email'], gender: args['Gender']);
         userPrefrences.SetLoginKey(true);
-        UserModel userModel=UserModel(Photo: ImagesAssets.defaultProfileImage, Bio: '', Name: args['Name'], Email: args['Email'], Gender: args['Gender']);
+        UserModel userModel=UserModel(Photo: ImagesAssets.defaultProfileImage, Bio: '', Name: args['Name'], Email: args['Email'], Gender: args['Gender'],Status: args['Status']);
         userPrefrences.SaveUser(userModel);
         Get.offNamed(RoutesName.homeBottomNav);
       }

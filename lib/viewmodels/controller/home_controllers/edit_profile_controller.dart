@@ -52,9 +52,10 @@ class EditProfileController extends GetxController{
               Bio: bioController.value.text,
               Name: nameController.value.text,
               Email: user.Email,
-              Gender: user.Gender);
+              Gender: user.Gender,
+              Status: user.Status);
       editProfileRepo.UpdateUser(userModel).then((value){
-        UserModel userModel=UserModel(Photo: user.Photo, Bio:bioController.value.text , Name: nameController.value.text, Email: user.Email, Gender: user.Gender);
+        UserModel userModel=UserModel(Photo: user.Photo, Bio:bioController.value.text , Name: nameController.value.text, Email: user.Email, Gender: user.Gender,Status: user.Status);
         userPrefrences.SaveUser(userModel).then((data){
           Get.find<SidebarController>().refreshController();
 
@@ -71,9 +72,10 @@ class EditProfileController extends GetxController{
             Bio: bioController.value.text,
             Name: nameController.value.text,
             Email: user.Email,
-            Gender: user.Gender);
+            Gender: user.Gender,
+            Status: user.Status);
         editProfileRepo.UpdateUser(userModel).then((v){
-          UserModel userModel=UserModel(Photo: value, Bio:bioController.value.text , Name: nameController.value.text, Email: user.Email, Gender: user.Gender);
+          UserModel userModel=UserModel(Photo: value, Bio:bioController.value.text , Name: nameController.value.text, Email: user.Email, Gender: user.Gender,Status: user.Status);
 
           userPrefrences.SaveUser(userModel).then((data){
             Get.find<SidebarController>().refreshController();

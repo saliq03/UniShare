@@ -104,7 +104,7 @@ class LoginController extends GetxController{
           userPrefrences.SetLoginKey(true);
           if(!userDoc.exists){
             SignupRepository().uploadUser(name: userDetails!.displayName!, email: userDetails!.email!,gender: 'Unknown', photo: userDetails!.photoURL!);
-            UserModel userModel=UserModel(Photo:userDetails!.photoURL!, Bio: '', Name: userDetails!.displayName!, Email: userDetails!.email!, Gender: 'Unknown');
+            UserModel userModel=UserModel(Photo:userDetails!.photoURL!, Bio: '', Name: userDetails!.displayName!, Email: userDetails!.email!, Gender: 'Unknown', Status: 'online');
             userPrefrences.SaveUser(userModel).then((value)=>Get.offNamed(RoutesName.homeBottomNav));
           }
           else{
