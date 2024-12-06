@@ -45,7 +45,7 @@ class ChatServices{
          video: video,
          timeStamp: timestamp);
      ChatModel chat=ChatModel(id:  chatRoomId,
-         lastMessage: message,
+         lastMessage: message==''? '📸 Image':message,
          lastTimeStamp: timestamp,
          lastSenderId: currentUser.Email,
          unreadMessages: '0');
