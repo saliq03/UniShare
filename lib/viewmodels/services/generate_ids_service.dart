@@ -17,4 +17,8 @@ class GenerateIds{
     String id=randomAlphaNumeric(10);
     return "Chat-${id}";
   }
+  GenerateCallId(String sender,String reciever){
+    String id =randomAlphaNumeric(7);
+    return '$sender-$reciever-$id';
+  }
 }

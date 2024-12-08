@@ -21,6 +21,7 @@ class ChatScreenController extends GetxController{
   final loading=false.obs;
 
 
+
   Rx<File?> selectedImage = Rx<File?>(null);
 
   @override

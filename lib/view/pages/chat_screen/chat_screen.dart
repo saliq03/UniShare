@@ -7,6 +7,7 @@ import 'package:unishare/view/pages/chat_screen/widgets/appbar_title_widget.dart
 import 'package:unishare/view/pages/chat_screen/widgets/message_send_widget.dart';
 import 'package:unishare/view/pages/chat_screen/widgets/photo_send_widget.dart';
 import 'package:unishare/view/pages/chat_screen/widgets/show_messages_widget.dart';
+import 'package:unishare/viewmodels/controller/home_controllers/call_controller.dart';
 
 import '../../../viewmodels/controller/home_controllers/chat_screen_controller.dart';
 
@@ -18,20 +19,19 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<ChatScreen> {
-  late UserModel user,currUser;
+  late UserModel user;
 
   final csController=Get.put(ChatScreenController());
+  final callController=Get.put(CallController());
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     user=Get.arguments;
-    getCurrUser();
+
     csController.manageScrollDown();
   }
-  getCurrUser() async {
-    currUser=await csController.getCurrentUser();
-  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,8 +41,10 @@ class _ChatScreenState extends State<ChatScreen> {
       titleSpacing: 0,
       leading: const CustomizedBackButton(),
       actions: [
-        IconButton(onPressed: (){}, icon: Icon(Icons.call,size: 28,)),
-        SizedBox(width: 10,)
+        IconButton(onPressed: (){
+          callController.callAction(user, csController.currentUser.value!);
+        }, icon: Icon(Icons.call,size: 28,)),
+        const SizedBox(width: 10,)
       ],
     ),
       body:Stack(
