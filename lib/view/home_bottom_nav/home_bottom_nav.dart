@@ -5,6 +5,7 @@ import 'package:unishare/view/pages/all_chats_page/all_chats_page.dart';
 import 'package:unishare/view/pages/home_page/home_page.dart';
 import 'package:unishare/view/side_bar/side_bar.dart';
 import 'package:unishare/viewmodels/controller/bottom_nav_controller.dart';
+import 'package:unishare/viewmodels/controller/home_controllers/call_controller.dart';
 import 'package:unishare/viewmodels/controller/status_controller.dart';
 
 class HomeBottomNav extends StatefulWidget {
@@ -16,6 +17,7 @@ class HomeBottomNav extends StatefulWidget {
 
 class _HomeBottomNavState extends State<HomeBottomNav> {
   StatusController statusController=Get.put(StatusController());
+  CallController callController=Get.put(CallController());
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   List pages=[HomePage(),AllChatsPage()];
   final bnController=Get.put(BottomNavController());
