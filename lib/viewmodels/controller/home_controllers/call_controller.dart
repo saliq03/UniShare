@@ -1,4 +1,5 @@
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:unishare/model/message_model/call_model.dart';
@@ -33,6 +34,7 @@ class CallController extends GetxController{
 
   callAction(UserModel reciever,UserModel caller){
     String id=GenerateIds().GenerateCallId(caller.Email, reciever.Email);
+    final Timestamp timestamp=Timestamp.now();
    CallModel newCall=CallModel(
        id: id,
        callerName: caller.Name,
@@ -41,7 +43,8 @@ class CallController extends GetxController{
        receiverName: reciever.Name,
        receiverPic: reciever.Photo,
        receiverEmail: reciever.Email,
-       status: "calling");
+       status: "calling",
+      timeStamp: timestamp);
    callServices.sendCallNotification(newCall);
    callServices.saveCalls(newCall);
 

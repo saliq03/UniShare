@@ -18,6 +18,7 @@ class HomeBottomNav extends StatefulWidget {
 class _HomeBottomNavState extends State<HomeBottomNav> {
   StatusController statusController=Get.put(StatusController());
   CallController callController=Get.put(CallController());
+
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   List pages=[HomePage(),AllChatsPage()];
   final bnController=Get.put(BottomNavController());

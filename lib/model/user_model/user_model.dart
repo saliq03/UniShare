@@ -8,6 +8,7 @@ class UserModel{
   final String Bio;
   final String Status;
 
+
   UserModel( {
     required  this.Photo,
     required this.Bio,

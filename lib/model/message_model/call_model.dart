@@ -1,12 +1,15 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class CallModel {
-  String id;
-  String callerName;
-  String callerPic;
-  String callerEmail;
-  String receiverName;
-  String receiverPic;
-  String receiverEmail;
-  String status;
+ final String id;
+ final String callerName;
+ final String callerPic;
+ final String callerEmail;
+ final String receiverName;
+ final String receiverPic;
+ final String receiverEmail;
+ final String status;
+  final Timestamp timeStamp;
 
   CallModel(
       {required this.id,
@@ -16,7 +19,8 @@ class CallModel {
         required this.receiverName,
         required this.receiverPic,
         required this.receiverEmail,
-        required this.status});
+        required this.status,
+        required this.timeStamp,});
 
   toJson() {
    return {
@@ -27,7 +31,8 @@ class CallModel {
     'ReceiverName': receiverName ,
     'ReceiverPic': receiverPic,
     'ReceiverEmail': receiverEmail,
-    'Status': status
+    'Status': status,
+     'TimeStamp':timeStamp
     };
   }
 
@@ -39,7 +44,8 @@ class CallModel {
         receiverName : json['ReceiverName'],
         receiverPic : json['ReceiverPic'],
         receiverEmail : json['ReceiverEmail'],
-        status : json['Status']);
+        status : json['Status'],
+        timeStamp: json['TimeStamp']);
   }
 
 
