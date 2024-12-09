@@ -30,5 +30,6 @@ class GenerateIds{
     List<String> ids=[profileController.currentUser.value!.Email,targetId];
     ids.sort();
     String chatRoomId=ids.join('_');
+    return chatRoomId;
   }
 }

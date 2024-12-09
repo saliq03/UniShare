@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:unishare/model/user_model/user_model.dart';
 import 'package:unishare/viewmodels/controller/profile_controller.dart';
 import 'package:unishare/viewmodels/services/generate_ids_service.dart';
@@ -13,7 +12,7 @@ class AudiocallScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var callId=GenerateIds().GenerateRoomId(target.Email);
+    String callId=GenerateIds().GenerateRoomId(target.Email);
     return SafeArea(
         child: ZegoUIKitPrebuiltCall(
             appID: int.parse(dotenv.env['ZEGO_APP_ID']!),
