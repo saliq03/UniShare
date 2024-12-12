@@ -4,13 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:unishare/model/message_model/call_model.dart';
 import 'package:unishare/model/user_model/user_model.dart';
+import 'package:unishare/res/constants/constants.dart';
 import 'package:unishare/services/chat_services/call_Services.dart';
 import 'package:unishare/view/pages/audiocall_screen/audiocall_screen.dart';
 import 'package:unishare/viewmodels/services/generate_ids_service.dart';
 
 class CallController extends GetxController{
- // final FirebaseAuth _auth=FirebaseAuth.instance;
  final CallServices callServices=CallServices();
+ late CallModel currCall;
 
 
  @override
@@ -30,10 +31,12 @@ class CallController extends GetxController{
     backgroundColor: Colors.grey,
     animationDuration: Duration(microseconds: 1),
     onTap: (value){
+     callServices.updateCallStatus(CallStatus.completed, call);
      Get.to(AudiocallScreen(target: target));
      Get.closeCurrentSnackbar();
     },
     mainButton: TextButton(onPressed: (){
+     callServices.updateCallStatus(CallStatus.rejected, call);
      Get.closeCurrentSnackbar();
      callServices.endCall(call);
     }, child: const Text("End call",style: TextStyle(color: Colors.red),)));
@@ -52,19 +55,36 @@ class CallController extends GetxController{
        receiverName: reciever.Name,
        receiverPic: reciever.Photo,
        receiverEmail: reciever.Email,
-       status: "calling",
+       status: reciever.Status=="Online"? CallStatus.ringing:CallStatus.calling,
       timeStamp: timestamp);
+   currCall=newCall;
    callServices.sendCallNotification(newCall);
 
-   Get.to(AudiocallScreen(target: reciever));
-
+   call(reciever, newCall);
    callServices.saveCalls(newCall);
 
-   Future.delayed(const Duration(seconds: 30),(){
-    callServices.endCall(newCall);
-   });
   }
 
+
+ call(UserModel target,CallModel call){
+  callServices.getCall().listen((data){
+   call=data[0];
+   if(call.status==CallStatus.completed){
+    Get.off(AudiocallScreen(target: target));
+   }
+  });
+  Future.delayed(const Duration(seconds: 30),(){
+   if(call.status!=CallStatus.completed) {
+    endCall();
+   }
+  });
+
+ }
+
+ endCall(){
+  callServices.endCall(currCall);
+  Get.back();
+ }
 
 
 

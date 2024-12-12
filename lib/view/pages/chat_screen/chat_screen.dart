@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 
 import 'package:unishare/model/user_model/user_model.dart';
 import 'package:unishare/res/components/customized_back_button.dart';
+import 'package:unishare/res/routes/routes_name.dart';
 import 'package:unishare/view/pages/chat_screen/widgets/appbar_title_widget.dart';
 import 'package:unishare/view/pages/chat_screen/widgets/message_send_widget.dart';
 import 'package:unishare/view/pages/chat_screen/widgets/photo_send_widget.dart';
@@ -42,7 +43,10 @@ class _ChatScreenState extends State<ChatScreen> {
       leading: const CustomizedBackButton(),
       actions: [
         IconButton(onPressed: (){
-          callController.callAction(user, csController.currentUser.value!);
+         Get.toNamed(RoutesName.callingPage,arguments:{
+           "caller": csController.currentUser.value!, // Sender UserModel instance
+           "target": user, // Target UserModel instance
+         } );
         }, icon: Icon(Icons.call,size: 28,)),
         const SizedBox(width: 10,)
       ],

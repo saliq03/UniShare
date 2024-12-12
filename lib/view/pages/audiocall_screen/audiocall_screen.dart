@@ -20,6 +20,8 @@ class AudiocallScreen extends StatelessWidget {
             userID: profileController.currentUser.value?.Email?? 'root',
             userName: profileController.currentUser.value?.Name?? 'root',
             callID: callId,
-            config: ZegoUIKitPrebuiltCallConfig.oneOnOneVoiceCall()));
+            config: ZegoUIKitPrebuiltCallConfig.oneOnOneVoiceCall(),
+          // onDispose: ,
+        ));
   }
 }

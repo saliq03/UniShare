@@ -62,4 +62,40 @@ class CallServices{
     }
   }
 
+  updateCallStatus(String status,CallModel call){
+    final data={"Status":status};
+    _firestore.collection("Notifications").doc(call.receiverEmail)
+        .collection("Calls").doc(call.id).update(data);
+
+    _firestore.collection("Users").doc(call.callerEmail)
+        .collection("Calls").doc(call.id).update(data);
+    _firestore.collection("Users").doc(call.receiverEmail)
+        .collection("Calls").doc(call.id).update(data);
+  }
+
+  Future<bool> isRecieverBusy(String email) async {
+    final snapshot = await _firestore
+        .collection("Notifications")
+        .doc(email)
+        .collection("Calls")
+        .get();
+
+    return snapshot.docs.isNotEmpty;
+  }
+
+  Stream<List<CallModel>>getCall(){
+    try{
+      return _firestore.collection("Notifications").doc(_auth.currentUser!.email)
+          .collection("Calls").snapshots().map((snapshot){
+        return snapshot.docs.map((doc){
+          return CallModel.fromJson(doc.data());
+        }).toList();
+      });
+    }
+    catch(e){
+      throw e;
+    }
+
+  }
+
 }
