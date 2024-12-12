@@ -63,6 +63,7 @@ class CallServices{
   }
 
   updateCallStatus(String status,CallModel call){
+    print("update call status");
     final data={"Status":status};
     _firestore.collection("Notifications").doc(call.receiverEmail)
         .collection("Calls").doc(call.id).update(data);

@@ -25,21 +25,24 @@ class CallController extends GetxController{
         Photo: call.callerPic,
         Bio: '', Name: call.callerName,
         Email: call.callerEmail, Gender: '', Status: '');
-    Get.snackbar(call.callerName,
-        "Incoming call",
-        duration:  const Duration(seconds: 30),
-    backgroundColor: Colors.grey,
-    animationDuration: Duration(microseconds: 1),
-    onTap: (value){
-     callServices.updateCallStatus(CallStatus.completed, call);
-     Get.to(AudiocallScreen(target: target));
-     Get.closeCurrentSnackbar();
-    },
-    mainButton: TextButton(onPressed: (){
-     callServices.updateCallStatus(CallStatus.rejected, call);
-     Get.closeCurrentSnackbar();
-     callServices.endCall(call);
-    }, child: const Text("End call",style: TextStyle(color: Colors.red),)));
+    if(call.status==CallStatus.ringing){
+     Get.snackbar(call.callerName,
+         "Incoming call",
+         duration:  const Duration(seconds: 30),
+         backgroundColor: Colors.grey,
+         animationDuration: const Duration(microseconds: 1),
+         onTap: (value){
+          callServices.updateCallStatus(CallStatus.completed, call);
+          Get.to(()=> AudiocallScreen(target: target));
+          Get.closeCurrentSnackbar();
+         },
+         mainButton: TextButton(onPressed: (){
+          callServices.updateCallStatus(CallStatus.rejected, call);
+          Get.closeCurrentSnackbar();
+          callServices.endCall(call);
+         }, child: const Text("End call",style: TextStyle(color: Colors.red),)));
+    }
+
    }
   });
  }
@@ -68,16 +71,23 @@ class CallController extends GetxController{
 
  call(UserModel target,CallModel call){
   callServices.getCall().listen((data){
-   call=data[0];
+   CallModel newcall=data[0];
+   print("new call status");
+   print(newcall.status);
    if(call.status==CallStatus.completed){
     Get.off(AudiocallScreen(target: target));
    }
   });
-  Future.delayed(const Duration(seconds: 30),(){
-   if(call.status!=CallStatus.completed) {
-    endCall();
-   }
-  });
+  // print("call status is");
+  // print(call.status);
+  // Future.delayed(const Duration(seconds: 30),(){
+  //  print(" after delay call status is");
+  //  print(call.status);
+  //  if(call.status!=CallStatus.completed) {
+  //   print("call ended");
+  //   endCall();
+  //  }
+  // });
 
  }
 
