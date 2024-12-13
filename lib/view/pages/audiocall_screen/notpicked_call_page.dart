@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:unishare/repositories/login_repository/login_repository.dart';
 import 'package:unishare/view/pages/audiocall_screen/widgets/circle_widget.dart';
 import 'package:unishare/view/pages/audiocall_screen/widgets/details_widget.dart';
 import 'package:unishare/view/pages/audiocall_screen/widgets/end_call_button.dart';
@@ -17,6 +18,7 @@ class NotpickedCallPage extends StatefulWidget {
 
 class _NotpickedCallPageState extends State<NotpickedCallPage> {
   late UserModel target,caller;
+
   final callController=Get.put(CallController());
   @override
   void initState() {
@@ -25,7 +27,11 @@ class _NotpickedCallPageState extends State<NotpickedCallPage> {
     final args = Get.arguments as Map<String, UserModel>;
     target =args["target"]!;
     caller=args["caller"]!;
-    callController.callAction(target, caller);
+   LoginRepository().fetchUser(target.Email).then((user){
+     target=user;
+     callController.callAction(target, caller);
+   });
+
   }
   @override
   Widget build(BuildContext context) {

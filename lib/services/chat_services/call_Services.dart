@@ -4,6 +4,8 @@ import 'package:flutter/foundation.dart';
 import 'package:unishare/model/message_model/call_model.dart';
 import 'package:unishare/services/firebase_services/firebase_services.dart';
 
+import '../../model/user_model/user_model.dart';
+
 class CallServices{
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final  FirebaseAuth _auth= FirebaseAuth.instance;
@@ -84,9 +86,9 @@ class CallServices{
     return snapshot.docs.isNotEmpty;
   }
 
-  Stream<List<CallModel>>getCall(){
+  Stream<List<CallModel>>getCall(UserModel target){
     try{
-      return _firestore.collection("Notifications").doc(_auth.currentUser!.email)
+      return _firestore.collection("Notifications").doc(target.Email)
           .collection("Calls").snapshots().map((snapshot){
         return snapshot.docs.map((doc){
           return CallModel.fromJson(doc.data());
@@ -98,5 +100,7 @@ class CallServices{
     }
 
   }
+
+
 
 }

@@ -25,6 +25,7 @@ class CallController extends GetxController{
         Photo: call.callerPic,
         Bio: '', Name: call.callerName,
         Email: call.callerEmail, Gender: '', Status: '');
+    print("incoming call status is ${call.status}");
     if(call.status==CallStatus.ringing){
      Get.snackbar(call.callerName,
          "Incoming call",
@@ -39,8 +40,10 @@ class CallController extends GetxController{
          mainButton: TextButton(onPressed: (){
           callServices.updateCallStatus(CallStatus.rejected, call);
           Get.closeCurrentSnackbar();
-          callServices.endCall(call);
          }, child: const Text("End call",style: TextStyle(color: Colors.red),)));
+    }
+    else if(call.status==CallStatus.missed){
+     Get.closeCurrentSnackbar();
     }
 
    }
@@ -69,31 +72,41 @@ class CallController extends GetxController{
   }
 
 
- call(UserModel target,CallModel call){
-  callServices.getCall().listen((data){
-   CallModel newcall=data[0];
-   print("new call status");
-   print(newcall.status);
-   if(call.status==CallStatus.completed){
-    Get.off(AudiocallScreen(target: target));
+ call(UserModel target, CallModel call) {
+  callServices.getCall(target).listen((data) {
+   print("Listener triggered with data: ${data.length}");
+   if (data.isNotEmpty) {
+    call = data[0];
+    print("New call status: ${call.status}");
+
+    if (call.status == CallStatus.completed) {
+     // Navigate to AudiocallScreen
+     Get.off(() => AudiocallScreen(target: target));
+    }
+    else if(call.status==CallStatus.rejected){
+     endCall();
+    }
    }
   });
-  // print("call status is");
-  // print(call.status);
-  // Future.delayed(const Duration(seconds: 30),(){
-  //  print(" after delay call status is");
-  //  print(call.status);
-  //  if(call.status!=CallStatus.completed) {
-  //   print("call ended");
-  //   endCall();
-  //  }
-  // });
 
+  Future.delayed(const Duration(seconds: 30), () {
+   print("After delay, call status: ${call.status}");
+   if (call.status ==CallStatus.ringing||call.status== CallStatus.calling) {
+    print("Call ended due to timeout");
+    endCall();
+   }
+  });
  }
+
 
  endCall(){
   callServices.endCall(currCall);
   Get.back();
+ }
+
+ cancelCall(){
+  callServices.updateCallStatus(CallStatus.missed, currCall);
+  endCall();
  }
 
 
