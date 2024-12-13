@@ -34,7 +34,7 @@ class CallController extends GetxController{
          animationDuration: const Duration(microseconds: 1),
          onTap: (value){
           callServices.updateCallStatus(CallStatus.completed, call);
-          Get.to(()=> AudiocallScreen(target: target));
+          Get.to(()=> AudiocallScreen(target: target,call: call,));
           Get.closeCurrentSnackbar();
          },
          mainButton: TextButton(onPressed: (){
@@ -74,16 +74,16 @@ class CallController extends GetxController{
 
  call(UserModel target, CallModel call) {
   callServices.getCall(target).listen((data) {
-   print("Listener triggered with data: ${data.length}");
    if (data.isNotEmpty) {
     call = data[0];
     print("New call status: ${call.status}");
 
     if (call.status == CallStatus.completed) {
      // Navigate to AudiocallScreen
-     Get.off(() => AudiocallScreen(target: target));
+     Get.off(() => AudiocallScreen(target: target,call: call,));
     }
     else if(call.status==CallStatus.rejected){
+     print("inside when call rejected");
      endCall();
     }
    }
@@ -100,6 +100,7 @@ class CallController extends GetxController{
 
 
  endCall(){
+  print("inside end call");
   callServices.endCall(currCall);
   Get.back();
  }

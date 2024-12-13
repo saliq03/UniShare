@@ -30,6 +30,7 @@ class StatusController extends GetxController with WidgetsBindingObserver{
          "Status": 'Online'
        });
      }
+
   }
 
   @override

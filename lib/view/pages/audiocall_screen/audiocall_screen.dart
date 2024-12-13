@@ -1,14 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
+import 'package:unishare/model/message_model/call_model.dart';
 import 'package:unishare/model/user_model/user_model.dart';
+import 'package:unishare/services/chat_services/call_Services.dart';
 import 'package:unishare/viewmodels/controller/profile_controller.dart';
 import 'package:unishare/viewmodels/services/generate_ids_service.dart';
 import 'package:zego_uikit_prebuilt_call/zego_uikit_prebuilt_call.dart';
 class AudiocallScreen extends StatelessWidget {
-   AudiocallScreen({super.key,required this.target});
+   AudiocallScreen({super.key,required this.target,required this.call});
    final UserModel target;
+   final CallModel call;
  final profileController=Get.put(ProfileController());
+
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +25,9 @@ class AudiocallScreen extends StatelessWidget {
             userName: profileController.currentUser.value?.Name?? 'root',
             callID: callId,
             config: ZegoUIKitPrebuiltCallConfig.oneOnOneVoiceCall(),
+          onDispose: () {
+            CallServices().endCall(call);
+          },
           // onDispose: ,
         ));
   }
