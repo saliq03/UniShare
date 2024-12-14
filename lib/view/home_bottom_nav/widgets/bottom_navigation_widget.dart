@@ -11,14 +11,17 @@ import '../../../viewmodels/controller/bottom_nav_controller.dart';
 
 
 class BottomNavigationWidget extends StatelessWidget {
+
   final bnController=Get.put(BottomNavController());
+
+  BottomNavigationWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BottomAppBar(
       color: Colors.grey.shade100,
       elevation: 5,
-      shape: CircularNotchedRectangle(),
+      shape: const CircularNotchedRectangle(),
       height: 70,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -35,7 +38,10 @@ class BottomNavigationWidget extends StatelessWidget {
           BottomBarButton(icon: Icons.add_box, name: "Donate", onPress: (){
             Get.toNamed(RoutesName.donate_page);
           }),
-          BottomBarButton(icon: Icons.emergency_outlined, name: "Emergency", onPress: (){})
+          Obx(()=>BottomBarButton(icon: bnController.pageindex.value==2?Icons.emergency:
+          Icons.emergency_outlined, name: "Emergency", onPress: (){
+            bnController.changePageIndex(2);
+          }))
         ],
       ),
     );

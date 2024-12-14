@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:image_picker/image_picker.dart';
 
 import 'package:unishare/viewmodels/controller/home_controllers/edit_profile_controller.dart';
@@ -37,17 +36,17 @@ class PhotoNameWidget extends StatelessWidget {
                     CachedNetworkImage(fit: BoxFit.cover,
                       width: 120,height: 120,
                       imageUrl: initImage,
-                    placeholder: (context,url)=>Center(child: CircularProgressIndicator()),):
+                    placeholder: (context,url)=>const Center(child: CircularProgressIndicator()),):
                         Image.file(epController.selectedImage.value!,fit: BoxFit.cover,),
                   )
                 );
               }),
-              Positioned(bottom: 15,right: 25,
+              const Positioned(bottom: 15,right: 25,
                   child: Icon(Icons.add_a_photo_outlined,color: Colors.white,))
             ],
           ),
         ),
-        SizedBox(width: 20,),
+        const SizedBox(width: 20,),
         Expanded(
           child: TextFormField(
             controller: epController.nameController.value,
@@ -63,7 +62,7 @@ class PhotoNameWidget extends StatelessWidget {
    void showImageSourceDialog(BuildContext context) {
      showModalBottomSheet(
        elevation: 5,
-       shape: RoundedRectangleBorder(
+       shape: const RoundedRectangleBorder(
          borderRadius: BorderRadius.vertical(top: Radius.circular(20))
        ),
        context: context,
@@ -71,16 +70,16 @@ class PhotoNameWidget extends StatelessWidget {
          return Wrap(
            children: [
              ListTile(
-               leading: Icon(Icons.photo_library),
-               title: Text("Gallery"),
+               leading: const Icon(Icons.photo_library),
+               title: const Text("Gallery"),
                onTap: () {
                  epController.PickImage(ImageSource.gallery);
                  Navigator.pop(context);
                },
              ),
              ListTile(
-               leading: Icon(Icons.camera_alt),
-               title: Text("Camera"),
+               leading: const Icon(Icons.camera_alt),
+               title: const Text("Camera"),
                onTap: () {
                  epController.PickImage(ImageSource.camera);
                  Navigator.pop(context);

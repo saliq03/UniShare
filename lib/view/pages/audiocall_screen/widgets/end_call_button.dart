@@ -11,7 +11,7 @@ class EndCallButton extends StatelessWidget {
       onTap: (){
         callController.cancelCall();
       },
-      child: CircleAvatar(
+      child: const CircleAvatar(
         radius: 30,
         backgroundColor: Colors.red,
         child: Icon(Icons.call_end_sharp,color: Colors.white,size: 30,),

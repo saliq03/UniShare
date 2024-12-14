@@ -2,13 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:unishare/res/colors/app_colors.dart';
-import 'package:unishare/res/routes/routes_name.dart';
 import 'package:unishare/view/pages/edit_profile_page/widgets/bio_input_widget.dart';
 import 'package:unishare/view/pages/edit_profile_page/widgets/contact_information_widget.dart';
 import 'package:unishare/view/pages/edit_profile_page/widgets/photo_name_widget.dart';
 import 'package:unishare/viewmodels/controller/home_controllers/edit_profile_controller.dart';
 
-import '../../../utils/utils.dart';
+
 
 class EditProfilePage extends StatefulWidget {
   const EditProfilePage({super.key});
@@ -35,14 +34,14 @@ class _EditProfilePageState extends State<EditProfilePage> {
       appBar: AppBar(
         leading: IconButton(onPressed: (){
           Get.back();
-        }, icon: Icon(CupertinoIcons.xmark,size: 30,)),
+        }, icon: const Icon(CupertinoIcons.xmark,size: 30,)),
         actions: [
           Obx((){
            return epController.loading.value?
                const SizedBox.shrink():
            TextButton(onPressed: (){
              epController.saveUserDetails();
-           }, child: Text("Save",style: TextStyle(fontSize: 20,color: Colors.black),),
+           }, child: const Text("Save",style: TextStyle(fontSize: 20,color: Colors.black),),
            ) ;
           })
 
@@ -53,7 +52,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
       body: Stack(
         children: [
           Container(
-            padding: EdgeInsets.only(left: 20,right: 20,top: 30),
+            padding: const EdgeInsets.only(left: 20,right: 20,top: 30),
 
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -74,11 +73,11 @@ class _EditProfilePageState extends State<EditProfilePage> {
             return epController.loading.value
                 ? Container(
               color: Colors.black.withOpacity(0.5),
-              child: Center(
+              child: const Center(
                 child: CircularProgressIndicator(),
               ),
             )
-                : SizedBox.shrink();
+                : const SizedBox.shrink();
           }),
         ],
       ),

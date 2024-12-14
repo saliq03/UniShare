@@ -1,7 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 import '../../../../viewmodels/controller/home_controllers/edit_profile_controller.dart';
 
@@ -19,7 +17,7 @@ class ContactInformationWidget extends StatelessWidget {
            AbsorbPointer(
             child: TextFormField(
               controller: epController.emailController.value,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                   labelText: "Email",
                 labelStyle: TextStyle(fontSize: 24,fontWeight: FontWeight.w500,fontFamily: "FiraSans",)
               ),

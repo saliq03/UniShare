@@ -33,13 +33,19 @@ class _NotpickedCallPageState extends State<NotpickedCallPage> {
    });
 
   }
+
+  @override
+  void dispose() {
+    super.dispose();
+    callController.cancelCallByNavigatingBack();
+  }
   @override
   Widget build(BuildContext context) {
     return SafeArea(
        
         child: Container(
           padding: EdgeInsets.symmetric(vertical: 15),
-          color: Color(0xFF494A4D),
+          color: const Color(0xFF494A4D),
           height: double.infinity,
             width: double.infinity,
           child:  Column(

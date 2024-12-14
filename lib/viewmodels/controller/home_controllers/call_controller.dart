@@ -109,6 +109,10 @@ class CallController extends GetxController{
   callServices.updateCallStatus(CallStatus.missed, currCall);
   endCall();
  }
+ cancelCallByNavigatingBack(){
+  callServices.updateCallStatus(CallStatus.missed, currCall);
+  callServices.endCall(currCall);
+ }
 
 
 

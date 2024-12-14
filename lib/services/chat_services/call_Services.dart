@@ -12,15 +12,24 @@ class CallServices{
   final FirebaseServices firebaseServices=FirebaseServices();
 
   Future<void> sendCallNotification(CallModel call)async {
-    try {
-      _firestore.collection("Notifications").doc(call.receiverEmail)
-          .collection("Calls").doc(call.id).set(call.toJson());
-    }catch(e){
-      if (kDebugMode) {
-        print(e.toString());
+    final docRef = _firestore.collection("Notifications")
+        .doc(call.receiverEmail)
+        .collection("Calls")
+        .doc(call.id);
+
+    docRef.get().then((docSnapshot) {
+      if (!docSnapshot.exists) {
+        docRef.set(call.toJson()).then((_) {
+          print("Document added successfully.");
+        }).catchError((error) {
+          print("Failed to add document: $error");
+        });
+      } else {
+        print("Document already exists. Skipping addition.");
       }
-      throw e;
-    }
+    }).catchError((error) {
+      print("Error checking document existence: $error");
+    });
   }
 
   Stream<List<CallModel>>getCallNotification(){
