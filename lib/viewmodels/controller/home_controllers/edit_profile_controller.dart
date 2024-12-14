@@ -16,7 +16,7 @@ class EditProfileController extends GetxController{
 
   final nameController=TextEditingController().obs;
   final bioController=TextEditingController().obs;
-  final phoneController=TextEditingController().obs;
+  final emailController=TextEditingController().obs;
   var initialImage='';
   final loading =false.obs;
 
@@ -28,6 +28,7 @@ class EditProfileController extends GetxController{
     initialImage=user.Photo;
     nameController.value.text=user.Name;
     bioController.value.text=user.Bio;
+    emailController.value.text=user.Email;
 
   }
 

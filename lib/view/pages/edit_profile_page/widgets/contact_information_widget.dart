@@ -14,19 +14,17 @@ class ContactInformationWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text("Contact Information",style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),),
-        GestureDetector(
-          onTap: (){
-            Navigator.pop(context);
-          },
-          child: AbsorbPointer(
+        const Text("Contact Information",style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),),
+
+           AbsorbPointer(
             child: TextFormField(
-              controller: epController.phoneController.value,
+              controller: epController.emailController.value,
               decoration: InputDecoration(
-                  labelText: "Phone Number"
+                  labelText: "Email",
+                labelStyle: TextStyle(fontSize: 24,fontWeight: FontWeight.w500,fontFamily: "FiraSans",)
               ),
             ),
-          ),
+
         )
       ],
     );
