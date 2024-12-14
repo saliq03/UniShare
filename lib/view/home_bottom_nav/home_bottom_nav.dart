@@ -6,6 +6,7 @@ import 'package:unishare/view/pages/home_page/home_page.dart';
 import 'package:unishare/view/side_bar/side_bar.dart';
 import 'package:unishare/viewmodels/controller/bottom_nav_controller.dart';
 import 'package:unishare/viewmodels/controller/home_controllers/call_controller.dart';
+import 'package:unishare/viewmodels/controller/profile_controller.dart';
 import 'package:unishare/viewmodels/controller/status_controller.dart';
 
 class HomeBottomNav extends StatefulWidget {
@@ -17,6 +18,7 @@ class HomeBottomNav extends StatefulWidget {
 
 class _HomeBottomNavState extends State<HomeBottomNav> {
   StatusController statusController=Get.put(StatusController());
+  ProfileController profileController=Get.put(ProfileController());
   CallController callController=Get.put(CallController());
 
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();

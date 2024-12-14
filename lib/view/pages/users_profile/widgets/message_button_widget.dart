@@ -1,8 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_common/get_reset.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:unishare/model/user_model/user_model.dart';
 import 'package:unishare/res/routes/routes_name.dart';
 
@@ -16,13 +13,14 @@ final UserModel user;
         Get.toNamed(RoutesName.chatScreen,arguments: user);
       },
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 40,vertical: 5),
-        margin: EdgeInsets.only(left: 30,top: 20),
+        width: 160,
+        padding: const EdgeInsets.symmetric(vertical: 5),
+        margin: const EdgeInsets.only(top: 20),
         decoration: BoxDecoration(
             color: Colors.blueAccent,
             borderRadius: BorderRadius.circular(12)
         ),
-        child: Text("Message",style: TextStyle(fontSize: 25,color: Colors.white),),
+        child: const Center(child: Text("Message",style: TextStyle(fontSize: 25,color: Colors.white),)),
       ),
     );
   }

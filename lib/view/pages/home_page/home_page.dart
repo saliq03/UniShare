@@ -7,7 +7,7 @@ import 'package:unishare/view/pages/home_page/widgets/show_product_widget.dart';
 import 'package:unishare/viewmodels/controller/home_controllers/home_controller.dart';
 
 import '../../../res/colors/app_colors.dart';
-import '../../home_bottom_nav/widgets/drawer_icon.dart';
+import 'widgets/drawer_icon.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

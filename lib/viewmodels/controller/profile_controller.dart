@@ -10,7 +10,7 @@ class ProfileController extends GetxController{
   void onInit() {
     super.onInit();
     getCurrentUser();
-    update();
+    // update();
   }
 
   getCurrentUser() async {

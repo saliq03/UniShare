@@ -32,7 +32,7 @@ class AppbarTitleWidget extends StatelessWidget {
                   ),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(25),
-                    child: CachedNetworkImage(imageUrl: snapshot.data!.Photo,
+                    child: CachedNetworkImage(imageUrl: user.Photo,
                     placeholder: (context,url)=>const Center(child: CircularProgressIndicator(strokeWidth: 2,)),),
                   ),
 
@@ -42,7 +42,9 @@ class AppbarTitleWidget extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(snapshot.data!.Name,style: const TextStyle(fontSize: 25),),
+                  Text(user.Name,style: const TextStyle(fontSize: 25),),
+                  !snapshot.hasData||snapshot.data==null?
+                  Text("loading..",style: TextStyle(fontSize: 13,color:Colors.grey),) :
                   Text(snapshot.data!.Status,style: TextStyle(fontSize: 13,color:  snapshot.data!.Status=='Online'?Colors.green:Colors.grey),)
                 ],
               ),

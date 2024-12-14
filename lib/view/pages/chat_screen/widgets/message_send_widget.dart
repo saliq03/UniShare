@@ -52,20 +52,7 @@ class MessageSendWidget extends StatelessWidget {
           ),
           SizedBox(width: 10,),
           Obx((){
-            return csController.isTextFieldEmpty.value && csController.selectedImage.value==null?
-            InkWell(
-              onLongPress: (){},
-                child: Container(
-                height: 56,
-                width: 56,
-                decoration: BoxDecoration(
-                    color: Colors.green,
-                    borderRadius: BorderRadius.circular(28)
-                ),
-
-                child: Center(child: const Icon(Icons.mic,color: Colors.white,size: 35,),
-              ),
-            ))  :
+            return
             InkWell(
               onTap: (){
                 csController.sendMessage(receiverId);
