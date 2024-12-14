@@ -5,15 +5,15 @@ import 'package:intl/intl.dart';
 import '../../../../model/message_model/message.dart';
 
 class MessageTile extends StatelessWidget {
-   MessageTile({required this.currentUser,required this.newMessage,super.key});
+   const MessageTile({super.key, required this.currentUser,required this.newMessage});
   final String currentUser;
   final Message newMessage;
-  late  bool isCurrentUser;
+
 
 
   @override
   Widget build(BuildContext context) {
-     isCurrentUser =currentUser == newMessage.senderId?true:false;
+    final bool isCurrentUser =currentUser == newMessage.senderId?true:false;
     return Column(
         crossAxisAlignment: isCurrentUser
             ? CrossAxisAlignment.end
@@ -57,13 +57,13 @@ class MessageTile extends StatelessWidget {
                           newMessage.message,
                           softWrap: true, // Allow the text to wrap
                           maxLines: null, // Allow unlimited lines
-                          style: TextStyle(fontSize: 18), // Optional: set text style
+                          style: const TextStyle(fontSize: 18), // Optional: set text style
                         ),
                       ],
                     ),
                   ),
                   Text(DateFormat('hh:mm:ss a').format(newMessage.timeStamp.toDate())
-                   ,style: TextStyle(fontSize: 13,color: Colors.black45),),
+                   ,style: const TextStyle(fontSize: 13,color: Colors.black45),),
                 ],
               )
 

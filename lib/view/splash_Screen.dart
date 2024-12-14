@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:unishare/res/assets/icons_assets.dart';
-import 'package:unishare/res/assets/images_assets.dart';
 
-import 'package:unishare/viewmodels/services/splash_services.dart';
-
+import '../res/assets/icons_assets.dart';
 import '../res/colors/app_colors.dart';
+import '../viewmodels/services/splash_services.dart';
 
 class SplashScreen extends StatefulWidget {
 
