@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:unishare/res/assets/icons_assets.dart';
-import 'package:unishare/res/colors/app_colors.dart';
-import 'package:unishare/res/components/rectangle_button.dart';
+
 import 'package:unishare/view/authentication/forget_password/widgets/fp_intput_email_widget.dart';
 import 'package:unishare/view/authentication/forget_password/widgets/fp_reset_password_button.dart';
 import 'package:unishare/view/authentication/forget_password/widgets/writing_widget_fp.dart';
@@ -19,7 +17,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        padding: EdgeInsets.symmetric(horizontal: 30),
+        padding: const EdgeInsets.symmetric(horizontal: 30),
         child: Form(
           key: _formKey,
           child: Column(
@@ -31,7 +29,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                FpIntputEmailWidget(),
 
 
-              SizedBox(height: 20,),
+              const SizedBox(height: 20,),
              FpResetPasswordButton(formKey: _formKey),
           ],),
         ),

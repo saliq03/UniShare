@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 
 import '../../../../viewmodels/controller/home_controllers/home_controller.dart';
@@ -24,7 +23,7 @@ class SearchWidget extends StatelessWidget {
         filled: true,
         fillColor: const Color(0xFFDEDEDE),
           suffixIcon:Obx((){
-            if(homeController.searchText==""){
+            if(homeController.searchText.value==""){
               return const SizedBox.shrink();
             }
             else{

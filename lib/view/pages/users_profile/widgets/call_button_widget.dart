@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:unishare/model/user_model/user_model.dart';import 'package:unishare/viewmodels/controller/profile_controller.dart';
@@ -7,7 +6,7 @@ import '../../../../res/routes/routes_name.dart';
 
 class CallButtonWidget extends StatelessWidget {
    CallButtonWidget({super.key,required this.target});
-  UserModel target;
+  final UserModel target;
   final profileController=Get.put(ProfileController());
 
   @override

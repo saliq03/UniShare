@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:unishare/res/colors/app_colors.dart';
 import 'package:unishare/res/components/round_button.dart';
 import 'package:unishare/utils/utils.dart';
@@ -23,7 +22,7 @@ class _EditProductPageState extends State<EditProductPage> {
   final editProductController=Get.put(EditProductController());
   final GlobalKey<FormState> _formKey=GlobalKey<FormState>();
 
-// @override
+@override
   void initState() {
     // TODO: implement initState
     super.initState();

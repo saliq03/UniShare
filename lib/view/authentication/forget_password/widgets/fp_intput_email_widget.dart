@@ -1,7 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:unishare/viewmodels/controller/forgetpassword_controller.dart';
 
 class FpIntputEmailWidget extends StatelessWidget {
@@ -38,6 +36,7 @@ class FpIntputEmailWidget extends StatelessWidget {
           else if(!emailRegex.hasMatch(value)) {
             return "Enter valid Email";
           }
+          return null;
         },
         onFieldSubmitted: (value){
           fpController.emailFocusNode.value.unfocus();

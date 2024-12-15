@@ -16,7 +16,7 @@ class SignupNameWidget extends StatelessWidget {
       decoration: InputDecoration(
         hintStyle: const TextStyle(color: Colors.white),
         hintText: "Full Name",
-        prefixIcon: Icon(Icons.person,color: Colors.white,),
+        prefixIcon: const Icon(Icons.person,color: Colors.white,),
         enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(30),
             borderSide: const BorderSide(
@@ -37,6 +37,7 @@ class SignupNameWidget extends StatelessWidget {
         if(value!.isEmpty){
           return 'Enter full name';
         }
+        return null;
       },
       onFieldSubmitted: (value){
         Utils.fieldFocusChange(context,

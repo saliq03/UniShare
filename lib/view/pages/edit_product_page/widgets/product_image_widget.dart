@@ -3,17 +3,16 @@ import 'package:carousel_slider/carousel_slider.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:unishare/utils/utils.dart';
 
 import '../../../../viewmodels/controller/home_controllers/edit_product_controller.dart';
 
 class ProductImageWidget extends StatefulWidget {
   final List images;
-  const ProductImageWidget({required this.images, Key? key}) : super(key: key);
+  const ProductImageWidget({required this.images, super.key});
 
   @override
-  _ProductImageWidgetState createState() => _ProductImageWidgetState();
+  State<ProductImageWidget> createState() => _ProductImageWidgetState();
 }
 
 class _ProductImageWidgetState extends State<ProductImageWidget> {

@@ -1,8 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:unishare/res/colors/app_colors.dart';
 import 'package:unishare/utils/utils.dart';
 
 import 'package:unishare/viewmodels/controller/signup_controller.dart';
@@ -24,7 +21,7 @@ class SignupPasswordWidget extends StatelessWidget {
           hintStyle: const TextStyle(color: Colors.white),
           hintText: "Password",
 
-          prefixIcon: Icon(Icons.lock,color: Colors.white,),
+          prefixIcon: const Icon(Icons.lock,color: Colors.white,),
           enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(30),
               borderSide: const BorderSide(
@@ -44,6 +41,7 @@ class SignupPasswordWidget extends StatelessWidget {
           if(value!.isEmpty){
             return 'Enter Password';
           }
+          return null;
         },
         onFieldSubmitted: (value){
           Utils.fieldFocusChange(context,

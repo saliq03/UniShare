@@ -44,7 +44,7 @@ class _NotpickedCallPageState extends State<NotpickedCallPage> {
     return SafeArea(
        
         child: Container(
-          padding: EdgeInsets.symmetric(vertical: 15),
+          padding: const EdgeInsets.symmetric(vertical: 15),
           color: const Color(0xFF494A4D),
           height: double.infinity,
             width: double.infinity,

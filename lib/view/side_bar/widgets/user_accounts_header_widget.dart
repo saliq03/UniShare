@@ -8,7 +8,7 @@ import 'package:unishare/viewmodels/controller/home_controllers/sidebar_controll
 
 
 class UserAccountsHeaderWidget extends StatelessWidget {
-   UserAccountsHeaderWidget({super.key});
+   const UserAccountsHeaderWidget({super.key});
 
 
   @override
@@ -18,18 +18,16 @@ class UserAccountsHeaderWidget extends StatelessWidget {
         return UserAccountsDrawerHeader(
           accountName: Obx(() => Text(controller.Name.value)),
           accountEmail: Obx(() => Text(controller.Email.value)),
-          currentAccountPicture: Container(
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(40),
-              child: CachedNetworkImage(
-                fit: BoxFit.cover,
-                imageUrl: controller.Photo.value,
-                placeholder: (context, url) =>
-                    Center(child: CircularProgressIndicator()),
-              ),
+          currentAccountPicture: ClipRRect(
+            borderRadius: BorderRadius.circular(40),
+            child: CachedNetworkImage(
+              fit: BoxFit.cover,
+              imageUrl: controller.Photo.value,
+              placeholder: (context, url) =>
+                  const Center(child: CircularProgressIndicator()),
             ),
           ),
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             color: Colors.blue,
             image: DecorationImage(
               image: AssetImage(ImagesAssets.sideBarBg),

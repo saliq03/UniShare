@@ -1,7 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 import '../../../../viewmodels/controller/home_controllers/all_chats_page_controller.dart';
 import 'chat_tile.dart';
@@ -17,7 +15,7 @@ class ChatsStreambuilderWidget extends StatelessWidget {
         stream: allchatsController.getChats(),
          builder: (context,snapshot){
           if(snapshot.hasError){
-            return Container(
+            return SizedBox(
               height: double.infinity,
               width: double.infinity,
               child: Center(
@@ -34,7 +32,7 @@ class ChatsStreambuilderWidget extends StatelessWidget {
             return Center(child: CircularProgressIndicator());
           }
           else{
-            if(snapshot.data!.length>0){
+            if(snapshot.data!.isNotEmpty){
               return ListView.builder(
                   itemCount: snapshot.data!.length,
                   itemBuilder: (context,index){
@@ -47,7 +45,7 @@ class ChatsStreambuilderWidget extends StatelessWidget {
                   });
             }
             else {
-              return Container(
+              return SizedBox(
                 height: double.infinity,
                   child: Center(child: Text("No chats yet",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),)));
             }

@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CircleWidget extends StatelessWidget {
@@ -9,7 +8,7 @@ class CircleWidget extends StatelessWidget {
     return CircleAvatar(
     radius: 70,
     backgroundColor: Colors.white,
-    child: Center(child: Text(name[0].toUpperCase(),style: TextStyle(fontSize: 28,fontWeight: FontWeight.w500,fontFamily: "FiraSans"),)),
+    child: Center(child: Text(name[0].toUpperCase(),style: const TextStyle(fontSize: 28,fontWeight: FontWeight.w500,fontFamily: "FiraSans"),)),
     );
   }
 }

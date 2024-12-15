@@ -1,7 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:unishare/utils/utils.dart';
 import 'package:unishare/viewmodels/controller/signup_controller.dart';
 
@@ -17,14 +15,14 @@ class SignupInputEmailWidget extends StatelessWidget {
     return TextFormField(
       controller: signupController.emailController.value,
       focusNode: signupController.emailFocusNode.value,
-      style: TextStyle(color: Colors.white),
+      style: const TextStyle(color: Colors.white),
       decoration: InputDecoration(
-        hintStyle: TextStyle(color: Colors.white),
+        hintStyle: const TextStyle(color: Colors.white),
         hintText: "Email",
-        prefixIcon: Icon(Icons.email_outlined,color: Colors.white,),
+        prefixIcon: const Icon(Icons.email_outlined,color: Colors.white,),
         enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(30),
-            borderSide: BorderSide(
+            borderSide: const BorderSide(
               color: Colors.white,
             )
         ),
@@ -43,6 +41,7 @@ class SignupInputEmailWidget extends StatelessWidget {
         else if(!emailRegex.hasMatch(value)) {
           return "Enter valid Email";
         }
+        return null;
       },
       onFieldSubmitted: (value){
         Utils.fieldFocusChange(context,

@@ -1,7 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 import '../../../../viewmodels/controller/home_controllers/donate_controller.dart';
 
@@ -23,9 +21,10 @@ class SelectCategoryWidget extends StatelessWidget {
                 color: Colors.black)
         )),
       validator: (value){
-         if(donateController.selectedCategory==''){
+         if(donateController.selectedCategory?.value==''){
            return "Category can't be null";
          }
+         return null;
       },
 
       value: donateController.selectedCategory!.value=='' ? null : donateController.selectedCategory!.value,

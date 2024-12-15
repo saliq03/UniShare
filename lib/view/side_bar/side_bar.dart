@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:unishare/repositories/auth_repository.dart';
 import 'package:unishare/res/routes/routes_name.dart';
 import 'package:unishare/view/side_bar/widgets/user_accounts_header_widget.dart';
@@ -15,27 +14,27 @@ class SideBar extends StatelessWidget {
       child: Column(
         // padding: EdgeInsets.zero,
         children: [
-         UserAccountsHeaderWidget(),
+         const UserAccountsHeaderWidget(),
           
           ListTile(
-            leading:Icon(Icons.favorite,),
-            title: Text("Favorites",style: TextStyle(fontSize: 18),),
+            leading:const Icon(Icons.favorite,),
+            title: const Text("Favorites",style: TextStyle(fontSize: 18),),
             onTap: (){
               Get.back();
               Get.toNamed(RoutesName.favouritesPage);
             },
           ),
           ListTile(
-            leading: Icon(Icons.add_box),
-            title: Text("My Ads",style: TextStyle(fontSize: 18,),),
+            leading: const Icon(Icons.add_box),
+            title: const Text("My Ads",style: TextStyle(fontSize: 18,),),
             onTap: (){
               Get.back();
               Get.toNamed(RoutesName.myAdsPage);
             },
           ),
           ListTile(
-            leading: Icon(Icons.person),
-            title: Text("Edit Profile",style: TextStyle(fontSize: 18),),
+            leading: const Icon(Icons.person),
+            title: const Text("Edit Profile",style: TextStyle(fontSize: 18),),
             onTap: (){
               Get.back();
               Get.toNamed(RoutesName.editProfilePage,arguments: sidebarController.Photo.value);
@@ -59,8 +58,8 @@ class SideBar extends StatelessWidget {
           const SizedBox(height: 30,),
           const Divider(),
           ListTile(
-            leading: Icon(Icons.exit_to_app),
-            title: Text("Logout"),
+            leading: const Icon(Icons.exit_to_app),
+            title: const Text("Logout"),
             onTap: (){Navigator.pop(context);
               AuthRepository().logout();
               sidebarController.logOut();

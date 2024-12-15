@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -8,7 +7,7 @@ import 'package:unishare/viewmodels/controller/home_controllers/productpage_cont
 
 class PhotosWidget extends StatelessWidget {
    PhotosWidget({required this.photos,super.key});
-   List photos;
+   final List photos;
    final controller=Get.put(ProductPageController());
   @override
   Widget build(BuildContext context) {

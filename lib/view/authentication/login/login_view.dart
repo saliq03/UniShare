@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:unishare/res/colors/app_colors.dart';
 import 'package:unishare/res/components/round_button.dart';
 import 'package:unishare/res/components/my_text_button.dart';
@@ -31,8 +30,8 @@ class _LoginViewState extends State<LoginView> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        padding: EdgeInsets.symmetric(horizontal: 30),
-        decoration: BoxDecoration(
+        padding: const EdgeInsets.symmetric(horizontal: 30),
+        decoration: const BoxDecoration(
           gradient:LinearGradient(colors: [
             AppColors.loginGradient1,
             AppColors.loginGradient2,
@@ -50,7 +49,7 @@ class _LoginViewState extends State<LoginView> {
              InputEmailWidget(),
               const SizedBox(height: 20,),
               InputPasswordWidget(),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
 
               Obx((){
                 return RoundButton(title: "LOGIN", onPress: (){
@@ -68,11 +67,11 @@ class _LoginViewState extends State<LoginView> {
               MyTextButton(title: "Forgot Password?", onPress: (){
                 Get.toNamed(RoutesName.forgetPassword);
               }),
-              SizedBox(height: 70),
-              SignupRow(),
-              SizedBox(height: 20),
-              OrWidget(),
-              SizedBox(height: 30),
+              const SizedBox(height: 70),
+              const SignupRow(),
+              const SizedBox(height: 20),
+              const OrWidget(),
+              const SizedBox(height: 30),
               ContinuewithgoogleWidget(),
 
             ],

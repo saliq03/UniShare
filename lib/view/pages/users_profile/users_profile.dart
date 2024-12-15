@@ -32,32 +32,29 @@ class _UsersProfileState extends State<UsersProfile> {
         appBar: AppBar(
           leading: const CustomizedBackButton(),
         ),
-         body: Container(
-           // padding: EdgeInsets.symmetric(horizontal: 20),
-           child: SingleChildScrollView(
-             child: Column(
-               crossAxisAlignment: CrossAxisAlignment.start,
-               children: [
-                 UserInformationWidget(user: user),
-                 Row(
-                   mainAxisAlignment: MainAxisAlignment.spaceAround,
-                   children: [
-                     MessageButtonWidget(user: user),
-                     CallButtonWidget(target: user)
-                   ],
-                 ),
-                 Container(
-                   margin: EdgeInsets.symmetric(vertical: 10),
-                   height: 10,
-                   color: Colors.grey.shade300,
-                 ),
-                 ProductsWidget(controller: controller)
+         body: SingleChildScrollView(
+           child: Column(
+             crossAxisAlignment: CrossAxisAlignment.start,
+             children: [
+               UserInformationWidget(user: user),
+               Row(
+                 mainAxisAlignment: MainAxisAlignment.spaceAround,
+                 children: [
+                   MessageButtonWidget(user: user),
+                   CallButtonWidget(target: user)
+                 ],
+               ),
+               Container(
+                 margin: EdgeInsets.symmetric(vertical: 10),
+                 height: 10,
+                 color: Colors.grey.shade300,
+               ),
+               ProductsWidget(controller: controller)
 
 
 
-             
-               ],
-             ),
+
+             ],
            ),
          ),
     );

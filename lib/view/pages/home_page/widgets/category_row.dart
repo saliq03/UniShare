@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 import '../../../../res/components/category_button.dart';
 import '../../../../viewmodels/controller/home_controllers/home_controller.dart';

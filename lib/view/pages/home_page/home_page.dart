@@ -47,7 +47,7 @@ class _HomePageState extends State<HomePage> {
                           CategoryRow(),
                           const SizedBox(height: 10,),
                           homeController.products.isEmpty?
-                          Container(height: MediaQuery.of(context).size.height*0.5,
+                          SizedBox(height: MediaQuery.of(context).size.height*0.5,
                               child: Center(child: Text("Couldn't find products",style: TextStyle(fontSize: 18,color: Colors.grey.shade700),))):
                           GridView.builder(
                               shrinkWrap: true,

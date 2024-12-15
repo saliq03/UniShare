@@ -1,11 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:unishare/res/components/my_text_button.dart';
-import 'package:unishare/res/routes/routes_name.dart';
 
 import '../../../../res/colors/app_colors.dart';
 import '../../../../viewmodels/controller/home_controllers/productpage_controller.dart';
@@ -34,6 +31,8 @@ class PostedbyWidget extends StatelessWidget {
           child: Obx((){
             return controller.owner.value==null?
             Shimmer.fromColors(
+              baseColor: Colors.grey.shade700,
+              highlightColor: Colors.grey.shade100,
               child: Row(
                 children: [
                   CircleAvatar(
@@ -53,9 +52,7 @@ class PostedbyWidget extends StatelessWidget {
                     ],
                   )
                 ],
-              ),
-              baseColor: Colors.grey.shade700,
-              highlightColor: Colors.grey.shade100,)
+              ),)
                 : Row(
               children: [
                 Container(

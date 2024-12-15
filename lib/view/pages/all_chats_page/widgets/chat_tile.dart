@@ -44,18 +44,18 @@ class ChatTile extends StatelessWidget {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(35),
                     child: CachedNetworkImage(imageUrl: user.Photo,
-                      placeholder: (context,url)=>Center(child: CircularProgressIndicator(strokeWidth: 2,)),),
+                      placeholder: (context,url)=>const Center(child: CircularProgressIndicator(strokeWidth: 2,)),),
                   ),
 
                 ),
-                SizedBox(width: 20,),
+                const SizedBox(width: 20,),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(user.Name,style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500, fontFamily: "FiraSans",color: Color(0xFF3C3C3C),overflow: TextOverflow.ellipsis),),
+                      Text(user.Name,style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w500, fontFamily: "FiraSans",color: Color(0xFF3C3C3C),overflow: TextOverflow.ellipsis),),
                       Text("${user.Email==chat.lastSenderId? user.Name:'You'}: ${chat.lastMessage}",
-                        style: TextStyle(fontSize: 15, fontWeight: FontWeight.w400, fontFamily: "FiraSans",color: Color(0xFF8A8A8A)),
+                        style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w400, fontFamily: "FiraSans",color: Color(0xFF8A8A8A)),
                         overflow: TextOverflow.ellipsis,
                       ),
                         ],
@@ -66,10 +66,10 @@ class ChatTile extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.end,
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    SizedBox(height: 10,),
-                    chat.unreadMessages=='0'?SizedBox(height: 20,):
+                    const SizedBox(height: 10,),
+                    chat.unreadMessages=='0'?const SizedBox(height: 20,):
                     Card(
-                      margin: EdgeInsets.only(right: 10),
+                      margin: const EdgeInsets.only(right: 10),
                       elevation: 5,
                       child: Container(
                         height: 20,width:20,
@@ -77,11 +77,11 @@ class ChatTile extends StatelessWidget {
                             color: AppColors.loginGradient3,
                             borderRadius: BorderRadius.circular(10)
                         ),
-                        child: Center(child: Text(chat.unreadMessages,style: TextStyle(color: Colors.white),)),
+                        child: Center(child: Text(chat.unreadMessages,style: const TextStyle(color: Colors.white),)),
                       ),
                     ),
-                    SizedBox(height: 30,),
-                    Text(formatTimestamp(chat.lastTimeStamp),style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400, fontFamily: "FiraSans",color: Color(0xFF828282)),
+                    const SizedBox(height: 30,),
+                    Text(formatTimestamp(chat.lastTimeStamp),style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w400, fontFamily: "FiraSans",color: Color(0xFF828282)),
                     ),
                   ],
                 )
@@ -98,7 +98,7 @@ class ChatTile extends StatelessWidget {
   String formatTimestamp(Timestamp timestamp) {
     final DateTime messageDate = timestamp.toDate();
     final DateTime now = DateTime.now();
-    final DateTime yesterday = now.subtract(Duration(days: 1));
+    final DateTime yesterday = now.subtract(const Duration(days: 1));
 
     if (DateFormat('yyyy-MM-dd').format(messageDate) ==
         DateFormat('yyyy-MM-dd').format(now)) {

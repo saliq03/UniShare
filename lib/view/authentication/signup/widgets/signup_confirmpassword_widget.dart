@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:unishare/res/colors/app_colors.dart';
 import 'package:unishare/viewmodels/controller/signup_controller.dart';
 
@@ -29,7 +28,7 @@ class SignupConfirmpasswordWidget extends StatelessWidget {
               const Icon(CupertinoIcons.eye,color: AppColors.white):
               const Icon(CupertinoIcons.eye_slash,color: Colors.white,)),
 
-          prefixIcon: Icon(Icons.lock,color: Colors.white,),
+          prefixIcon: const Icon(Icons.lock,color: Colors.white,),
           enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(30),
               borderSide: const BorderSide(
@@ -51,6 +50,7 @@ class SignupConfirmpasswordWidget extends StatelessWidget {
           else if(value!=signupController.passwordController.value.text){
             return "Password must be same";
           }
+          return null;
         },
       );
     });

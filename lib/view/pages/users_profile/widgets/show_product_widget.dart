@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:unishare/model/product_model/product_model.dart';
 import 'package:unishare/res/routes/routes_name.dart';
 import 'package:unishare/viewmodels/controller/home_controllers/favourites_controller.dart';

@@ -1,7 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:unishare/res/constants/constants.dart';
 
 import '../../../../utils/utils.dart';
@@ -10,7 +8,7 @@ import '../../../../viewmodels/controller/signup_controller.dart';
 
 class GenderSelectionWidget extends StatelessWidget {
   GenderSelectionWidget({super.key});
-  String? _selectedGender;
+
 
   final signupController=Get.put(SignupController());
   final List<String> _genders = [Constants.male, Constants.female,Constants.other];
@@ -20,10 +18,10 @@ class GenderSelectionWidget extends StatelessWidget {
         focusNode: signupController.genderFocusNode.value,
         decoration: InputDecoration(
           labelText: "Select gender",
-          labelStyle: TextStyle(color: Colors.white,fontSize: 17,fontStyle: FontStyle.italic),
+          labelStyle: const TextStyle(color: Colors.white,fontSize: 17,fontStyle: FontStyle.italic),
            enabledBorder: OutlineInputBorder(
                borderRadius: BorderRadius.circular(30),
-             borderSide: BorderSide(
+             borderSide: const BorderSide(
                  color: Colors.white)
            ),
 
@@ -37,7 +35,7 @@ class GenderSelectionWidget extends StatelessWidget {
 
             value: gender,
 
-            child: Text(gender,style: TextStyle(color: Colors.white),),
+            child: Text(gender,style: const TextStyle(color: Colors.white),),
           );
         }).toList(),
         onChanged: (value) {
@@ -46,7 +44,7 @@ class GenderSelectionWidget extends StatelessWidget {
             signupController.genderFocusNode.value,
             signupController.passwordFocusNode.value);
         },
-        hint: Text('Select gender',style: TextStyle(color: Colors.white,fontSize: 16),),
+        hint: const Text('Select gender',style: TextStyle(color: Colors.white,fontSize: 16),),
         dropdownColor: Colors.black26,
         iconEnabledColor: Colors.white,
 

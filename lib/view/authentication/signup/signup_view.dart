@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:unishare/res/colors/app_colors.dart';
 import 'package:unishare/res/components/round_button.dart';
 import 'package:unishare/view/authentication/signup/widgets/gender_selection_widget.dart';
@@ -46,20 +45,20 @@ class _SignupViewState extends State<SignupView> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Spacer(),
+              const Spacer(),
               SignupNameWidget(),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
              SignupInputEmailWidget(),
-              SizedBox(height: 20,),
+              const SizedBox(height: 20,),
              GenderSelectionWidget(),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               SignupPasswordWidget(),
 
 
 
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               SignupConfirmpasswordWidget(),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Obx((){
                 return RoundButton(title:"Sign Up" , onPress: (){
 
@@ -76,9 +75,9 @@ class _SignupViewState extends State<SignupView> {
               }),
 
 
-              Spacer(),
-              LoginRow(),
-              SizedBox(height: 50,)
+              const Spacer(),
+              const LoginRow(),
+              const SizedBox(height: 50,)
             ],
           ),
         ),

@@ -1,7 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:unishare/viewmodels/controller/home_controllers/donate_controller.dart';
 
 import '../../../../utils/utils.dart';
@@ -29,6 +27,7 @@ class TitleInputWidget extends StatelessWidget {
             else if(value.length<6){
               return "Title should be atleast 5 characters";
             }
+            return null;
           },
           onFieldSubmitted: (value){
             Utils.fieldFocusChange(context, donateController.titleFocusNode.value,donateController.descriptionFocusNode.value);

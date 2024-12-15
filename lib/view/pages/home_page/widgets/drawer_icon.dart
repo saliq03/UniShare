@@ -7,8 +7,11 @@ import 'package:unishare/viewmodels/controller/profile_controller.dart';
 import '../../../../res/assets/icons_assets.dart';
 
 class DrawerIcon extends StatelessWidget {
+  DrawerIcon({super.key});
   final bnController = Get.put(BottomNavController());
   final profileController = Get.put(ProfileController());
+
+
 
   @override
   Widget build(BuildContext context) {

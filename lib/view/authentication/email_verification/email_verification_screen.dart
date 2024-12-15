@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:unishare/model/user_model/user_model.dart';
 
 import 'package:unishare/repositories/auth_repository.dart';
@@ -27,7 +26,7 @@ class EmailVerificationScreen extends StatefulWidget {
 
 class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
 
- FirebaseAuth _auth=FirebaseAuth.instance;
+ final FirebaseAuth _auth=FirebaseAuth.instance;
 late Map<String,dynamic> args;
  final authRepository=AuthRepository();
  final emailVerificationController=EmailverificationController();
@@ -40,7 +39,7 @@ late Map<String,dynamic> args;
     super.initState();
     args=Get.arguments;
 
-    timer=Timer.periodic(Duration(seconds: 3), (timer){
+    timer=Timer.periodic(const Duration(seconds: 3), (timer){
       _auth.currentUser?.reload();
       if(emailVerificationController.isEmailVerified()){
         signupRepository.uploadUser(name: args['Name'], email: args['Email'], gender: args['Gender']);
@@ -64,7 +63,7 @@ late Map<String,dynamic> args;
 
       appBar: AppBar(),
       body: Container(
-        padding: EdgeInsets.symmetric(horizontal: 30,vertical: 30),
+        padding: const EdgeInsets.symmetric(horizontal: 30,vertical: 30),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:unishare/res/assets/icons_assets.dart';
 
 import '../../../../viewmodels/controller/login_controller.dart';

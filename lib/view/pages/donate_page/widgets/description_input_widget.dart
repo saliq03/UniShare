@@ -1,15 +1,15 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 
 import '../../../../utils/utils.dart';
 import '../../../../viewmodels/controller/home_controllers/donate_controller.dart';
 
 class DescriptionInputWidget extends StatelessWidget {
-
+  DescriptionInputWidget({super.key});
   final donateController=Get.put(DonateController());
+
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -30,6 +30,7 @@ class DescriptionInputWidget extends StatelessWidget {
             else if(value.length<11){
               return "Description should be atleast 10 characters";
             }
+            return null;
           },
           onFieldSubmitted: (value){
             Utils.fieldFocusChange(context, donateController.descriptionFocusNode.value,donateController.categoryFocusNode.value);

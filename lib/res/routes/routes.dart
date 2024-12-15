@@ -13,7 +13,7 @@ import 'package:unishare/view/pages/favourites_page/favourites_page.dart';
 
 import 'package:unishare/view/pages/product_page/product_page.dart';
 import 'package:unishare/view/pages/users_profile/users_profile.dart';
-import 'package:unishare/view/splash_Screen.dart';
+import 'package:unishare/view/splash_screen.dart';
 
 import '../../view/authentication/email_verification/email_verification_screen.dart';
 import '../../view/authentication/login/login_view.dart';

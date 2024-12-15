@@ -5,6 +5,8 @@ import '../res/colors/app_colors.dart';
 import '../viewmodels/services/splash_services.dart';
 
 class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
+
 
 
   @override

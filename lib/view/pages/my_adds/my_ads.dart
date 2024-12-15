@@ -1,7 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:unishare/res/components/customized_back_button.dart';
 import 'package:unishare/view/pages/my_adds/widgets/my_product_widget.dart';
 import 'package:unishare/view/pages/my_adds/widgets/shimmer_widget.dart';
@@ -28,7 +26,7 @@ class _MyAdsState extends State<MyAds> {
           return ShimmerWidget();
         }
         else{
-          if(myAdsController.myProducts.length<1){
+          if(myAdsController.myProducts.isEmpty){
             return Center(child: Text("No Data"));
           }
           else{
