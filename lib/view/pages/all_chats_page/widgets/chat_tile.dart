@@ -43,7 +43,7 @@ class ChatTile extends StatelessWidget {
                   ),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(35),
-                    child: CachedNetworkImage(imageUrl: user.Photo,
+                    child: CachedNetworkImage(imageUrl: user.photo,
                       placeholder: (context,url)=>const Center(child: CircularProgressIndicator(strokeWidth: 2,)),),
                   ),
 
@@ -53,8 +53,8 @@ class ChatTile extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(user.Name,style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w500, fontFamily: "FiraSans",color: Color(0xFF3C3C3C),overflow: TextOverflow.ellipsis),),
-                      Text("${user.Email==chat.lastSenderId? user.Name:'You'}: ${chat.lastMessage}",
+                      Text(user.name,style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w500, fontFamily: "FiraSans",color: Color(0xFF3C3C3C),overflow: TextOverflow.ellipsis),),
+                      Text("${user.email==chat.lastSenderId? user.name:'You'}: ${chat.lastMessage}",
                         style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w400, fontFamily: "FiraSans",color: Color(0xFF8A8A8A)),
                         overflow: TextOverflow.ellipsis,
                       ),

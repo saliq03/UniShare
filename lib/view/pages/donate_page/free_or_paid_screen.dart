@@ -93,7 +93,7 @@ class _FreeOrPaidScreenState extends State<FreeOrPaidScreen> {
                     const Spacer(),
                     RectangleButton(title: "Next", onPress: (){
                         if(_formKey.currentState!.validate()){
-                          donateController.AddProduct(donateController.priceController.value.toString());
+                          donateController.addProduct(donateController.priceController.value.toString());
                         }
 
 

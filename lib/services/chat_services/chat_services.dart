@@ -27,18 +27,16 @@ class ChatServices{
   }
 
   Future<void> sendMessage(String receiverId,String message,String photo,String video)async {
-    print("in services method");
-
-    final currentUser=await UserPrefrences().GetUser();
+    final currentUser=await UserPrefrences().getUser();
     final Timestamp timestamp=Timestamp.now();
 
-    List<String> ids=[currentUser.Email,receiverId];
+    List<String> ids=[currentUser.email,receiverId];
     ids.sort();
     String chatRoomId=ids.join('_');
-    String messageId=GenerateIds().GeneratMessageId(currentUser.Email, receiverId);
+    String messageId=GenerateIds().generateMessageId(currentUser.email, receiverId);
      Message newMessage=Message(
          id: messageId,
-         senderId: currentUser.Email,
+         senderId: currentUser.email,
          recieverId: receiverId,
          message: message,
          photo: photo ,
@@ -47,7 +45,7 @@ class ChatServices{
      ChatModel chat=ChatModel(id:  chatRoomId,
          lastMessage: message==''? '📸 Image':message,
          lastTimeStamp: timestamp,
-         lastSenderId: currentUser.Email,
+         lastSenderId: currentUser.email,
          unreadMessages: '0');
     try {
       _firestore.collection("Chat_Rooms").doc(chatRoomId).set(
@@ -58,7 +56,9 @@ class ChatServices{
           .doc(messageId)
           .set(newMessage.toJson());
     } catch(e){
-      print(e.toString());
+      if (kDebugMode) {
+        print(e.toString());
+      }
     }
     }
 
@@ -74,14 +74,14 @@ class ChatServices{
   }
 
   Future<String> uploadImage(XFile image,) async {
-    String id=GenerateIds().GenerateMessageImageId();
+    String id=GenerateIds().generateMessageImageId();
     try{
       return await firebaseServices.uploadImage("Chat_images", id, image);
     }catch(e){
       if (kDebugMode) {
         print(e.toString());
       }
-      throw e;
+      rethrow;
     }
   }
 

@@ -1,5 +1,6 @@
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
@@ -40,7 +41,7 @@ class DonateController extends GetxController{
     update();
   }
 
-  PickImages()async{
+  pickImages()async{
 
 
     List<XFile> imgs=[];
@@ -49,37 +50,38 @@ class DonateController extends GetxController{
       if(imgs.isNotEmpty){
         selectedImages.addAll(imgs);
         update();
-        print(selectedImages.length);
       }
     }catch(e){
-      print(e.toString());
+      if (kDebugMode) {
+        print(e.toString());
+      }
     }
   }
 
-  RemoveImage(int index){
+  removeImage(int index){
    selectedImages.removeAt(index);
    update();
   }
 
-  Future<void> UploadProductImages() async {
+  Future<void> uploadProductImages() async {
     imageUrlList.clear();
     for(int i=0;i<selectedImages.length;i++){
-       dynamic imageurl =await homeRepository.UploadProductImage(selectedImages[i]);
+       dynamic imageurl =await homeRepository.uploadProductImage(selectedImages[i]);
        imageUrlList.add(imageurl.toString());
     }
      update();
 
   }
 
-  Future<void> AddProduct(String price)async {
+  Future<void> addProduct(String price)async {
     loading.value=true;
     EasyLoading.show();
-    await UploadProductImages().then((value) async {
+    await uploadProductImages().then((value) async {
 
 
-      UserModel userModel = await userPreference.GetUser();
+      UserModel userModel = await userPreference.getUser();
 
-      String id=GenerateIds().GenerateProductId(selectedCategory!.value);
+      String id=GenerateIds().generateProductId(selectedCategory!.value);
       ProductModel productModel=ProductModel(
           productId: id,
           title: titleController.value.text,
@@ -88,8 +90,8 @@ class DonateController extends GetxController{
           category: selectedCategory!.value,
           price: offerType.value=="Free"? "Free": priceController.value.text,
           createdAt: DateTime.now(),
-          providerEmail: userModel.Email);
-      await homeRepository.UploadProduct(productModel.toMap()).then((value){
+          providerEmail: userModel.email);
+      await homeRepository.uploadProduct(productModel.toMap()).then((value){
 
         HomeController homeController = Get.find<HomeController>();
         homeController.refreshController();

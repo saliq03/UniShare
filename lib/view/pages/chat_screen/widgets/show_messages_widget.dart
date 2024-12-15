@@ -44,7 +44,7 @@ class ShowMessagesWidget extends StatelessWidget {
 
             itemCount: snapshot.data!.length,
             itemBuilder: (context,index){
-              return MessageTile(currentUser: csController.currentUser.value!.Email, newMessage: snapshot.data![index]);
+              return MessageTile(currentUser: csController.currentUser.value!.email, newMessage: snapshot.data![index]);
             });
       }
       }):

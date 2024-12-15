@@ -52,13 +52,14 @@ class ChatScreenController extends GetxController{
 
   sendMessage(String receiverId)async{
 
-    print(" controller method ");
     if(selectedImage.value==null){
     if(messageController.value.text!=''){
       try{
          await chatServices.sendMessage(receiverId, messageController.value.text,'','');
       } catch(e){
-        print(e.toString());
+        if (kDebugMode) {
+          print(e.toString());
+        }
       }
       messageController.value.clear();
       manageScrollDown();
@@ -77,7 +78,9 @@ class ChatScreenController extends GetxController{
            });
         });
         } catch(e){
-        print(e.toString());
+        if (kDebugMode) {
+          print(e.toString());
+        }
       }
 
     }
@@ -87,8 +90,8 @@ class ChatScreenController extends GetxController{
 
 
   Stream<List<Message>> recieveMessages(String receiverId) async* {
-    UserModel currUser=await UserPrefrences().GetUser();
-    yield* chatServices.getMessage(currUser.Email, receiverId).asyncMap((snapshot) async {
+    UserModel currUser=await UserPrefrences().getUser();
+    yield* chatServices.getMessage(currUser.email, receiverId).asyncMap((snapshot) async {
       final messages = snapshot.docs.map((doc) {
         return Message.fromMap(doc.data() as Map<String, dynamic>);
       }).toList();
@@ -97,7 +100,7 @@ class ChatScreenController extends GetxController{
   }
 
  getCurrentUser() async {
-    currentUser.value=await UserPrefrences().GetUser();
+    currentUser.value=await UserPrefrences().getUser();
   }
 
   onMessageTextChanged(String value){

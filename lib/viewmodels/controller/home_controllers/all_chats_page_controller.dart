@@ -24,8 +24,8 @@ class AllChatsPageController extends GetxController {
   }
 
   Future<String> getCurrentUser() async {
-    UserModel currUser = await UserPrefrences().GetUser();
-    return currUser.Email;
+    UserModel currUser = await UserPrefrences().getUser();
+    return currUser.email;
   }
 }
 

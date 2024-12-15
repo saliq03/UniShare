@@ -14,6 +14,6 @@ class ProfileController extends GetxController{
   }
 
   getCurrentUser() async {
-    currentUser.value=await UserPrefrences().GetUser();
+    currentUser.value=await UserPrefrences().getUser();
   }
 }

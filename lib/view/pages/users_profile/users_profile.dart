@@ -24,7 +24,7 @@ class _UsersProfileState extends State<UsersProfile> {
     // TODO: implement initState
     super.initState();
     user=Get.arguments;
-    controller = Get.put(UsersProfileController(email: user.Email));
+    controller = Get.put(UsersProfileController(email: user.email));
   }
   @override
   Widget build(BuildContext context) {

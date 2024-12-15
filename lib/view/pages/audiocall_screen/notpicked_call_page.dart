@@ -27,7 +27,7 @@ class _NotpickedCallPageState extends State<NotpickedCallPage> {
     final args = Get.arguments as Map<String, UserModel>;
     target =args["target"]!;
     caller=args["caller"]!;
-   LoginRepository().fetchUser(target.Email).then((user){
+   LoginRepository().fetchUser(target.email).then((user){
      target=user;
      callController.callAction(target, caller);
    });
@@ -52,7 +52,7 @@ class _NotpickedCallPageState extends State<NotpickedCallPage> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               DetailsWidget(user: target,),
-              CircleWidget(name: target.Name),
+              CircleWidget(name: target.name),
              EndCallButton()
             ],
           ),

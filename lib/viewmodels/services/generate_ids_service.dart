@@ -1,33 +1,32 @@
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:random_string/random_string.dart';
 import 'package:unishare/viewmodels/controller/profile_controller.dart';
 
 class GenerateIds{
   final profileController=Get.put(ProfileController());
 
-  GenerateProductImageId(){
+  generateProductImageId(){
     String id=randomAlphaNumeric(10);
-    return "UniShare-product-${id}";
+    return "UniShare-product-$id";
   }
-  GenerateProductId(String category){
+  generateProductId(String category){
     String id=randomAlphaNumeric(5);
     return "UniShare-$category-$id";
   }
-  GeneratMessageId(String sender,String reciever){
+  generateMessageId(String sender,String reciever){
     String id =randomAlphaNumeric(7);
     return '$sender-$reciever-$id';
   }
-  GenerateMessageImageId(){
+  generateMessageImageId(){
     String id=randomAlphaNumeric(10);
-    return "Chat-${id}";
+    return "Chat-$id";
   }
-  GenerateCallId(String sender,String reciever){
+  generateCallId(String sender,String reciever){
     String id =randomAlphaNumeric(7);
     return '$sender-$reciever-$id';
   }
-  GenerateRoomId(String targetId){
-    List<String> ids=[profileController.currentUser.value!.Email,targetId];
+  generateRoomId(String targetId){
+    List<String> ids=[profileController.currentUser.value!.email,targetId];
     ids.sort();
     String chatRoomId=ids.join('_');
     return chatRoomId;

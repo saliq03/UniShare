@@ -23,14 +23,14 @@ class MyAdsController extends GetxController{
   }
 
   Future<void> getMyProducts()async{
-    myProducts.value= await myAdsRepository.FetchMyAds();
+    myProducts.value= await myAdsRepository.fetchMyAds();
     update();
   }
  Future<void> removeMyProduct(ProductModel product)async {
     for(int i=0;i<product.images.length;i++){
-      myAdsRepository.DeleteProductImage(product.images[i]);
+      myAdsRepository.deleteProductImage(product.images[i]);
     }
-    myAdsRepository.RemoveProduct(product.productId).then((value){
+    myAdsRepository.removeProduct(product.productId).then((value){
       getMyProducts();
     });
   }

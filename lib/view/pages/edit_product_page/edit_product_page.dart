@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:unishare/res/colors/app_colors.dart';
+import 'package:unishare/res/components/customized_back_button.dart';
 import 'package:unishare/res/components/round_button.dart';
 import 'package:unishare/utils/utils.dart';
 import 'package:unishare/view/pages/edit_product_page/widgets/description_widget.dart';
@@ -33,8 +34,9 @@ class _EditProductPageState extends State<EditProductPage> {
     final ProductModel product=Get.arguments;
     return Scaffold(
       appBar:  AppBar(
-        title: Text("Edit info",style: TextStyle(color: AppColors.loginGradient1,fontSize: 25,fontWeight: FontWeight.bold),),
+        title:Text(" Edit info",style: Theme.of(context).textTheme.headlineMedium,),
         centerTitle: true,
+        leading: CustomizedBackButton(),
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 10),
@@ -67,10 +69,6 @@ class _EditProductPageState extends State<EditProductPage> {
               SizedBox(height: 16),
               Text("Description:",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
               DescriptionWidget()
-
-
-
-
             ],
           ),
         ),

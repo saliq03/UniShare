@@ -44,7 +44,7 @@ class ShowImagesWidget extends StatelessWidget {
                             right: 3,
                             child: InkWell(
                               onTap:() {
-                                imagecontroller.RemoveImage(index);
+                                imagecontroller.removeImage(index);
                               },
                               child: CircleAvatar(
                                 backgroundColor: Colors.red,
@@ -58,7 +58,7 @@ class ShowImagesWidget extends StatelessWidget {
               ),
               SizedBox(height: 5,),
               MyTextButton(title: "Click to add more", onPress: (){
-                imagecontroller.PickImages();
+                imagecontroller.pickImages();
               })
             ],
           )

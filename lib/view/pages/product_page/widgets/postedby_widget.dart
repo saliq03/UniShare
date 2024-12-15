@@ -63,10 +63,10 @@ class PostedbyWidget extends StatelessWidget {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(40),
                     child: Hero(
-                      tag: controller.owner.value!.Photo,
+                      tag: controller.owner.value!.photo,
                       child: CachedNetworkImage(
                         fit: BoxFit.cover,
-                        imageUrl: controller.owner.value!.Photo,
+                        imageUrl: controller.owner.value!.photo,
                       placeholder: (context,url)=>Center(child: CircularProgressIndicator(strokeWidth: 2,)),),
                     ),
                   ),
@@ -76,7 +76,7 @@ class PostedbyWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text("Posted by"),
-                    Text(controller.owner.value!.Name,style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),),
+                    Text(controller.owner.value!.name,style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),),
                     Text("Posted on: $postedOn"),
                     const SizedBox(height: 10,),
                     MyTextButton(title: " See profile", onPress: (){

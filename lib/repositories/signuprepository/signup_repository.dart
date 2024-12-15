@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 import 'package:unishare/res/assets/images_assets.dart';
 import 'package:unishare/services/firebase_services/firebase_services.dart';
 
@@ -16,11 +17,12 @@ class SignupRepository{
 
     try{
       await firebaseServices.uploadData("Users", email, userdata);
-      print("user uploaded");
+
     }
     catch(e){
-      print("error in uploaduser");
-      print(e);
+      if (kDebugMode) {
+        print(e);
+      }
     }
 
   }
@@ -34,8 +36,7 @@ class SignupRepository{
       return userDoc;
     }
     catch (e){
-      print(e.toString());
-      throw e;
+      rethrow;
     }
   }
 }

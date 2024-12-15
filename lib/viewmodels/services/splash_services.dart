@@ -10,7 +10,7 @@ class SplashServices{
 
   isLoggedIn() async {
 
-     userPrefrences.GetLoginKey().then((value){
+     userPrefrences.getLoginKey().then((value){
       if(value==true){
           Timer(const Duration(milliseconds: 1),(){
             FlutterNativeSplash.remove();

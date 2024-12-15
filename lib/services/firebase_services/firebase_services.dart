@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -10,7 +11,7 @@ class FirebaseServices{
       bucket: dotenv.env['BUCKET']!);
 
   Future<void> uploadData(String collection,String docId, Map<String,dynamic> data) async {
-     print("in upload data");
+
      try{
        await FirebaseFirestore.instance.
        collection(collection).
@@ -18,8 +19,9 @@ class FirebaseServices{
        set(data);
      }
      catch(e){
-       print("error in upload data");
-       print(e);
+       if (kDebugMode) {
+         print(e);
+       }
      }
    }
 
@@ -29,7 +31,9 @@ class FirebaseServices{
        update(data);
      }
      catch (e){
-       print(e.toString());
+       if (kDebugMode) {
+         print(e.toString());
+       }
      }
 
    }
@@ -41,7 +45,9 @@ class FirebaseServices{
            .doc(id)
            .delete();
      } catch(e){
-       print(e.toString());
+       if (kDebugMode) {
+         print(e.toString());
+       }
      }
    }
 
@@ -54,12 +60,14 @@ class FirebaseServices{
      return await snapshot.ref.getDownloadURL();
    }
 
-  Future<void> DeleteImage(String imageUrl)async {
+  Future<void> deleteImage(String imageUrl)async {
     try {
       final Reference storageRef = FirebaseStorage.instance.refFromURL(imageUrl);
       await storageRef.delete();
     }catch(e){
-      print(e.toString());
+      if (kDebugMode) {
+        print(e.toString());
+      }
     }
   }
 }

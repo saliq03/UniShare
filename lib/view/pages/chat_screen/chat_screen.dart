@@ -55,8 +55,8 @@ class _ChatScreenState extends State<ChatScreen> {
         children: [
           Column(
             children: [
-              Expanded(child:ShowMessagesWidget(receiverEmail:user.Email,)),
-              MessageSendWidget(receiverId: user.Email)
+              Expanded(child:ShowMessagesWidget(receiverEmail:user.email,)),
+              MessageSendWidget(receiverId: user.email)
             ],
           ),
           PhotoSendWidget()

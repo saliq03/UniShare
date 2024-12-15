@@ -18,7 +18,7 @@ class AppbarTitleWidget extends StatelessWidget {
         Get.toNamed(RoutesName.usersProfile,arguments:user );
       },
       child: StreamBuilder(
-        stream: chatController.getStatus(user.Email),
+        stream: chatController.getStatus(user.email),
         builder: (context, snapshot) {
           return Row(
             children: [
@@ -32,7 +32,7 @@ class AppbarTitleWidget extends StatelessWidget {
                   ),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(25),
-                    child: CachedNetworkImage(imageUrl: user.Photo,
+                    child: CachedNetworkImage(imageUrl: user.photo,
                     placeholder: (context,url)=>const Center(child: CircularProgressIndicator(strokeWidth: 2,)),),
                   ),
 
@@ -42,10 +42,10 @@ class AppbarTitleWidget extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(user.Name,style: const TextStyle(fontSize: 25),),
+                  Text(user.name,style: const TextStyle(fontSize: 25),),
                   !snapshot.hasData||snapshot.data==null?
                   Text("loading..",style: TextStyle(fontSize: 13,color:Colors.grey),) :
-                  Text(snapshot.data!.Status,style: TextStyle(fontSize: 13,color:  snapshot.data!.Status=='Online'?Colors.green:Colors.grey),)
+                  Text(snapshot.data!.status,style: TextStyle(fontSize: 13,color:  snapshot.data!.status=='Online'?Colors.green:Colors.grey),)
                 ],
               ),
 

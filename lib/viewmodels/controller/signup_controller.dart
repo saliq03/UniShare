@@ -36,7 +36,7 @@ class SignupController extends GetxController{
     }
   }
 
-   Signup(BuildContext context) async {
+   signup(BuildContext context) async {
     changeLoading(true);
     try{
       await authRepository.signInWithEmail(emailController.value.text, passwordController.value.text).then((value) async {

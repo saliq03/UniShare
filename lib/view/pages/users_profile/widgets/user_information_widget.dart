@@ -13,7 +13,7 @@ class UserInformationWidget extends StatelessWidget {
         const SizedBox(width: double.infinity),
         GestureDetector(
           onTap: (){
-            showDialog(context: context, builder: (BuildContext context)=>FullPhotoWidget(photo: user.Photo));
+            showDialog(context: context, builder: (BuildContext context)=>FullPhotoWidget(photo: user.photo));
           },
           child: Container(
             decoration: BoxDecoration(
@@ -26,24 +26,24 @@ class UserInformationWidget extends StatelessWidget {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(75),
               child: Hero(
-                tag: user.Photo,
+                tag: user.photo,
                 child: CachedNetworkImage(
                   fit: BoxFit.cover,
                   width: 150,
                   height: 150,
-                  imageUrl: user.Photo,
+                  imageUrl: user.photo,
                   placeholder: (context,url)=>const Center(child: CircularProgressIndicator(strokeWidth: 2,)),),
               ),
             ),
           ),
         ),
         const SizedBox(height: 5,),
-        Text(user.Name,style: const TextStyle(fontSize: 30,fontWeight: FontWeight.bold,),),
-        Text(user.Email,style: const TextStyle(color: Color(0xFF979797),fontSize: 15,height: 1),),
+        Text(user.name,style: const TextStyle(fontSize: 30,fontWeight: FontWeight.bold,),),
+        Text(user.email,style: const TextStyle(color: Color(0xFF979797),fontSize: 15,height: 1),),
         const SizedBox(height: 10,),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 10),
-          child: Text(user.Bio,style: const TextStyle(fontSize: 18,color: Color(0xFF979797),height: 1.3,),textAlign: TextAlign.center,),
+          child: Text(user.bio,style: const TextStyle(fontSize: 18,color: Color(0xFF979797),height: 1.3,),textAlign: TextAlign.center,),
         ),
       ],
     );

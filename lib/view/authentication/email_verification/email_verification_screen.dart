@@ -43,9 +43,9 @@ late Map<String,dynamic> args;
       _auth.currentUser?.reload();
       if(emailVerificationController.isEmailVerified()){
         signupRepository.uploadUser(name: args['Name'], email: args['Email'], gender: args['Gender']);
-        userPrefrences.SetLoginKey(true);
-        UserModel userModel=UserModel(Photo: ImagesAssets.defaultProfileImage, Bio: '', Name: args['Name'], Email: args['Email'], Gender: args['Gender'],Status: args['Status']);
-        userPrefrences.SaveUser(userModel);
+        userPrefrences.setLoginKey(true);
+        UserModel userModel=UserModel(photo: ImagesAssets.defaultProfileImage, bio: '', name: args['Name'], email: args['Email'], gender: args['Gender'],status: args['Status']);
+        userPrefrences.saveUser(userModel);
         Get.offNamed(RoutesName.homeBottomNav);
       }
     });
@@ -55,7 +55,7 @@ late Map<String,dynamic> args;
   void dispose() {
     timer.cancel();
     super.dispose();
-    emailVerificationController.EmailNotVerified();
+    emailVerificationController.emailNotVerified();
   }
   @override
   Widget build(BuildContext context) {

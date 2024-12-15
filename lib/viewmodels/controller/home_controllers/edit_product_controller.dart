@@ -30,8 +30,6 @@ class EditProductController extends GetxController{
   }
 
   Future<void> updateProduct(ProductModel product)async {
-    print("in update product method controller");
-
     ProductModel newproduct=ProductModel(
         productId: product.productId,
         title: titleController.value.text,
@@ -42,13 +40,13 @@ class EditProductController extends GetxController{
         double.tryParse(priceController.value.text)!<1? "Free":priceController.value.text,
           createdAt: product.createdAt,
         providerEmail: product.providerEmail);
-    myAdsRepo.UpdateProductInfo(newproduct).then((value){
+    myAdsRepo.updateProductInfo(newproduct).then((value){
       HomeController homeController = Get.find<HomeController>();
       MyAdsController myAdsController=Get.find<MyAdsController>();
       myAdsController.refreshController();
       homeController.refreshController();
       for(int i=0;i<images.length;i++){
-        myAdsRepo.DeleteProductImage(images[i]);
+        myAdsRepo.deleteProductImage(images[i]);
       }
     });
   }

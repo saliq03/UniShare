@@ -20,15 +20,23 @@ class CallServices{
     docRef.get().then((docSnapshot) {
       if (!docSnapshot.exists) {
         docRef.set(call.toJson()).then((_) {
-          print("Document added successfully.");
+          if (kDebugMode) {
+            print("Document added successfully.");
+          }
         }).catchError((error) {
-          print("Failed to add document: $error");
+          if (kDebugMode) {
+            print("Failed to add document: $error");
+          }
         });
       } else {
-        print("Document already exists. Skipping addition.");
+        if (kDebugMode) {
+          print("Document already exists. Skipping addition.");
+        }
       }
     }).catchError((error) {
-      print("Error checking document existence: $error");
+      if (kDebugMode) {
+        print("Error checking document existence: $error");
+      }
     });
   }
 
@@ -42,7 +50,7 @@ class CallServices{
       });
     }
     catch(e){
-      throw e;
+      rethrow;
     }
 
   }
@@ -59,7 +67,7 @@ class CallServices{
       if (kDebugMode) {
         print(e.toString());
       }
-      throw e;
+      rethrow;
     }
   }
 
@@ -69,12 +77,11 @@ class CallServices{
           .collection("Calls").doc(call.id).delete();
     }
     catch(e){
-      throw e;
+      rethrow;
     }
   }
 
   updateCallStatus(String status,CallModel call){
-    print("update call status");
     final data={"Status":status};
     _firestore.collection("Notifications").doc(call.receiverEmail)
         .collection("Calls").doc(call.id).update(data);
@@ -95,9 +102,10 @@ class CallServices{
     return snapshot.docs.isNotEmpty;
   }
 
+
   Stream<List<CallModel>>getCall(UserModel target){
     try{
-      return _firestore.collection("Notifications").doc(target.Email)
+      return _firestore.collection("Notifications").doc(target.email)
           .collection("Calls").snapshots().map((snapshot){
         return snapshot.docs.map((doc){
           return CallModel.fromJson(doc.data());
@@ -105,7 +113,7 @@ class CallServices{
       });
     }
     catch(e){
-      throw e;
+      rethrow;
     }
 
   }

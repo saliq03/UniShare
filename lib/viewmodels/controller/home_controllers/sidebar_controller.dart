@@ -5,7 +5,7 @@ import 'package:unishare/viewmodels/user_prefrences/user_prefrences.dart';
 import '../../../res/routes/routes_name.dart';
 
 class SidebarController extends GetxController{
-  final Name= ''.obs;
+  final name= ''.obs;
   final Email=''.obs;
   final Photo=ImagesAssets.defaultProfileImage.obs;
 
@@ -14,28 +14,25 @@ class SidebarController extends GetxController{
   @override
   void onInit() {
     super.onInit();
-    LoadDataFromPrefrences();
+    loadDataFromPrefrences();
   }
 
   refreshController(){
-    print("refresh controller called");
-    LoadDataFromPrefrences();
+    loadDataFromPrefrences();
   }
 
-  LoadDataFromPrefrences()async{
-    print("in load prefrences");
+  loadDataFromPrefrences()async{
     var userPreference = UserPrefrences(); // Assuming this is where GetUser() is defined
-    userPreference.GetUser().then((userModel){
-      print(userModel.Name);
-      Name.value=userModel.Name;
-      Email.value=userModel.Email;
-      Photo.value=userModel.Photo;
+    userPreference.getUser().then((userModel){
+      name.value=userModel.name;
+      Email.value=userModel.email;
+      Photo.value=userModel.photo;
     });
 
   }
 
   logOut(){
-    UserPrefrences().RemoveUser();
+    UserPrefrences().removeUser();
     Get.offNamed(RoutesName.loginview);
   }
 

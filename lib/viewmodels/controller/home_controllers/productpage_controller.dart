@@ -7,7 +7,6 @@ import 'package:unishare/res/routes/routes_name.dart';
 class ProductPageController extends GetxController{
   final activeIndex=0.obs;
   Rx<UserModel?> owner=Rx<UserModel?>(null);
-  @override
   getOwnerDetails(String email)async{
    UserModel fetchedUser = await LoginRepository().fetchUser(email);
    owner.value=fetchedUser;

@@ -8,6 +8,7 @@ class BottomNavController extends GetxController{
   final photo=ImagesAssets.defaultProfileImage.obs;
 
 
+  @override
   void onInit() {
     super.onInit();
     loadDataFromPref();
@@ -19,8 +20,8 @@ class BottomNavController extends GetxController{
 
   loadDataFromPref() async {
     var userPreference = UserPrefrences(); // Assuming this is where GetUser() is defined
-    userPreference.GetUser().then((userModel){
-      photo.value=userModel.Photo;
+    userPreference.getUser().then((userModel){
+      photo.value=userModel.photo;
     });
   }
 

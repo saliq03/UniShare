@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:unishare/model/user_model/user_model.dart';
@@ -24,15 +25,15 @@ class EditProfileController extends GetxController{
   Rx<File?> selectedImage = Rx<File?>(null);
 
   initializeControllers() async {
-    final user= await userPrefrences.GetUser();
-    initialImage=user.Photo;
-    nameController.value.text=user.Name;
-    bioController.value.text=user.Bio;
-    emailController.value.text=user.Email;
+    final user= await userPrefrences.getUser();
+    initialImage=user.photo;
+    nameController.value.text=user.name;
+    bioController.value.text=user.bio;
+    emailController.value.text=user.email;
 
   }
 
-  PickImage(ImageSource source) async {
+  pickImage(ImageSource source) async {
     try {
       final img = await ImagePicker().pickImage(source: source,imageQuality: 80);
       if (img == null) return;
@@ -40,24 +41,26 @@ class EditProfileController extends GetxController{
        selectedImage.value=tempimg;
     }
     catch(ex){
-      print(ex.toString());
+      if (kDebugMode) {
+        print(ex.toString());
+      }
     }
   }
 
  Future<void> saveUserDetails() async {
     loading.value=true;
-    final user=await userPrefrences.GetUser();
+    final user=await userPrefrences.getUser();
     if(selectedImage.value == null){
       UserModel userModel=UserModel(
-              Photo: user.Photo,
-              Bio: bioController.value.text,
-              Name: nameController.value.text,
-              Email: user.Email,
-              Gender: user.Gender,
-              Status: user.Status);
-      editProfileRepo.UpdateUser(userModel).then((value){
-        UserModel userModel=UserModel(Photo: user.Photo, Bio:bioController.value.text , Name: nameController.value.text, Email: user.Email, Gender: user.Gender,Status: user.Status);
-        userPrefrences.SaveUser(userModel).then((data){
+              photo: user.photo,
+              bio: bioController.value.text,
+              name: nameController.value.text,
+              email: user.email,
+              gender: user.gender,
+              status: user.status);
+      editProfileRepo.updateUser(userModel).then((value){
+        UserModel userModel=UserModel(photo: user.photo, bio:bioController.value.text , name: nameController.value.text, email: user.email, gender: user.gender,status: user.status);
+        userPrefrences.saveUser(userModel).then((data){
           Get.find<SidebarController>().refreshController();
 
           Get.back();
@@ -67,18 +70,18 @@ class EditProfileController extends GetxController{
     }
     else{
       final xFile = XFile(selectedImage.value!.path);
-      editProfileRepo.UploadProfileImage(xFile, user.Email).then((value){
+      editProfileRepo.uploadProfileImage(xFile, user.email).then((value){
         UserModel userModel=UserModel(
-            Photo: value,
-            Bio: bioController.value.text,
-            Name: nameController.value.text,
-            Email: user.Email,
-            Gender: user.Gender,
-            Status: user.Status);
-        editProfileRepo.UpdateUser(userModel).then((v){
-          UserModel userModel=UserModel(Photo: value, Bio:bioController.value.text , Name: nameController.value.text, Email: user.Email, Gender: user.Gender,Status: user.Status);
+            photo: value,
+            bio: bioController.value.text,
+            name: nameController.value.text,
+            email: user.email,
+            gender: user.gender,
+            status: user.status);
+        editProfileRepo.updateUser(userModel).then((v){
+          UserModel userModel=UserModel(photo: value, bio:bioController.value.text , name: nameController.value.text, email: user.email, gender: user.gender,status: user.status);
 
-          userPrefrences.SaveUser(userModel).then((data){
+          userPrefrences.saveUser(userModel).then((data){
             Get.find<SidebarController>().refreshController();
             Get.find<BottomNavController>().loadDataFromPref();
             Get.back();

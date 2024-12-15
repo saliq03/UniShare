@@ -1,11 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthRepository{
   final FirebaseAuth _auth = FirebaseAuth.instance;
  Future<void> signInWithEmail(String email,String password ) async {
    try{
-     UserCredential userCredential = await FirebaseAuth.instance
+      await FirebaseAuth.instance
          .createUserWithEmailAndPassword(
          email: email,
          password: password);
@@ -15,8 +16,10 @@ class AuthRepository{
      throw FirebaseAuthException(code: e.code,message: e.message);
   }
   catch(e){
-     print("Unknown error occured while signup");
-     print(e);
+
+     if (kDebugMode) {
+       print(e);
+     }
   }
 }
 
@@ -27,8 +30,10 @@ class AuthRepository{
      await _auth.currentUser?.sendEmailVerification();
    }
    catch (e){
-     print("error while sending verification email\n");
-     print(e);
+
+     if (kDebugMode) {
+       print(e);
+     }
    }
  }
 
@@ -43,8 +48,10 @@ class AuthRepository{
      throw FirebaseAuthException(code: e.code,message: e.message);
    }
    catch(e){
-     print("Unknown error occured while signup");
-     print(e);
+
+     if (kDebugMode) {
+       print(e);
+     }
    }
  }
 
@@ -56,14 +63,15 @@ class AuthRepository{
      throw FirebaseAuthException(code: e.code,message: e.message);
    }
    catch(e){
-     print("Unknown error occured while signup");
-     print(e);
+     if (kDebugMode) {
+       print(e);
+     }
    }
 
   }
 
-  SignInWithGoogle() async {
-    final GoogleSignIn googleSignIn = GoogleSignIn(
+  signInWithGoogle() async {
+     GoogleSignIn(
       scopes: [
         'email',
         'profile',
@@ -79,14 +87,14 @@ class AuthRepository{
           idToken: gauth.idToken
       );
       UserCredential result= await FirebaseAuth.instance.signInWithCredential(crediential);
+      result.user;
 
-      User? userDetails=result.user;
-
-      //we will return userdetails and gender in a map here
 
     }catch(e){
-      print('Error in signin with google');
-      print(e.toString());
+
+      if (kDebugMode) {
+        print(e.toString());
+      }
     }
 
   }
@@ -94,10 +102,8 @@ class AuthRepository{
   Future<void> logout() async {
     try {
       await _auth.signOut();
-      print('User logged out successfully');
     } catch (e) {
-      print('Error logging out: $e');
-      throw e; // Optionally handle or rethrow the exception
+      rethrow; // Optionally handle or rethrow the exception
     }
   }
 

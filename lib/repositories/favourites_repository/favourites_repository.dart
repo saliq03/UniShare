@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 import 'package:unishare/model/user_model/user_model.dart';
 import 'package:unishare/viewmodels/user_prefrences/user_prefrences.dart';
 
@@ -6,29 +7,31 @@ import '../../model/product_model/product_model.dart';
 
 class FavouritesRepository{
 
-  AddToFavourites(String productId) async {
-    UserModel user=await UserPrefrences().GetUser();
+  addToFavourites(String productId) async {
+    UserModel user=await UserPrefrences().getUser();
     try{
       await FirebaseFirestore.instance.
       collection("Users").
-      doc(user.Email).
+      doc(user.email).
       collection("Favourites").
       doc(productId).set({
         "ProductId": productId,
       });
     }catch(e){
-      print(e.toString());
+      if (kDebugMode) {
+        print(e.toString());
+      }
     }
 
 
   }
 
   RemoveFromFavourites(String productId) async {
-    UserModel user=await UserPrefrences().GetUser();
+    UserModel user=await UserPrefrences().getUser();
     try{
       await FirebaseFirestore.instance.
       collection("Users").
-      doc(user.Email).
+      doc(user.email).
       collection("Favourites").
       doc(productId).delete();
     } catch(e){
@@ -37,11 +40,11 @@ class FavouritesRepository{
   }
 
   Future<List<String>> GetFavourites() async {
-    UserModel user=await UserPrefrences().GetUser();
+    UserModel user=await UserPrefrences().getUser();
   try{
     final snapshot = await FirebaseFirestore.instance.
     collection("Users").
-    doc(user.Email).
+    doc(user.email).
     collection("Favourites").get();
 
     final List productIds = snapshot.docs.map((e) {

@@ -38,7 +38,7 @@ class DrawerIcon extends StatelessWidget {
               final user = profileController.currentUser.value;
 
 
-              if (user == null || user.Photo.isEmpty) {
+              if (user == null || user.photo.isEmpty) {
                 // Use a local asset if the user photo is not available
                 return Image.asset(
                   IconsAssets.person,
@@ -52,7 +52,7 @@ class DrawerIcon extends StatelessWidget {
                   fit: BoxFit.cover,
                   height: 50,
                   width: 50,
-                  imageUrl: user.Photo,
+                  imageUrl: user.photo,
                   placeholder: (context, url) => Image.asset(
                     IconsAssets.person,
                     height: 35,

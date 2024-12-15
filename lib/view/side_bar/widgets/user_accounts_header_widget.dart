@@ -16,7 +16,7 @@ class UserAccountsHeaderWidget extends StatelessWidget {
     return GetBuilder<SidebarController>( // Wrap with GetBuilder
       builder: (controller) {
         return UserAccountsDrawerHeader(
-          accountName: Obx(() => Text(controller.Name.value)),
+          accountName: Obx(() => Text(controller.name.value)),
           accountEmail: Obx(() => Text(controller.Email.value)),
           currentAccountPicture: ClipRRect(
             borderRadius: BorderRadius.circular(40),

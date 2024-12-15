@@ -30,14 +30,12 @@ class FavouritesController extends GetxController{
  removeFromFavourites(String id){
   favourites.remove(id);
   favouritesRepository.RemoveFromFavourites(id);
-  print("removed from favourites");
   update();
  }
 
  addToFavourites(String id){
   favourites.add(id);
-  favouritesRepository.AddToFavourites(id);
-  print("added to favourites");
+  favouritesRepository.addToFavourites(id);
   update();
  }
 
@@ -53,7 +51,6 @@ class FavouritesController extends GetxController{
  }
 
  getFavProducts() async {
-  print("get favroute products method called");
   favProducts.value=await favouritesRepository.FetchFavouriteProducts(favourites);
 
  }

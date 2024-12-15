@@ -1,6 +1,7 @@
-import 'dart:convert';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:unishare/model/user_model/user_model.dart';
@@ -11,7 +12,7 @@ import 'package:unishare/res/routes/routes_name.dart';
 import 'package:unishare/utils/utils.dart';
 
 import 'package:unishare/viewmodels/user_prefrences/user_prefrences.dart';
-import '../../res/assets/images_assets.dart';
+
 
 
 class LoginController extends GetxController{
@@ -43,9 +44,9 @@ class LoginController extends GetxController{
      changeLoading(true);
      try {
        await authRepository.logInWithEmailPassword(emailController.value.text, passwordController.value.text).then((value) async {
-         userPrefrences.SetLoginKey(true);
+         userPrefrences.setLoginKey(true);
          await LoginRepository().fetchUser(emailController.value.text).then((user){
-           userPrefrences.SaveUser(user);
+           userPrefrences.saveUser(user);
            Get.offNamed(RoutesName.homeBottomNav);
            Utils.snackBar("succesfull", "Logged in");
          });
@@ -96,28 +97,31 @@ class LoginController extends GetxController{
 
       User? userDetails=result.user;
 
-      print('value of result');
-      print(result);
+      if (kDebugMode) {
+        print(result);
+      }
+
 
       if(result!=null){
         signUpRepository.ifUserExists(userDetails!.email!).then((userDoc){
-          userPrefrences.SetLoginKey(true);
+          userPrefrences.setLoginKey(true);
           if(!userDoc.exists){
-            SignupRepository().uploadUser(name: userDetails!.displayName!, email: userDetails!.email!,gender: 'Unknown', photo: userDetails!.photoURL!);
-            UserModel userModel=UserModel(Photo:userDetails!.photoURL!, Bio: '', Name: userDetails!.displayName!, Email: userDetails!.email!, Gender: 'Unknown', Status: 'online');
-            userPrefrences.SaveUser(userModel).then((value)=>Get.offNamed(RoutesName.homeBottomNav));
+            SignupRepository().uploadUser(name: userDetails.displayName!, email: userDetails.email!,gender: 'Unknown', photo: userDetails!.photoURL!);
+            UserModel userModel=UserModel(photo:userDetails.photoURL!, bio: '', name: userDetails.displayName!, email: userDetails.email!, gender: 'Unknown', status: 'online');
+            userPrefrences.saveUser(userModel).then((value)=>Get.offNamed(RoutesName.homeBottomNav));
           }
           else{
-            LoginRepository().fetchUser(userDetails!.email!).then((user){
-              userPrefrences.SaveUser(user).then((value)=>Get.offNamed(RoutesName.homeBottomNav));
+            LoginRepository().fetchUser(userDetails.email!).then((user){
+              userPrefrences.saveUser(user).then((value)=>Get.offNamed(RoutesName.homeBottomNav));
             });}
         });
       }
       continuewithgoogleLoading.value=false;
     }
     catch(e){
-      print('Error in signin with google');
-      print(e.toString());
+      if (kDebugMode) {
+        print(e.toString());
+      }
     }
      continuewithgoogleLoading.value=false;
 

@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:unishare/model/product_model/product_model.dart';
 import 'package:unishare/model/user_model/user_model.dart';
@@ -23,7 +24,6 @@ class HomeController extends GetxController{
   @override
   void onInit() {
     super.onInit();
-    print("onInit method called");
     getProducts();
   }
 
@@ -36,16 +36,18 @@ class HomeController extends GetxController{
 
    getProducts() async {
     loading.value=true;
-    UserModel currUser=await UserPrefrences().GetUser();
+    UserModel currUser=await UserPrefrences().getUser();
      try{
-       List<ProductModel> fetchedProducts = await homeRepository.getAllProducts(currUser.Email);
+       List<ProductModel> fetchedProducts = await homeRepository.getAllProducts(currUser.email);
        allProducts = fetchedProducts; // Initialize allProducts with fetched products
        products.assignAll(allProducts);
        loading.value=false;
        update();
      }catch(e){
        loading.value=false;
-       print(e.toString());
+       if (kDebugMode) {
+         print(e.toString());
+       }
      }
    }
 

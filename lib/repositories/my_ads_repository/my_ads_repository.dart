@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 import 'package:unishare/services/firebase_services/firebase_services.dart';
 
 import '../../model/product_model/product_model.dart';
@@ -8,43 +9,49 @@ import '../../viewmodels/user_prefrences/user_prefrences.dart';
 class MyAdsRepository{
 
   final firebaseServices=FirebaseServices();
-  Future<List<ProductModel>> FetchMyAds() async {
-    UserModel user=await UserPrefrences().GetUser();
+  Future<List<ProductModel>> fetchMyAds() async {
+    UserModel user=await UserPrefrences().getUser();
     try{
       final snapshot = await FirebaseFirestore.instance.collection("Products")
-          .where('ProviderEmail', isEqualTo: user.Email)  // Filter products by IDs
+          .where('ProviderEmail', isEqualTo: user.email)  // Filter products by IDs
           .get();
       final List<ProductModel> products = snapshot.docs.map((e) {
-        return ProductModel.fromMap(e.data() as Map<String, dynamic>);
+        return ProductModel.fromMap(e.data());
       }).toList();
 
       return products;
     }
     catch(e){
-      print(e.toString());
-      throw e;
+      if (kDebugMode) {
+        print(e.toString());
+      }
+      rethrow;
     }
 
   }
   
-  Future<void> RemoveProduct(String productId)async {
+  Future<void> removeProduct(String productId)async {
     try{
       firebaseServices.deleteData('Products', productId);
     } catch(e){
-      print(e.toString());
+      if (kDebugMode) {
+        print(e.toString());
+      }
     }
 
   }
 
-  Future<void> DeleteProductImage(String imageUrl)async {
+  Future<void> deleteProductImage(String imageUrl)async {
     try {
-      firebaseServices.DeleteImage(imageUrl);
+      firebaseServices.deleteImage(imageUrl);
     }catch(e){
-      print(e.toString());
+      if (kDebugMode) {
+        print(e.toString());
+      }
     }
   }
 
-  Future<void> UpdateProductInfo(ProductModel product)async {
+  Future<void> updateProductInfo(ProductModel product)async {
     Map<String, dynamic> data={
       "Title":product.title,
       "Price":product.price,
@@ -53,11 +60,11 @@ class MyAdsRepository{
     };
     try{
       firebaseServices.updateData('Products', product.productId, data).then((value){
-        print("updated");
       });
     }catch(e){
-      print("error:");
-      print(e.toString());
+      if (kDebugMode) {
+        print(e.toString());
+      }
     }
   }
 }

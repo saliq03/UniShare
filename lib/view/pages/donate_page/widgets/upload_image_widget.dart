@@ -9,7 +9,7 @@ class UploadImageWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: (){
-        donateController.PickImages();
+        donateController.pickImages();
       },
       child: Container(
         height: 250,

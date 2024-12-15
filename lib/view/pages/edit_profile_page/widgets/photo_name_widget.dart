@@ -73,7 +73,7 @@ class PhotoNameWidget extends StatelessWidget {
                leading: const Icon(Icons.photo_library),
                title: const Text("Gallery"),
                onTap: () {
-                 epController.PickImage(ImageSource.gallery);
+                 epController.pickImage(ImageSource.gallery);
                  Navigator.pop(context);
                },
              ),
@@ -81,7 +81,7 @@ class PhotoNameWidget extends StatelessWidget {
                leading: const Icon(Icons.camera_alt),
                title: const Text("Camera"),
                onTap: () {
-                 epController.PickImage(ImageSource.camera);
+                 epController.pickImage(ImageSource.camera);
                  Navigator.pop(context);
                },
              ),

@@ -65,7 +65,7 @@ class _SignupViewState extends State<SignupView> {
 
                     if(_formKey.currentState!.validate()){
 
-                     signupController.Signup(context);
+                     signupController.signup(context);
                        }
                 },
                   width:double.infinity,
