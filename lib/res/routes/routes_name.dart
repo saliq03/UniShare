@@ -16,5 +16,6 @@ class RoutesName{
   static const String chatScreen='/chat_screen';
   static const String usersProfile='/users_profile';
   static const String callingPage='/calling_page';
+  static const String NotficationsHomePage='/notifcations_home_page';
 
 }

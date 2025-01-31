@@ -7,6 +7,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
 import 'package:unishare/res/routes/routes.dart';
+import 'package:unishare/res/routes/routes_name.dart';
 import 'package:unishare/res/themes/themes.dart';
 
 
@@ -38,7 +39,9 @@ class MyApp extends StatelessWidget {
       theme: lightTheme,
       themeMode: ThemeMode.light,
       getPages: AppRoutes.appRoutes(),
+      initialRoute: RoutesName.NotficationsHomePage,
       builder: EasyLoading.init(),
+
     );
   }
 }

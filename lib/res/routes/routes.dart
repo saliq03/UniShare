@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:unishare/notifications_practice/notification_home.dart';
 import 'package:unishare/res/routes/routes_name.dart';
 import 'package:unishare/view/authentication/forget_password/after_forgetpassword_screen.dart';
 import 'package:unishare/view/authentication/forget_password/forget_password.dart';
@@ -121,6 +122,12 @@ class AppRoutes{
     GetPage(
         name: RoutesName.callingPage,
         page: ()=>  NotpickedCallPage(),
+        transitionDuration: const Duration(milliseconds: 250),
+        transition: Transition.fadeIn
+    ),
+    GetPage(
+        name: RoutesName.NotficationsHomePage,
+        page: ()=>  NotificationHomeScreen(),
         transitionDuration: const Duration(milliseconds: 250),
         transition: Transition.fadeIn
     ),
