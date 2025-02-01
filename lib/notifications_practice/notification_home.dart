@@ -15,6 +15,7 @@ class _NotificationHomeScreenState extends State<NotificationHomeScreen> {
   void initState() {
     super.initState();
     notificationServices.requestNotificationPermission();
+    notificationServices.firebaseInit(context);
     notificationServices.getDeviceToken().then((value){
       print("device tonken \n");
       print(value);
@@ -27,6 +28,7 @@ class _NotificationHomeScreenState extends State<NotificationHomeScreen> {
         title: Text("Home"),
         centerTitle: true,
       ),
+      body: Container(color: Colors.black,),
     );
   }
 }

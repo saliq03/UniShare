@@ -14,13 +14,15 @@ class SplashServices{
       if(value==true){
           Timer(const Duration(milliseconds: 1),(){
             FlutterNativeSplash.remove();
-            Get.offNamed(RoutesName.homeBottomNav);
+            // Get.offNamed(RoutesName.homeBottomNav);
+            Get.offNamed(RoutesName.NotficationsHomePage);
           });
         }
       else{
           Timer(const Duration(milliseconds: 1),(){
             FlutterNativeSplash.remove();
-            Get.offNamed(RoutesName.loginview);
+            Get.offNamed(RoutesName.NotficationsHomePage);
+            // Get.offNamed(RoutesName.loginview);
           });
         }
     });
