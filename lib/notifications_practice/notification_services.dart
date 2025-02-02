@@ -31,7 +31,7 @@ class NotificationServices{
    }
 
    void initLocalNotifications(BuildContext context, RemoteMessage message)async{
-      var androidInitializationSettings=AndroidInitializationSettings('@mipmap/ic_launcher');
+      var androidInitializationSettings=AndroidInitializationSettings('@mipmap/launcher_icon');
       var iosInitializationSettings=DarwinInitializationSettings();
       var initializationSettings=InitializationSettings(
          android: androidInitializationSettings,
@@ -76,7 +76,7 @@ class NotificationServices{
       
       Future.delayed(Duration.zero,(){
          flutterLocalNotificationsPlugin.show(
-             0,
+             1,
              message.notification!.title.toString(),
              message.notification!.body.toString(),
              notificationDetails);
