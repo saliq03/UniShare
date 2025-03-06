@@ -19,6 +19,7 @@ class AllChatsPageController extends GetxController {
         return { "User" :await LoginRepository().fetchUser(otherUserId),
                  "Chat": chat};
       }));
+
       return userList;
     });
   }

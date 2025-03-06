@@ -10,6 +10,8 @@ import 'package:unishare/viewmodels/controller/home_controllers/call_controller.
 import 'package:unishare/viewmodels/controller/profile_controller.dart';
 import 'package:unishare/viewmodels/controller/status_controller.dart';
 
+import '../../services/notification_services/notification_service.dart';
+
 class HomeBottomNav extends StatefulWidget {
   const HomeBottomNav({super.key});
 
@@ -21,10 +23,18 @@ class _HomeBottomNavState extends State<HomeBottomNav> {
   StatusController statusController=Get.put(StatusController());
   ProfileController profileController=Get.put(ProfileController());
   CallController callController=Get.put(CallController());
+  NotificationServices notificationServices=NotificationServices();
 
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   List pages=[const HomePage(),const AllChatsPage(),const EmeregencyRequestPage()];
   final bnController=Get.put(BottomNavController());
+
+  @override
+  void initState() {
+    super.initState();
+    notificationServices.firebaseInit(context);
+    notificationServices.setUpInteractMessage(context);
+  }
   @override
   Widget build(BuildContext context) {
     return SafeArea(

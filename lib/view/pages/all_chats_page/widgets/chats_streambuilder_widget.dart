@@ -20,6 +20,7 @@ class ChatsStreambuilderWidget extends StatelessWidget {
               width: double.infinity,
               child: Center(
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Icon(Icons.error_outline_rounded,size: 50,color: Colors.red,),
                     Text("Something went wrong",style: TextStyle(fontSize: 20),)
