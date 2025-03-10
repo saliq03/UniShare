@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 
 import 'package:unishare/res/components/bottom_bar_button.dart';
 import 'package:unishare/res/routes/routes_name.dart';
+import 'package:unishare/services/notification_services/notification_server_key.dart';
 
 import '../../../viewmodels/controller/bottom_nav_controller.dart';
 
@@ -37,8 +38,11 @@ class BottomNavigationWidget extends StatelessWidget {
             Get.toNamed(RoutesName.donate_page);
           }),
           Obx(()=>BottomBarButton(icon: bnController.pageindex.value==2?Icons.emergency:
-          Icons.emergency_outlined, name: "Emergency", onPress: (){
+          Icons.emergency_outlined, name: "Emergency", onPress: ()async{
             bnController.changePageIndex(2);
+            final serviceKey= await NotificationServerKey().getServerKey();
+            print("Service Key:\n");
+            print(serviceKey);
           }))
         ],
       ),
