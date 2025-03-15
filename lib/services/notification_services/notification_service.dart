@@ -7,6 +7,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
+import '../../model/user_model/user_model.dart';
+import '../../viewmodels/user_prefrences/user_prefrences.dart';
+import '../firebase_services/firebase_services.dart';
+
 class NotificationServices{
   FirebaseMessaging firebaseMessaging=FirebaseMessaging.instance;
   FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin=FlutterLocalNotificationsPlugin();
@@ -122,6 +126,22 @@ class NotificationServices{
   Future<String> getDeviceToken()async{
     String? token=await firebaseMessaging.getToken();
     return token!;
+  }
+
+  void  onRefreshToken() {
+    FirebaseMessaging.instance.onTokenRefresh.listen((newToken) {
+      // Update the new token in Firestore
+      updateDeviceToken(newToken);
+
+
+    });
+  }
+
+  Future<void> updateDeviceToken(String token) async {
+    UserModel user=await UserPrefrences().getUser();
+    Map<String,dynamic> data={"FCM Token":token};
+
+    FirebaseServices().updateData("Users", user.email, data);
   }
 
   Future forgroundMessage() async {

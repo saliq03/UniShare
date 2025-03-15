@@ -19,6 +19,11 @@ class ChatModel {
       "Unread_Messages": unreadMessages}; }
 
   factory ChatModel.fromMap(Map<String, dynamic> json) {
-    return ChatModel(id: json["Id"], lastMessage: json["Last_Message"], lastTimeStamp: json["Last_TimeStamp"], lastSenderId: json["Last_SenderId"], unreadMessages: json["Unread_Messages"]);
+    return ChatModel(
+        id: json["Id"],
+        lastMessage: json["Last_Message"],
+        lastTimeStamp: json["Last_TimeStamp"],
+        lastSenderId: json["Last_SenderId"],
+        unreadMessages: json["Unread_Messages"]);
   }
 }

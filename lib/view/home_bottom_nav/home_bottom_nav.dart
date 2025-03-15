@@ -35,9 +35,9 @@ class _HomeBottomNavState extends State<HomeBottomNav> {
     notificationServices.firebaseInit(context);
     notificationServices.setUpInteractMessage(context);
      notificationServices.getDeviceToken().then((token){
-       print("token: ");
-       print(token);
+       notificationServices.updateDeviceToken(token);
      });
+     notificationServices.onRefreshToken();
   }
   @override
   Widget build(BuildContext context) {

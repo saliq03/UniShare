@@ -18,6 +18,7 @@ class ChatServices{
 
 
   Stream<List<ChatModel>>getAllchats(String currentUserId) {
+
     return _firestore.collection('Chat_Rooms').snapshots().map((snapshot) {
       return snapshot.docs
           .where((doc) => doc.id.contains(currentUserId))

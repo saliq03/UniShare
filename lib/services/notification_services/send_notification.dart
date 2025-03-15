@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:unishare/services/notification_services/notification_server_key.dart';
 import 'package:http/http.dart' as http;
 class SendNotifications{
@@ -22,7 +24,7 @@ class SendNotifications{
        var response= await http.post(
          Uri.parse(url),
          headers: headers,
-         body: message);
+         body: jsonEncode(message));
       if (response.statusCode == 200) {
         print("Notification Send Successfully!");
       } else {

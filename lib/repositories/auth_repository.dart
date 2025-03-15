@@ -2,8 +2,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
+import '../services/notification_services/notification_service.dart';
+
 class AuthRepository{
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  final  NotificationServices notificationServices= NotificationServices();
  Future<void> signInWithEmail(String email,String password ) async {
    try{
       await FirebaseAuth.instance
@@ -42,6 +45,10 @@ class AuthRepository{
      await FirebaseAuth.instance.signInWithEmailAndPassword(
          email: email,
          password: password);
+     String token=await notificationServices.getDeviceToken();
+     notificationServices.updateDeviceToken(token);
+
+
    }
    on FirebaseAuthException catch(e){
 

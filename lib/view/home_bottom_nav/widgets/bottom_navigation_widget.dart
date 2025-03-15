@@ -42,7 +42,7 @@ class BottomNavigationWidget extends StatelessWidget {
           Icons.emergency_outlined, name: "Emergency", onPress: ()async{
             bnController.changePageIndex(2);
            SendNotifications.sendNotificationToSpecificUser(
-               token: "e2PLGoJtTqOgbScB5QzNqk:APA91bHyWe92wyLOVd1GPd6bYqrrHgsF9UxOA6T5JdgM4ahF2e8DXtcjahTLyEzG3coX_8CDem9IHtoC4cvNSWy0iZ6FJfuFg2aMkp0S-0D-QyD10Z5Xf88",
+               token: "evdsy8NPQHK2bh3LbXMgAJ:APA91bFLELuIKiWIdEyrs3Esxwi5PQGBzq8xkxgtYq7H3CAXrgfBDUVMmGScUS5MRo562rh0DKxOWCM6rBhWhgwASzqt76OjRczJUNT1gSigK02iwPJvRqg",
                title: "Saliq", body: "what are you doing", data: {});
           }))
         ],

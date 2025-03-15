@@ -12,16 +12,29 @@ class AllChatsPageController extends GetxController {
   Stream<List<Map<String,dynamic>>> getChats() async* {
     String currentUserId = await getCurrentUser();
 
+
+  try{
+    print("in the try block");
+
+
     yield* chatServices.getAllchats(currentUserId).asyncMap((chats) async {
+      print("userList length");
       final userList = await Future.wait(chats.map((chat) async {
         String otherUserId = chat.id.replaceFirst(currentUserId, "").replaceAll("_", '');
 
         return { "User" :await LoginRepository().fetchUser(otherUserId),
-                 "Chat": chat};
+          "Chat": chat};
       }));
 
+      print(userList.length);
       return userList;
     });
+
+  }
+  catch(e){
+    print("an error occured");
+    print(e.toString());
+  }
   }
 
   Future<String> getCurrentUser() async {
