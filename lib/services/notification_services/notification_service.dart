@@ -2,6 +2,7 @@ import 'dart:io';
 import 'dart:math';
 
 import 'package:app_settings/app_settings.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
@@ -143,6 +144,13 @@ class NotificationServices{
 
     FirebaseServices().updateData("Users", user.email, data);
   }
+  Future<void> fetchFCMToken(String email)async{
+    final snapshot=await FirebaseFirestore.instance.collection("Users")
+        .where("Email",isEqualTo: email).get();
+   print(snapshot.docs);
+  }
+
+
 
   Future forgroundMessage() async {
     await FirebaseMessaging.instance

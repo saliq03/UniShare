@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:unishare/res/components/bottom_bar_button.dart';
 import 'package:unishare/res/routes/routes_name.dart';
 import 'package:unishare/services/notification_services/notification_server_key.dart';
+import 'package:unishare/services/notification_services/notification_service.dart';
 import 'package:unishare/services/notification_services/send_notification.dart';
 
 import '../../../viewmodels/controller/bottom_nav_controller.dart';
@@ -41,9 +42,7 @@ class BottomNavigationWidget extends StatelessWidget {
           Obx(()=>BottomBarButton(icon: bnController.pageindex.value==2?Icons.emergency:
           Icons.emergency_outlined, name: "Emergency", onPress: ()async{
             bnController.changePageIndex(2);
-           SendNotifications.sendNotificationToSpecificUser(
-               token: "evdsy8NPQHK2bh3LbXMgAJ:APA91bFLELuIKiWIdEyrs3Esxwi5PQGBzq8xkxgtYq7H3CAXrgfBDUVMmGScUS5MRo562rh0DKxOWCM6rBhWhgwASzqt76OjRczJUNT1gSigK02iwPJvRqg",
-               title: "Saliq", body: "what are you doing", data: {});
+           NotificationServices().fetchFCMToken("javidsaliq@gmail.com");
           }))
         ],
       ),
