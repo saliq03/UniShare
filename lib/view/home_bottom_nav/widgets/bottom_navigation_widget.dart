@@ -42,7 +42,7 @@ class BottomNavigationWidget extends StatelessWidget {
           Obx(()=>BottomBarButton(icon: bnController.pageindex.value==2?Icons.emergency:
           Icons.emergency_outlined, name: "Emergency", onPress: ()async{
             bnController.changePageIndex(2);
-           NotificationServices().fetchFCMToken("javidsaliq@gmail.com");
+
           }))
         ],
       ),

@@ -9,6 +9,9 @@ import 'package:unishare/model/user_model/user_model.dart';
 import 'package:unishare/services/chat_services/chat_services.dart';
 import 'package:unishare/viewmodels/user_prefrences/user_prefrences.dart';
 
+import '../../../services/notification_services/notification_service.dart';
+import '../../../services/notification_services/send_notification.dart';
+
 class ChatScreenController extends GetxController{
 
 
@@ -51,11 +54,20 @@ class ChatScreenController extends GetxController{
   }
 
   sendMessage(String receiverId)async{
+    UserModel currUser=await UserPrefrences().getUser();
+    String token=await NotificationServices().fetchFCMToken(receiverId);
 
     if(selectedImage.value==null){
     if(messageController.value.text!=''){
       try{
          await chatServices.sendMessage(receiverId, messageController.value.text,'','');
+
+         SendNotifications.sendNotificationToSpecificUser(
+             token: token, title:currUser.name, body: "Sent a Chat",
+             data: {
+                   "type": "message",
+                   "Sender":currUser.email
+                 });
       } catch(e){
         if (kDebugMode) {
           print(e.toString());
@@ -75,6 +87,12 @@ class ChatScreenController extends GetxController{
              selectedImage.value=null;
              messageController.value.clear();
              manageScrollDown();
+             SendNotifications.sendNotificationToSpecificUser(
+                 token: token, title:currUser.name, body: "Sent a Photo",
+                 data: {
+                   "type": "message",
+                   "Sender":currUser.email
+             });
            });
         });
         } catch(e){

@@ -6,9 +6,15 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:unishare/repositories/login_repository/login_repository.dart';
+import 'package:unishare/view/pages/chat_screen/chat_screen.dart';
 
 import '../../model/user_model/user_model.dart';
+import '../../res/routes/routes_name.dart';
 import '../../viewmodels/user_prefrences/user_prefrences.dart';
 import '../firebase_services/firebase_services.dart';
 
@@ -118,10 +124,10 @@ class NotificationServices{
     });
   }
 
-  void handleMessage(BuildContext context,RemoteMessage message){
-    if(message.data["type"]=='msg'){
-      // Navigator.push(context,
-          // MaterialPageRoute(builder: (_)=>MessageScreen()));
+  void handleMessage(BuildContext context,RemoteMessage message)async{
+    if(message.data["type"]=='message'){
+      UserModel user=await LoginRepository().fetchUser(message.data["Sender"]);
+      Get.toNamed(RoutesName.chatScreen,arguments: user);
     }
   }
   Future<String> getDeviceToken()async{
@@ -144,10 +150,13 @@ class NotificationServices{
 
     FirebaseServices().updateData("Users", user.email, data);
   }
-  Future<void> fetchFCMToken(String email)async{
+  Future<String> fetchFCMToken(String email)async{
     final snapshot=await FirebaseFirestore.instance.collection("Users")
-        .where("Email",isEqualTo: email).get();
-   print(snapshot.docs);
+        .doc(email).get();
+
+    var data=snapshot.data();
+    return data!['FCM Token'];
+
   }
 
 
