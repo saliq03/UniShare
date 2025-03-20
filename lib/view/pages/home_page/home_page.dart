@@ -57,7 +57,7 @@ class _HomePageState extends State<HomePage> {
                               crossAxisCount: 2,
                               crossAxisSpacing: 6,
                               mainAxisSpacing: 6,
-                              childAspectRatio: 0.65
+                              childAspectRatio: 0.6
                                               ),
                                               itemBuilder: (context,index){
                               return  ShowProductWidget(index: index);

@@ -24,7 +24,7 @@ class FavProductWidget extends StatelessWidget {
           child: Stack(
             children: [
               Container(
-                padding: const EdgeInsets.only(right: 10,top: 10,bottom: 10,left: 10),
+                padding: const EdgeInsets.only(right: 0,top: 10,bottom: 10,left: 10),// here i made right to 0 from 10
                 decoration: BoxDecoration(
                     color: const Color.fromRGBO(8, 126, 139, 0.14),
                     borderRadius: BorderRadius.circular(10)
